@@ -1,7 +1,7 @@
 {
-	"name": "template-wesite",
+	"name": "awd-project-sama",
 	"version": "0.0.1",
-	"description": "The website for <template> created by Aggie Web Developers.",
+	"description": "The website for Aggie SAMA created by Aggie Web Developers.",
 	"main": "app.js",
 	"scripts": {
 		"start": "nodemon app.js  --watch routes --watch middleware --watch app.js",
@@ -12,14 +12,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Aggie-Web-Developers/template-website.git"
+		"url": "git+https://github.com/Aggie-Web-Developers/awd-project-sama.git"
 	},
 	"author": "Aggie Web Developers",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/Aggie-Web-Developers/template-website/issues"
+		"url": "https://github.com/Aggie-Web-Developers/awd-project-sama/issues"
 	},
-	"homepage": "https://github.com/Aggie-Web-Developers/template-website#readme",
+	"homepage": "https://github.com/Aggie-Web-Developers/awd-project-sama#readme",
 	"dependencies": {
 		"aws-sdk": "^2.684.0",
 		"bcrypt": "^5.0.0",
