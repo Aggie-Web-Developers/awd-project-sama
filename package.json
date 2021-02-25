@@ -1,0 +1,55 @@
+{
+	"name": "template-wesite",
+	"version": "0.0.1",
+	"description": "The website for <template> created by Aggie Web Developers.",
+	"main": "app.js",
+	"scripts": {
+		"start": "nodemon app.js  --watch routes --watch middleware --watch app.js",
+		"lint": "eslint \"{views,public,routes,middleware,email}/**/*.js\"",
+		"prettier": "prettier \"**/*.{js,css}\"",
+		"format": "npm run prettier -- --write",
+		"verify": "npm run prettier -- --check && npm run lint"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Aggie-Web-Developers/template-website.git"
+	},
+	"author": "Aggie Web Developers",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Aggie-Web-Developers/template-website/issues"
+	},
+	"homepage": "https://github.com/Aggie-Web-Developers/template-website#readme",
+	"dependencies": {
+		"aws-sdk": "^2.684.0",
+		"bcrypt": "^5.0.0",
+		"body-parser": "^1.19.0",
+		"dotenv": "^8.2.0",
+		"ejs": "^3.1.3",
+		"express": "^4.17.1",
+		"express-flash": "0.0.2",
+		"express-session": "^1.17.1",
+		"method-override": "^3.0.0",
+		"moment": "^2.27.0",
+		"moment-timezone": "^0.5.31",
+		"mssql": "^6.2.0",
+		"node-fetch": "^2.6.1"
+	},
+	"devDependencies": {
+		"eslint": "^7.4.0",
+		"eslint-config-google": "^0.14.0",
+		"eslint-config-prettier": "^6.11.0",
+		"eslint-plugin-prettier": "^3.1.4",
+		"husky": "^5.1.1",
+		"nodemon": "^2.0.7",
+		"prettier": "^2.0.5"
+	},
+	"engines": {
+		"node": "^14.0.0"
+	},
+	"husky": {
+		"hooks": {
+			"pre-push": "npm run verify"
+		}
+	}
+}

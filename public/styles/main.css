@@ -1,0 +1,193 @@
+/***** Global *****/
+body {
+	max-width: 100%;
+}
+
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+	outline: 0px !important;
+	box-shadow: none !important;
+}
+
+#content {
+	margin-top: 5rem;
+}
+
+.hidden {
+	display: none;
+}
+
+.purple {
+	color: #27968c;
+}
+
+.main-blue {
+	color: #54a0ff;
+}
+
+.font-500 {
+	font-weight: 500;
+}
+
+.page-header {
+	font-size: 6rem;
+	z-index: 0;
+}
+
+.footer a {
+	color: #fff;
+	transition: background-color 0.4s linear;
+}
+
+.footer a:hover {
+	color: #8395a7;
+	transition: color 0.2s linear;
+	text-decoration: none;
+}
+
+@media (max-width: 450px) {
+	.page-header {
+		font-size: 4rem;
+	}
+}
+/***** /Global/ ******/
+
+/***** Home Page *****/
+#mainLogo {
+	font-size: 2rem;
+	font-weight: 900;
+	transition: color 0.4s linear;
+}
+
+.flex-vert-center {
+	display: flex;
+	align-items: center;
+}
+
+.navbar-toggler {
+	display: inline-block;
+	height: 75%;
+	margin-left: 10px;
+}
+
+.font-25 {
+	font-size: 2.5rem;
+}
+
+/***** Navbar *****/
+#navRight {
+	padding-left: 20px;
+}
+
+#navLeft {
+	padding-right: 20px;
+}
+
+#navbar {
+	max-width: 100%;
+	transition: background-color 0.4s linear;
+	z-index: 10;
+	font-size: 1rem;
+	background-color: #27968c;
+}
+
+#navbar.scrolled {
+	background-color: #27968c;
+	transition: background-color 0.4s linear;
+}
+
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show > .nav-link {
+	font-weight: bold;
+	transition: color 0.4s linear;
+}
+
+.sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.sticky + .content {
+	margin-top: 8rem;
+}
+
+@media (max-width: 992px) {
+	#navRight {
+		padding-left: 0;
+	}
+	#navLeft {
+		padding-left: 0;
+	}
+}
+
+.custom-toggler .navbar-toggler-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(52,31,151, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+	border-color: rgb(52, 31, 151);
+}
+
+/***** /Navbar/ *****/
+
+/***** Footer *****/
+.icon-row {
+	font-size: 2rem;
+}
+
+@media (max-width: 762px) {
+	.footer-copyright {
+		font-size: 0.8rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.icon-row {
+		font-size: 1.8rem;
+		padding: 0 5px;
+	}
+	.footer-copyright {
+		font-size: 0.65rem;
+	}
+}
+
+@media (max-width: 400px) {
+	.icon-row {
+		font-size: 1.5rem;
+		padding: 0 5px;
+	}
+	.footer-copyright {
+		font-size: 0.5rem;
+	}
+}
+
+@media (max-width: 375px) {
+	.icon-row {
+		font-size: 1.1rem;
+		padding: 0 5px;
+	}
+}
+
+.footer {
+	background-color: #27968c;
+	color: #fff;
+}
+/***** /Footer/ *****/
+
+/***** /Home Page/ *****/
+
+/***** 404 Page *****/
+/***** /404 Page/ *****/
