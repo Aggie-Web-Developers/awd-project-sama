@@ -12,7 +12,7 @@ Install:
  - [Node.js v14 and npm](https://nodejs.org/en/download/)
 
 Clone and Run:
- - Use Github Desktop: https://github.com/Aggie-Web-Developers/AWD-project-template.git
+ - Use Github Desktop: https://github.com/Aggie-Web-Developers/AWD-project-sama.git
  - `npm i` - installs dependencies
  - `npm run start` - runs server and views, with auto-reload
 
