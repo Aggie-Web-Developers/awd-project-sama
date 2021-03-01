@@ -7,8 +7,6 @@ function validateForm() {
 	var onlyLetters = /^[a-zA-Z\s]*$/;
 	var onlyEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-	var invalidForm = false;
-
 	if (n == '' || n == null) {
 		document.getElementById('nameLabel').innerHTML = 'Please enter your name';
 		document.getElementById('name').style.borderColor = 'red';
