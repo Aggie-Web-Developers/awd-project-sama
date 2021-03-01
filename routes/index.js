@@ -21,10 +21,10 @@ router.get('/contact-us', function (req, res) {
 	res.render('contact-us');
 });
 
-router.post('/contact-form-submission', function (req, res) {
+router.post('/contact-us-submission', function (req, res) {
 	/* do something with the form req */
 
-	res.render('contact-form-submission');
+	res.render('contact-us-submission');
 });
 
 // router.get('/sitemap.xml', function (req, res) {
