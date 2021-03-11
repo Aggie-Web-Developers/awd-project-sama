@@ -34,6 +34,17 @@
 		flex-grow: 0;
 		margin: 32px 0px;
 	}
+	.past-newsletters {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 64px 165px;
+
+		width: 100%;
+		left: 0px;
+
+		background: linear-gradient(180deg, #EBFEFF 71.87%, rgba(235, 254, 255, 0) 100%);
+	}
 </style>
 
 	<body>
@@ -49,27 +60,34 @@
 			</p>
 			<button id="download-recent" class="read-now">Read now</button>
 		</div>
-		<br><br><br>
-		<h2>Past Newsletters</h2>
-		<p>A running archive of all our past newsletters and other materials</p>
+		<br><br>
 
-		<table>
-			<tr>
-				<th>Name</th>
-				<th>Date Uploaded</th>
-				<th>Link</th>
-			</tr>
-			<tr>
-				<td>..</td>
-				<td>..</td>
-				<td>..</td>
-			</tr>
-			<tr>
-				<td>..</td>
-				<td>..</td>
-				<td>..</td>
-			</tr>
-		</table>
+		<div class="past-newsletters">
+			<h2>Past Newsletters</h2>
+			<p>A running archive of all our past newsletters and other materials</p>
+
+			<table>
+				<tr>
+					<th>Name</th>
+					<th></th>
+					<th>Date Uploaded</th>
+					<th>Link</th>
+				</tr>
+				<tr>
+					<td>..</td>
+					<td></td>
+					<td>..</td>
+					<td>..</td>
+				</tr>
+				<tr>
+					<td>..</td>
+					<td></td>
+					<td>..</td>
+					<td>..</td>
+				</tr>
+			</table>
+		</div>
+
 
 		<script src="/scripts/newsletter.js"></script>
 		<%- include('partials/footer') %>
