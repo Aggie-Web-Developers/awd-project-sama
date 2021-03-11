@@ -2,16 +2,74 @@
 <html lang="en">
 <%- include('partials/header') %>
 
+<style>
+	.recent-background {
+		width: 846px;
+		height: 231px;
+		background: radial-gradient(81.44% 573.28% at 88.61% 12.11%, rgba(163, 82, 255, 0.88) 0%, #851AFF 69.27%);
+		border-radius: 16px;
+	}
+	.read-now {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 14px 24px;
+
+		position: static;
+		width: 128px;
+		height: 48px;
+		left: 0px;
+		top: 90px;
+
+		/* Text / Gray 900 */
+
+		background: #18191F;
+		border-radius: 10px;
+		color: #56CCF2;
+
+		/* Inside Auto Layout */
+
+		flex: none;
+		order: 1;
+		flex-grow: 0;
+		margin: 32px 0px;
+	}
+</style>
+
 	<body>
 		<%- include('partials/nav') %>
 
-		<div id="content" class="container">
-			<div class="d-flex flex-row my-4 py-5">
-				<div class="col-sm-12 text-center">
-					<h2 class="">NEWSLETTER</h2>
-				</div>
-			</div>
+		<br><br><br>
+		<h2 class="page-header">Newsletters, past and present</h2>
+		<br>
+		<div id="recent-newsletter-container" class="recent-background">
+			<img src="/images/Newsletter-illustration.png" alt="Newsletter">
+			<p style="font-family: Manrope; font-size: 29px; line-height: 29px; color: #FFFFFF; font-weight: 800; font-style: normal;">
+				Get our most recent newsletter!
+			</p>
+			<button id="download-recent" class="read-now">Read now</button>
 		</div>
+		<br><br><br>
+		<h2>Past Newsletters</h2>
+		<p>A running archive of all our past newsletters and other materials</p>
+
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Date Uploaded</th>
+				<th>Link</th>
+			</tr>
+			<tr>
+				<td>..</td>
+				<td>..</td>
+				<td>..</td>
+			</tr>
+			<tr>
+				<td>..</td>
+				<td>..</td>
+				<td>..</td>
+			</tr>
+		</table>
 
 		<script src="/scripts/newsletter.js"></script>
 		<%- include('partials/footer') %>
