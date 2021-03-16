@@ -188,6 +188,10 @@ label:focus,
 /***** /Footer/ *****/
 
 /***** /Home Page/ *****/
+.btn-primary.custom-btn {
+	background-color: blueviolet;
+	border-color: blueviolet;
+}
 
 /***** 404 Page *****/
 /***** /404 Page/ *****/
