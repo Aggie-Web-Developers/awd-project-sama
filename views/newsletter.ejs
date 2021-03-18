@@ -4,8 +4,6 @@
 
 <style>
 	.recent-background {
-		width: 846px;
-		height: 231px;
 		background: radial-gradient(81.44% 573.28% at 88.61% 12.11%, rgba(163, 82, 255, 0.88) 0%, #851AFF 69.27%);
 		border-radius: 16px;
 	}
@@ -35,14 +33,6 @@
 		margin: 32px 0px;
 	}
 	.past-newsletters {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		padding: 64px 165px;
-
-		width: 100%;
-		left: 0px;
-
 		background: linear-gradient(180deg, #EBFEFF 71.87%, rgba(235, 254, 255, 0) 100%);
 	}
 </style>
@@ -50,43 +40,68 @@
 	<body>
 		<%- include('partials/nav') %>
 
-		<br><br><br>
-		<h2 class="page-header">Newsletters, past and present</h2>
-		<br>
-		<div id="recent-newsletter-container" class="recent-background">
-			<img src="/images/Newsletter-illustration.png" alt="Newsletter">
-			<p style="font-family: Manrope; font-size: 29px; line-height: 29px; color: #FFFFFF; font-weight: 800; font-style: normal;">
-				Get our most recent newsletter!
-			</p>
-			<button id="download-recent" class="read-now">Read now</button>
-		</div>
-		<br><br>
+		<div id="content" class="container">
 
-		<div class="past-newsletters">
-			<h2>Past Newsletters</h2>
-			<p>A running archive of all our past newsletters and other materials</p>
 
-			<table>
-				<tr>
-					<th>Name</th>
-					<th></th>
-					<th>Date Uploaded</th>
-					<th>Link</th>
-				</tr>
-				<tr>
-					<td>..</td>
-					<td></td>
-					<td>..</td>
-					<td>..</td>
-				</tr>
-				<tr>
-					<td>..</td>
-					<td></td>
-					<td>..</td>
-					<td>..</td>
-				</tr>
-			</table>
+			<div class="d-flex flex-row my-4 py-5">
+				<div class="col-sm-12 text-center">
+					<h2>Newsletters, past and present</h2>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-5">
+					<div class="recent-background">
+						<img src="/images/Newsletter-illustration.png" alt="Newsletter">
+						<p style="font-family: Manrope; font-size: 29px; line-height: 29px; color: #FFFFFF; font-weight: 800; font-style: normal;">
+							Get our most recent newsletter!
+						</p>
+						<button id="download-recent" class="read-now">Read now</button>
+					</div>
+				</div>
+			</div>
+
 		</div>
+
+
+
+		<div class="container-fluid past-newsletters">
+			<div class="container">
+				<h2>Past Newsletters</h2>
+			
+				<div class="row">
+					<p>A running archive of all our past newsletters and other materials</p>
+				</div>
+			</div>
+
+			<div class="row container">
+				<div class="col-sm-10">
+					<table>
+						<tr>
+							<th>Name</th>
+							<th></th>
+							<th>Date Uploaded</th>
+							<th>Link</th>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td></td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td></td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		
+		</div>
+		
+
 
 
 		<script src="/scripts/newsletter.js"></script>
