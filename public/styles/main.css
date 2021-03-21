@@ -193,5 +193,27 @@ label:focus,
 	border-color: blueviolet;
 }
 
+.About-Us-Background {
+	background: rgb(217,179,130);
+	background: linear-gradient(0deg, rgba(217,179,130,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.About-Us .row .col-md-4{
+	min-height: 100%;
+}
+
+.About-Us h2{
+	/* margin: 0; */
+}
+
+.flex-column {
+	padding-right: 2em;
+	align-items: baseline;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding-bottom: 3em;
+}
+
 /***** 404 Page *****/
 /***** /404 Page/ *****/
