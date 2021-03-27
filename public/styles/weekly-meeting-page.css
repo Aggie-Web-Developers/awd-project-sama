@@ -4,7 +4,7 @@
 }
 
 .purple-text {
-    color: purple;
+    color: #8C30F5;
 }
 
 .past-events-and-socials {
@@ -27,7 +27,7 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-  }
+}
 
 .chatbox h1{
     margin-bottom: 0.8em;
@@ -40,3 +40,4 @@
     margin-right: 50px;
     background: white;/*背景色*/
 }
+
