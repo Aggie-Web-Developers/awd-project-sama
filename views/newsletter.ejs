@@ -52,8 +52,7 @@
 
 	#past-newsletters-table {
 		/* border-collapse: collapse; */
-  		width: 80%;
-		margin-left: 5%;
+  		width: 100%;
 		background-color: #FFFFFF;
 	}
 	#past-newsletters-table tr:nth-child(even){background-color: #f9f9f9;}
@@ -62,6 +61,11 @@
 	#past-newsletters-table th, #past-newsletters-table td {
 		padding: 12px;
 		border-bottom: 1px solid rgb(180, 180, 180);
+	}
+	
+	.flex-vert-center{
+		display: flex;
+		align-items: center;
 	}
 
 </style>
@@ -72,20 +76,38 @@
 		<div id="content" class="container">
 
 
-			<div class="d-flex flex-row my-4 py-5">
-				<div class="col-sm-12 text-center">
+			<div class="d-flex flex-row mt-4 pt-3 pb-1">
+				<div class="col-sm-12">
 					<h2 class="newsletter-title">Newsletters, past and present</h2>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-sm-5">
-					<div class="recent-background">
-						<img src="/images/Newsletter-illustration.png" alt="Newsletter">
-						<p style="font-family: Manrope; font-size: 29px; line-height: 29px; color: #FFFFFF; font-weight: 800; font-style: normal;">
-							Get our most recent newsletter!
-						</p>
-						<button id="download-recent" class="read-now">Read now</button>
+			<div class="row mb-5">
+				<div class="col-md-9">
+					<div class="recent-background py-4">
+						<div class="row">
+							<div class="col-sm-5 text-center">
+								<img src="/images/Newsletter-illustration.png" alt="Newsletter">
+								<div class="clearfix"></div>
+							</div>
+
+							<div class="col-sm-7 pr-5 flex-vert-center">
+								<div>
+									<p class="mb-4 px-4" style="font-family: Manrope; font-size: 29px; line-height: 29px; color: #FFFFFF; font-weight: 800; font-style: normal;">
+										Get our most recent newsletter!
+									</p>
+									<button id="download-recent" class="read-now mx-4 my-0">Read now</button>
+								</div>
+							</div>
+						</div>
+						
+						<!-- <div>
+							<p style="font-family: Manrope; font-size: 29px; line-height: 29px; color: #FFFFFF; font-weight: 800; font-style: normal;">
+								Get our most recent newsletter!
+							</p>
+							<button id="download-recent" class="read-now">Read now</button>
+						</div> -->
+						
 					</div>
 				</div>
 			</div>
@@ -95,54 +117,58 @@
 
 
 		<div class="container-fluid past-newsletters">
-			<div class="container">
-				<h2>Past Newsletters</h2>
-			
+			<div class="container mt-4 mb-5 px-5">
+				<div class="row pt-5 pb-2">
+					<h2 class="mt-2">Past Newsletters</h2>
+					
+				</div>
 				<div class="row">
-					<p>A running archive of all our past newsletters and other materials</p>
+					<p class="pb-3">A running archive of all our past newsletters and other materials</p>
+				</div>
+				<div class="row">
+					<table id="past-newsletters-table">
+						<tr>
+							<th>Name</th>
+							<th>Date Uploaded</th>
+							<th>Link</th>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td></td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td></td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td></td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td></td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td></td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						
+					</table>
 				</div>
 			</div>
 
 			
-			<table id="past-newsletters-table">
-				<tr>
-					<th>Name</th>
-					<th></th>
-					<th>Date Uploaded</th>
-					<th>Link</th>
-				</tr>
-				<tr>
-					<td>..</td>
-					<td></td>
-					<td>..</td>
-					<td>..</td>
-				</tr>
-				<tr>
-					<td>..</td>
-					<td></td>
-					<td>..</td>
-					<td>..</td>
-				</tr>
-				<tr>
-					<td>..</td>
-					<td></td>
-					<td>..</td>
-					<td>..</td>
-				</tr>
-				<tr>
-					<td>..</td>
-					<td></td>
-					<td>..</td>
-					<td>..</td>
-				</tr>
-				<tr>
-					<td>..</td>
-					<td></td>
-					<td>..</td>
-					<td>..</td>
-				</tr>
-				
-			</table>
+			
 
 		</div>
 		
