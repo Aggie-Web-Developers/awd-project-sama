@@ -85,6 +85,10 @@ label:focus,
 }
 
 /***** Navbar *****/
+.socials{
+	width: 136px;
+	height: 36px;
+}
 #navRight {
 	padding-left: 20px;
 }
@@ -98,7 +102,7 @@ label:focus,
 	transition: background-color 0.4s linear;
 	z-index: 10;
 	font-size: 1rem;
-	background-color: #27968c;
+	background-color: #ffffff;
 }
 
 #navbar.scrolled {
