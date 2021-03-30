@@ -64,9 +64,12 @@ label:focus,
 
 /***** Home Page *****/
 #mainLogo {
-	font-size: 2rem;
-	font-weight: 900;
-	transition: color 0.4s linear;
+	font-size: 28px;
+	line-height: 20px;
+	font-family: 'Istok Web';
+	font-style: normal;
+	font-weight: bold;
+	font-feature-settings: 'liga' off;
 }
 
 .flex-vert-center {
@@ -83,11 +86,35 @@ label:focus,
 .font-25 {
 	font-size: 2.5rem;
 }
+/****loginPage****/
+#logintitle{
+	font-family: 'Manrope';
+	color: #474A57;
+}
+#loginform{
+	font-family: 'Montserrat';
+}
+#exampleInputEmail1{
+	font-family: 'Montserrat';
+}
+#exampleInputEmail1{
+	font-family: 'Montserrat';
+}
+.btn-primary{
+	background-color: #23A6F0;
+}
+/***loginpage***/
 
 /***** Navbar *****/
 .socials{
 	width: 136px;
 	height: 36px;
+}
+#navlink{
+	font-family: 'Manrope';
+	font-style: normal;
+	font-weight: bold;
+	font-feature-settings: 'liga' off;
 }
 #navRight {
 	padding-left: 20px;
