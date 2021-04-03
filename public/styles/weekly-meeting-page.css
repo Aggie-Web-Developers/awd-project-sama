@@ -1,0 +1,64 @@
+.weekly-meetings {
+    /* Gradient / Subtle Blue */
+    background: linear-gradient(194.01deg, #D9E8EF 9.6%, #EAF2F5 89.64%);
+}
+
+body{
+    color: #18191F;
+}
+
+body .purple-text {
+    color: #8C30F5;
+}
+
+.gray-text {
+    color: #474A57;
+}
+
+.past-events-and-socials {
+    background: linear-gradient(180deg, #F1E4FF 75.52%, rgba(241, 228, 255, 0) 100%);
+}
+
+.chatbox{
+    background-color: white;
+    border-radius: 15px;
+    padding: 2em;
+    margin-bottom: 2em;
+    position: relative;
+}
+
+.chatbox:before {
+    position: absolute;
+    content: '';
+    border-top: 20px solid white;
+    border-right: 20px solid transparent;
+    border-left: 20px solid transparent;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.chatbox h1{
+    margin-bottom: 0.8em;
+}
+
+.circle{
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: white;
+}
+
+.past-events-and-socials {
+    padding-bottom: 122px;
+}
+
+@media (max-width: 991px) {
+    .division-title {
+        text-align: center;
+    }
+    .chatbox {
+        margin-left: 69px;
+        margin-right: 69px;
+    }
+}
