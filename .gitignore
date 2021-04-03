@@ -5,3 +5,4 @@ config.json
 .vscode/
 .env
 yarn.lock
+desktop.ini
