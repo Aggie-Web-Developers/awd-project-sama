@@ -17,6 +17,10 @@ router.get('/privacy-policy', function (req, res) {
 	res.render('privacy-policy');
 });
 
+router.get('/weekly-meeting-page', function (req, res) {
+	res.render('weekly-meeting-page');
+});
+
 // router.get('/sitemap.xml', function (req, res) {
 // 	res.sendFile(path.join(__dirname, '../sitemap.xml'));
 // });
