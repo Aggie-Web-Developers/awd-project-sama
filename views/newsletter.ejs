@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header') %>
+
+<style>
+	.recent-background {
+		background: radial-gradient(81.44% 573.28% at 88.61% 12.11%, rgba(163, 82, 255, 0.88) 0%, #851AFF 69.27%);
+		border-radius: 16px;
+	}
+	.read-now {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 14px 24px;
+
+		position: static;
+		width: 128px;
+		height: 48px;
+		left: 0px;
+		top: 90px;
+
+		/* Text / Gray 900 */
+
+		background: #18191F;
+		border-radius: 10px;
+		color: #56CCF2;
+
+		/* Inside Auto Layout */
+
+		flex: none;
+		order: 1;
+		flex-grow: 0;
+		margin: 32px 0px;
+	}
+	.past-newsletters {
+		background: linear-gradient(180deg, #EBFEFF 71.87%, rgba(235, 254, 255, 0) 100%);
+	}
+	.newsletter-title {
+		font-family: Manrope;
+		font-style: normal;
+		font-weight: 800;
+		font-size: 46px;
+		line-height: 64px;
+		/* or 139% */
+
+		font-feature-settings: 'liga' off;
+
+		/* Text / Gray 800 */
+
+		color: #474A57;
+	}
+
+	#past-newsletters-table {
+		/* border-collapse: collapse; */
+  		width: 100%;
+		background-color: #FFFFFF;
+	}
+	#past-newsletters-table tr:nth-child(even){background-color: #f9f9f9;}
+	#past-newsletters-table tr:hover {background-color: #ddd;}
+
+	#past-newsletters-table th, #past-newsletters-table td {
+		padding: 12px;
+		border-bottom: 1px solid rgb(210, 210, 210);
+		font-style: normal;
+		font-size: 14px;
+	}
+	
+	.flex-vert-center{
+		display: flex;
+		align-items: center;
+	}
+
+</style>
+
+	<body>
+		<%- include('partials/nav') %>
+
+		<div id="content" class="container">
+
+
+			<div class="d-flex flex-row mt-4 pt-3 pb-1">
+				<div class="col-sm-12">
+					<h2 class="newsletter-title">Newsletters, past and present</h2>
+				</div>
+			</div>
+
+			<div class="row mb-5">
+				<div class="col-md-9">
+					<div class="recent-background py-4">
+						<div class="row">
+							<div class="col-sm-5 text-center">
+								<img src="/images/Newsletter-illustration.png" alt="Newsletter">
+								<div class="clearfix"></div>
+							</div>
+
+							<div class="col-sm-7 pr-5 flex-vert-center">
+								<div>
+									<p class="mb-4 px-4" style="font-family: Manrope; font-size: 29px; line-height: 29px; color: #FFFFFF; font-weight: 800; font-style: normal;">
+										Get our most recent newsletter!
+									</p>
+									<button id="download-recent" class="read-now mx-4 my-0">Read now</button>
+								</div>
+							</div>
+						</div>
+						
+						<!-- <div>
+							<p style="font-family: Manrope; font-size: 29px; line-height: 29px; color: #FFFFFF; font-weight: 800; font-style: normal;">
+								Get our most recent newsletter!
+							</p>
+							<button id="download-recent" class="read-now">Read now</button>
+						</div> -->
+						
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+		<div class="container-fluid past-newsletters">
+			<div class="container mt-4 mb-5 px-5">
+				<div class="row pt-5 pb-2">
+					<h2 class="mt-2">Past Newsletters</h2>
+					
+				</div>
+				<div class="row">
+					<p class="pb-3">A running archive of all our past newsletters and other materials</p>
+				</div>
+				<div class="row">
+					<table id="past-newsletters-table">
+						<thead><tr>
+							<th style="width: 65%">Name</th>
+							<th style="width: 20%">Date Uploaded</th>
+							<th style="width: 15%">Link</th>
+						</tr></thead>
+						<tbody>
+							<% newsletters.forEach(function(newsletter) {
+								console.log(newsletter);%>
+								<tr>
+									<td><%= newsletter.name %></td>
+									<td><%= newsletter.date_uploaded %></td>
+									<td><%= newsletter.link %></td>
+								</tr>
+							<% )}; %>
+						</tbody>
+						<tr>
+							<td>..</td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						
+					</table>
+				</div>
+			</div>
+
+			
+			
+
+		</div>
+		
+
+
+
+		<script src="/scripts/newsletter.js"></script>
+		<%- include('partials/footer') %>
+	</body>
+
+</html>
