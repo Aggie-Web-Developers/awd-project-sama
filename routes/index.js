@@ -11,9 +11,9 @@ router.get('/', function (req, res) {
 router.get('/meetings', function (req, res) {
 	res.render('meetings.ejs');
 });
-router.get('/newsletter', function (req, res) {
-	res.render('newsletter.ejs');
-});
+// router.get('/newsletter', function (req, res) {
+// 	res.render('newsletter.ejs');
+// });
 router.get('/terms-and-conditions', function (req, res) {
 	res.render('terms-and-conditions');
 });
@@ -27,7 +27,7 @@ router.get('/newsletter', function (req, res) {
 
 	var sqlReq = new sql.Request()
         .query(sqlQuery)
-        .then((result) => {
+        .then((result) => { 
             res.render('newsletter', { newsletters: result.recordset });
         })
         .catch((err) => {
