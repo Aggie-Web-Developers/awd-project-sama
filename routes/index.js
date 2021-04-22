@@ -17,20 +17,14 @@ router.get('/privacy-policy', function (req, res) {
 	res.render('privacy-policy');
 });
 
-// router.get('/officers-test', function (req, res) {
-// 	res.render('officers-test');
-// });
-
 router.get('/officers-test', function (req, res) {
-	var sqlQuery = 'SELECT * FROM officers';
-	console.log("sending query...");
-	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		res.render('officers-test', {officers: result.recordset});
-		console.log("a");
-	}).catch((err) => {
-		req.flash("error", "Error loading officers");
-		console.log("b");
-	});
+	var sqlQuery = "SELECT * FROM officers";
+
+    var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+        res.render('officers-test', {officers: result.recordset});
+    }).catch((err) => {
+        req.flash('error', 'Error loading officers');
+    });
 	console.log("end of the route");
 });
 
