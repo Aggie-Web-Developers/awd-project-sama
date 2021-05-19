@@ -17,6 +17,7 @@ router.get('/privacy-policy', function (req, res) {
 	res.render('privacy-policy');
 });
 
+
 router.get('/officers-test', function (req, res) {
 	var sqlQuery = "SELECT * FROM officers";
 
@@ -28,9 +29,16 @@ router.get('/officers-test', function (req, res) {
 	console.log("end of the route");
 });
 
+
+router.get('/newsletter', function (req, res) {
+	res.render('newsletter')
+})
+
+
 router.get('/weekly-meeting-page', function (req, res) {
 	res.render('weekly-meeting-page');
 });
+
 
 // router.get('/sitemap.xml', function (req, res) {
 // 	res.sendFile(path.join(__dirname, '../sitemap.xml'));

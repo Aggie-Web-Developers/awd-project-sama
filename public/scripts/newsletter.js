@@ -1,0 +1,1 @@
+// JS file for newsletter / files page
