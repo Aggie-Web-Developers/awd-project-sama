@@ -18,9 +18,22 @@ router.get('/privacy-policy', function (req, res) {
 });
 
 
+router.get('/officers-test', function (req, res) {
+	var sqlQuery = "SELECT * FROM officers";
+
+    var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+        res.render('officers-test', {officers: result.recordset});
+    }).catch((err) => {
+        req.flash('error', 'Error loading officers');
+    });
+	console.log("end of the route");
+});
+
+
 router.get('/newsletter', function (req, res) {
 	res.render('newsletter')
 })
+
 
 router.get('/weekly-meeting-page', function (req, res) {
 	res.render('weekly-meeting-page');
