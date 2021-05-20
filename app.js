@@ -25,7 +25,7 @@ app.use(
 
 const config = {
 	server: process.env.DB_SERVER || '',
-	port: 1433,
+	port: process.env.DB_PORT || 1433,
 	user: process.env.DB_USER || '',
 	password: process.env.DB_PASSWORD || '',
 	database: process.env.DB_PROD || 'template-site-dev',
@@ -43,7 +43,8 @@ const config = {
 };
 
 // Uncomment this if you want a database connection
-sql.connect(config)
+/* sql
+	.connect(config)
 	.then((pool) => {
 		if (pool.connected) {
 			console.log('Connecting to database: [OK]');
@@ -55,7 +56,7 @@ sql.connect(config)
 		console.log('Connecting to database: [FAILED]');
 		console.log(err);
 	});
-
+ */
 
 app.use(baseRoutes);
 
