@@ -1,0 +1,201 @@
+#success-message {
+	opacity: 0;
+}
+
+.col-xs-12.col-sm-12.col-md-12.col-lg-12 {
+	padding: 0 20% 0 20%;
+}
+
+.page-title {
+	font-family: Manrope;
+	font-style: bold;
+	font-weight: 700;
+	font-size: 46px;
+	line-height: 64px;
+
+	margin-left: -1vw;
+	margin-bottom: 1.5vh;
+
+	color: #474a57;
+}
+
+.discord-banner-title {
+	font-family: Manrope;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 29px;
+	line-height: 39px;
+
+	color: #18191f;
+
+	flex: none;
+	order: 0;
+	align-self: center;
+	flex-grow: 0;
+	margin: 32px 0px 18px 1vw;
+}
+
+.discord-banner-button {
+	background: #ffffff;
+	border-radius: 8px;
+	border-color: white;
+	border-style: solid;
+
+	flex: none;
+	order: 1;
+	align-self: flex-start;
+	flex-grow: 0;
+	margin: 20px 0px 10px;
+
+	height: 6vh;
+	width: 12vw;
+}
+
+.discord-banner-button-text {
+	font-family: Manrope;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 1rem;
+	line-height: 40px;
+
+	text-align: center;
+
+	color: #8c30f5;
+}
+
+.arrow-img {
+	position: absolute;
+	width: 160px;
+	height: 70px;
+	left: 350px;
+	top: 120px;
+
+	content: url('/../images/Vector 1.svg');
+}
+
+.sama-logo {
+	position: absolute;
+	left: 550px;
+	top: 100px;
+
+	content: url('/../images/image 11.svg');
+}
+
+.discord-logo {
+	content: url('/../images/image 10.svg');
+
+	position: absolute;
+	width: 300px;
+	height: 200px;
+	left: 650px;
+	top: 0px;
+
+	clip-path: circle(60.4% at 60% 50%);
+}
+
+.banner-background {
+	background: #2ec5ce;
+	border-radius: 16px;
+	height: 30vh;
+}
+
+.form-container {
+	margin-top: 5vh;
+}
+
+.form-label {
+	margin-left: -31vw;
+	text-align: left;
+
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 24px;
+
+	letter-spacing: 0.2px;
+
+	color: #252b42;
+}
+
+.form-control {
+	background: #f9f9f9;
+	border: 1px solid #e6e6e6;
+	box-sizing: border-box;
+	border-radius: 5px;
+	width: 150%;
+	margin-left: -6vw;
+
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 24px;
+
+	height: 6vh;
+}
+
+.form-header-primary {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 32px;
+
+	letter-spacing: 0.1px;
+
+	color: #252b42;
+
+	flex: none;
+	order: 0;
+	flex-grow: 0;
+	margin: 15px 0px;
+}
+
+.form-header-secondary {
+	text-align: center;
+
+	font-family: Manrope;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 32px;
+
+	color: #18191f;
+
+	flex: none;
+	order: 0;
+	align-self: stretch;
+	flex-grow: 0;
+	margin: 10px 0px;
+}
+
+.submit-button {
+	width: 150%;
+	margin-left: -6vw;
+
+	background: #23a6f0;
+	border-radius: 5px;
+	border-style: solid;
+	border-color: #23a6f0;
+
+	margin-top: 28.5px;
+}
+
+.submit-button-text {
+	font-family: Montserrat;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 28px;
+
+	text-align: center;
+	letter-spacing: 0.2px;
+
+	color: #ffffff;
+
+	flex: none;
+	order: 0;
+	flex-grow: 0;
+	margin: 10px 0px;
+}

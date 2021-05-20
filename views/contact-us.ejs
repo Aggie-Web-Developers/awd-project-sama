@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header') %>
+<link rel="stylesheet" href="/styles/contact-us.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<!-- <%- include('partials/nav') %> -->
+
+	<body>
+		<div id="content" class="container">
+      <div id="title" class="row">
+        <div class="col-sm-12 col-md-4">
+          <h1 class="page-title">Contact Us</h1>
+        </div>
+      </div>
+
+      <div id="discord-banner" class="row">
+        <div class="col-xs-12 col-sm-9 banner-background">
+          <div class="col-xs-6 col-sm-6">
+            <h2 class="discord-banner-title">Join our Discord community</h2>
+          </div>
+          <div class="col-xs-5 col-sm-4">
+            <button class="discord-banner-button">
+              <p class="discord-banner-button-text">Join the server</p>
+            </button>
+          </div>
+          <img class="arrow-img col-xs-3 col-sm-3">
+          <img class="discord-logo">
+          <img class="sama-logo">
+        </div>
+        </div>
+      </div>
+
+      <div id="form-container" class="row">
+        <div class="col-xs-12 col-sm-7 offset-sm-1 form-container">
+          <div class="row justify-content-center">
+            <h3 class="form-header-primary">Specific Questions, Comments, or Concerns?</h3>
+            <h4 class="form-header-secondary">We'll get back to you as soon as we can!</p>
+
+            <form id="contact-form" name="myForm" class="form" action="/contact-us-submission" onsubmit="return validateForm()" method="POST" role="form">
+              <div class="form-group">
+                <label class="form-label" id="nameLabel" for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" tabindex="1">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" id="emailLabel" for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" tabindex="2">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" id="nameLabel" for="name" style="margin-left: -25.5vw;">Company/Group</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Company" tabindex="1">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" id="emailLabel" for="email" style="margin-left: -29vw;">Message</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Message" tabindex="2" rows="2">
+              </div>
+            </form>
+
+            <button class="submit-button"><p class="submit-button-text">Submit</p></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+		<script src="/scripts/contact-us.js"></script>
+		<!-- <%- include('partials/footer') %> -->
+	</body>
+</html>
