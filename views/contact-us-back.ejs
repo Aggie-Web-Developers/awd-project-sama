@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header') %>
+	<body>
+		<%- include('partials/nav') %>
+
+		<div id="content" class="container-fluid past-newsletters">
+			<div class="container mt-4 mb-5 px-5">
+				<div class="row pt-5 pb-2">
+					<h2 class="mt-2">Past Contact Us Submissions</h2>
+					
+				</div>
+				<div class="row">
+					<p class="pb-3">A running archive of all contact form submissions</p>
+					<p><%- console.log(forms); %></p>
+				</div>
+				<div class="row">
+					<table id="past-newsletters-table">
+						<tr>
+							<th style="width: 65%">Name</th>
+							<th style="width: 20%">Date Uploaded</th>
+							<th style="width: 15%">Link</th>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						<tr>
+							<td>..</td>
+							<td>..</td>
+							<td>..</td>
+						</tr>
+						
+					</table>
+				</div>
+			</div>
+
+			
+			
+
+		</div>
+		
+
+
+
+		<script src="/scripts/newsletter.js"></script>
+		<%- include('partials/footer') %>
+	</body>
+
+</html>

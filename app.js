@@ -26,7 +26,7 @@ app.use(
 //1433
 const config = {
 	server: process.env.DB_SERVER || '',
-	port: '',
+	port: 1433,
 	user: process.env.DB_USER || '',
 	password: process.env.DB_PASSWORD || '',
 	database: process.env.DB_PROD || '',

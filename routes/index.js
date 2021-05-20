@@ -39,9 +39,19 @@ router.get('/weekly-meeting-page', function (req, res) {
 	res.render('weekly-meeting-page');
 });
 
-
-router.get('/contact-us', function (req, res) {
+router.get('/contact-us',  function (req, res) {
 	res.render('contact-us');
+	
+});
+router.get('/portal/contact', function (req, res) {
+	var sqlQuery = "SELECT * FROM contact_forms";
+
+	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		res.render('contact-us-back', {forms: result.recordset});
+	}).catch((err) => {
+		req.flash('error', 'Error loading contact forms');
+	});
+	
 });
 
 router.post('/contact-us-submission', function (req, res) {
