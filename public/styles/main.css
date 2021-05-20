@@ -98,11 +98,11 @@ label:focus,
 	transition: background-color 0.4s linear;
 	z-index: 10;
 	font-size: 1rem;
-	background-color: #27968c;
+	background-color: #fff;
 }
 
 #navbar.scrolled {
-	background-color: #27968c;
+	background-color: #fff;
 	transition: background-color 0.4s linear;
 }
 
