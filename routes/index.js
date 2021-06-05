@@ -34,6 +34,12 @@ router.get('/officers-test', function (req, res) {
 	console.log("end of the route");
 });
 
+router.get('/portal/officer', function (req, res) {
+	res.render('meetings');
+});
+
+
+
 
 router.get('/newsletter', function (req, res) {
 	res.render('newsletter')
