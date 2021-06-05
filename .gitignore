@@ -6,3 +6,4 @@ config.json
 .env
 yarn.lock
 desktop.ini
+.DS_STORE

@@ -1,7 +1,7 @@
-# AWD Project - Template
+# AWD Project - Aggie SAMA
 ## Spring 2021
 ### Aggie Web Developers
-### Project Manager:
+### Project Manager: https://github.com/kenkirkley/
 
 <br>
 
@@ -12,7 +12,7 @@ Install:
  - [Node.js v14 and npm](https://nodejs.org/en/download/)
 
 Clone and Run:
- - Use Github Desktop: https://github.com/Aggie-Web-Developers/AWD-project-template.git
+ - Use Github Desktop: https://github.com/Aggie-Web-Developers/AWD-project-sama.git
  - `npm i` - installs dependencies
  - `npm run start` - runs server and views, with auto-reload
 
@@ -25,4 +25,4 @@ All PRs should point to `develop`, and will be reviewed and merged accordingly.
 
 # Questions/Concerns
 
-Feel free to direct any questions, concerns, or comments to the Project Manager (), @Vigasaurus or @cdconn00
+Feel free to direct any questions, concerns, or comments to the Project Manager (https://github.com/kenkirkley/), https://github.com/Vigasaurus or https://github.com/cdconn00

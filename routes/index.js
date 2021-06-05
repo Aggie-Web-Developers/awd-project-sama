@@ -8,7 +8,12 @@ const fetch = require('node-fetch');
 router.get('/', function (req, res) {
 	res.render('index');
 });
-
+router.get('/meetings', function (req, res) {
+	res.render('meetings.ejs');
+});
+// router.get('/newsletter', function (req, res) {
+// 	res.render('newsletter.ejs');
+// });
 router.get('/terms-and-conditions', function (req, res) {
 	res.render('terms-and-conditions');
 });
@@ -41,7 +46,7 @@ router.get('/weekly-meeting-page', function (req, res) {
 
 router.get('/contact-us',  function (req, res) {
 	res.render('contact-us');
-	
+
 });
 router.get('/portal/contact', function (req, res) {
 	var sqlQuery = "SELECT * FROM contact_forms";
@@ -51,7 +56,7 @@ router.get('/portal/contact', function (req, res) {
 	}).catch((err) => {
 		req.flash('error', 'Error loading contact forms');
 	});
-	
+
 });
 
 router.post('/contact-us-submission', function (req, res) {
@@ -59,6 +64,20 @@ router.post('/contact-us-submission', function (req, res) {
 
 	res.render('contact-us-submission');
 });
+
+router.get('/newsletter', function (req, res) {
+	var sqlQuery = 'SELECT * FROM newsletters';
+
+	var sqlReq = new sql.Request()
+        .query(sqlQuery)
+        .then((result) => {
+            res.render('newsletter', { newsletters: result.recordset });
+        })
+        .catch((err) => {
+            req.flash('error', 'Error loading newsletter.');
+            res.render('index', { newsletters: []});
+        });
+})
 
 // router.get('/sitemap.xml', function (req, res) {
 // 	res.sendFile(path.join(__dirname, '../sitemap.xml'));
