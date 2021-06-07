@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('partials/header') %>
-
+<link rel="stylesheet" href="/styles/officers.css" />
 	<body>
 		<%- include('partials/nav') %>
 
-		<div id="content" class="container">
-			<div class="d-flex flex-row my-4 py-5">
-				<div class="col-sm-12 text-center">
-					<h2 class="">BLANK</h2>
-				</div>
-			</div>
-		</div>
+        <div id="content" class="container">
+            <div class="d-flex flex-row py-3">
+                <div class="col-sm-12 gray-text">
+                    <h1 class="division-title">Officer Team</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid officers">
+            <!-- for president -->
+            <div class="row">
+                <div class="col-12 bg-warning">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat culpa quo quae iusto provident voluptates corporis aliquid odio beatae sint porro voluptatibus, excepturi quidem placeat, aspernatur nesciunt? Blanditiis, quod velit?</div>
+            </div>
+            <!-- for other officers -->
+            <div class="row">
+                <div class="col-md-6 bg-success">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, soluta nulla! Debitis ad distinctio, repellat minus voluptates doloribus, eaque nesciunt blanditiis quod omnis nam voluptate sequi perspiciatis incidunt itaque odit.</div>
+                <div class="col-md-6 bg-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto nihil obcaecati ullam neque fuga unde excepturi nulla, commodi sequi ipsam optio, numquam quo impedit similique quia maiores dicta veniam.</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 bg-danger">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, soluta nulla! Debitis ad distinctio, repellat minus voluptates doloribus, eaque nesciunt blanditiis quod omnis nam voluptate sequi perspiciatis incidunt itaque odit.</div>
+                <div class="col-md-6 bg-primary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto nihil obcaecati ullam neque fuga unde excepturi nulla, commodi sequi ipsam optio, numquam quo impedit similique quia maiores dicta veniam.</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 bg-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, soluta nulla! Debitis ad distinctio, repellat minus voluptates doloribus, eaque nesciunt blanditiis quod omnis nam voluptate sequi perspiciatis incidunt itaque odit.</div>
+                <div class="col-md-6 bg-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis architecto nihil obcaecati ullam neque fuga unde excepturi nulla, commodi sequi ipsam optio, numquam quo impedit similique quia maiores dicta veniam.</div>
+            </div>
+
+        </div>
 
 		<script src="/scripts/template.js"></script>
 		<%- include('partials/footer') %>
