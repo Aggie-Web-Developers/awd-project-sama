@@ -22,6 +22,9 @@ router.get('/privacy-policy', function (req, res) {
 	res.render('privacy-policy');
 });
 
+router.get('/test', function (req, res) {
+	res.render('test');
+});
 
 router.get('/officers-test', function (req, res) {
 	var sqlQuery = "SELECT * FROM officers";
