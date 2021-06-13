@@ -1,10 +1,13 @@
-.weekly-meetings {
-    /* Gradient / Subtle Blue */
-    background: linear-gradient(194.01deg, #D9E8EF 9.6%, #EAF2F5 89.64%);
+p {
+    margin: 1.5em 0px;
 }
 
 body{
     color: #18191F;
+}
+
+.container-fluid {
+    margin-bottom: 20px;
 }
 
 body .purple-text {
@@ -16,14 +19,21 @@ body .purple-text {
 }
 
 .circle {
+    position: relative;
+    margin-left: auto;
     width: 212px;
     height: 212px;
+    border-radius: 50%;
+}
+
+.shape {
+    width: 100%;
+    height: 100%;
     border-radius: 10%;
-    background: white;
 }
 
 .presi-photo {
-    margin-top: 48px;
+    margin-top: 67px;
     margin-left: auto;
     margin-right: 48px;
     margin-bottom: 67px;
