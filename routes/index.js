@@ -22,31 +22,19 @@ router.get('/privacy-policy', function (req, res) {
 	res.render('privacy-policy');
 });
 
-router.get('/test', function (req, res) {
-	res.render('test');
-});
-
-router.get('/officers-test', function (req, res) {
-	var sqlQuery = "SELECT * FROM officers";
+router.get('/officers', function (req, res) {
+    var sqlQuery = "SELECT name, officerRole, bio, profilePic FROM officers";
 
     var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-        res.render('officers-test', {officers: result.recordset});
+        res.render('officers', {officers: result.recordset});
     }).catch((err) => {
         req.flash('error', 'Error loading officers');
     });
-	console.log("end of the route");
-});
-
-router.get('/officers', function (req, res) {
-	res.render('officers');
 });
 
 router.get('/portal/officer', function (req, res) {
 	res.render('meetings');
 });
-
-
-
 
 router.get('/newsletter', function (req, res) {
 	res.render('newsletter')
