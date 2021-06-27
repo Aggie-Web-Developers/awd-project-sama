@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header') %>
+	<link rel="stylesheet" href="/styles/officer-portal.css" />
+	<body>
+		<%- include('partials/nav') %>
+
+		<div id="content" class="container">
+			<div class="d-flex flex-row flex-wrap my-4 py-5 justify-content-center">
+					<% let i=0; %>
+					<% officers.forEach(function(officer) { %>
+						<%- include('partials/officer-form', {officer: officer, id: officer.id}) %>
+						<% i++; %>
+					<% }); %>
+			</div>
+		</div>
+
+		<script src="/scripts/officer-portal.js"></script>
+		<%- include('partials/footer') %>
+	</body>
+
+</html>
