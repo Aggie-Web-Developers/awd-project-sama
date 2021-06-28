@@ -13,18 +13,19 @@
 <div class="form-row">
     <div class="form-group col-auto p-1">
         <label class="mx-2 font-weight-bold" for="officerName">Name</label>
-        <input type="text" class="form-control m-1 w-100" id="officerName" name="officerName" value="<%= officer.name %>" placeholder="<%= officer.name %>">
+        <input type="text" class="form-control m-1 w-100" id="officerName" name="officerName" value="<%= officer.name %>">
     </div>
     <div class="form-group col-auto p-1">
         <label class="mx-2 font-weight-bold" for="officerName">Role</label>
-        <input type="text" class="form-control m-1 w-100" id="officerRole" name="officerRole" value="<%= officer.officerRole %>" placeholder="<%= officer.officerRole %>">
+        <input type="text" class="form-control m-1 w-100" id="officerRole" name="officerRole" value="<%= officer.officerRole %>">
     </div>
 </div>
 <div class="form-row">
     <div class="form-group col-12 p-1">
         <label class="mx-2 font-weight-bold" for="officerDescription">Description</label>
-        <textarea class="form-control m-1 w-100" id="officerDescription" name="officerDescription" rows="3" placeholder="<%= officer.bio %>"><%= officer.bio %></textarea>
+        <textarea class="form-control m-1 w-100" id="officerDescription" name="officerDescription" rows="3"><%= officer.bio %></textarea>
     </div>
 </div>
 <button class="btn btn-primary" type="submit">Update Officer</button>
+<button class="btn btn-secondary float-right d-none cancelBtn" type="reset">Cancel</button>
 </form>
