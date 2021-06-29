@@ -1,0 +1,31 @@
+<form action="/portal/officer/<%=id%>" method="POST" class="col-auto p-3 m-3" style="background-color: papayawhip;">
+<div class="form-row">
+    <div class="form-group mx-auto p-1 position-relative">
+        <div class="mx-auto">
+        <div class="imgContainer">
+            <img id="officerProfileImg<%=id%>" class="profileImg" src="https://via.placeholder.com/150">
+        </div>
+        <input type="file" id="officerProfile<%=id%>" class="officerProfileBtn" hidden/>
+        <label for="officerProfile<%=id%>" class="btn btn-primary profileBtn"><b>+</b></label>
+        </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-auto p-1">
+        <label class="mx-2 font-weight-bold" for="officerName">Name</label>
+        <input type="text" class="form-control m-1 w-100" id="officerName" name="officerName" value="<%= officer.name %>">
+    </div>
+    <div class="form-group col-auto p-1">
+        <label class="mx-2 font-weight-bold" for="officerName">Role</label>
+        <input type="text" class="form-control m-1 w-100" id="officerRole" name="officerRole" value="<%= officer.officerRole %>">
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-12 p-1">
+        <label class="mx-2 font-weight-bold" for="officerDescription">Description</label>
+        <textarea class="form-control m-1 w-100" id="officerDescription" name="officerDescription" rows="3"><%= officer.bio %></textarea>
+    </div>
+</div>
+<button class="btn btn-primary" type="submit">Update Officer</button>
+<button class="btn btn-secondary float-right d-none cancelBtn" type="reset">Cancel</button>
+</form>

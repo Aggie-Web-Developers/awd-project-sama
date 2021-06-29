@@ -22,6 +22,7 @@ router.get('/privacy-policy', function (req, res) {
 	res.render('privacy-policy');
 });
 
+
 router.get('/officers', function (req, res) {
     var sqlQuery = "SELECT name, officerRole, bio, profilePic FROM officers";
 
@@ -32,14 +33,39 @@ router.get('/officers', function (req, res) {
     });
 });
 
-router.get('/portal/officer', function (req, res) {
-	res.render('meetings');
+function getOfficers(req, res) {
+	var sqlQuery = "SELECT * FROM tbl_officer";
+
+    var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+        res.render('officer-portal', {officers: result.recordset});
+    }).catch((err) => {
+		res.render('index');
+        req.flash('error', 'Error loading officers');
+    });
+}
+
+
+router.get('/portal/officer/:id?', getOfficers);
+
+router.post('/portal/officer/:id', function (req, res) {
+	const name = req.body.officerName;
+	const role = req.body.officerRole;
+	const description = req.body.officerDescription;
+	
+	var sqlQuery = `UPDATE tbl_officer SET name = '${name}', officerRole = '${role}', bio = '${description}' 
+					WHERE id=${req.params['id']}`;
+
+    var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+        getOfficers(req, res);
+    }).catch((err) => {
+        req.flash('error', 'Error loading officers');
+    });
 });
+
 
 router.get('/newsletter', function (req, res) {
 	res.render('newsletter')
 })
-
 
 router.get('/weekly-meeting-page', function (req, res) {
 	res.render('weekly-meeting-page');
@@ -49,6 +75,7 @@ router.get('/contact-us',  function (req, res) {
 	res.render('contact-us');
 
 });
+
 router.get('/portal/contact', function (req, res) {
 	var sqlQuery = "SELECT * FROM contact_forms";
 
