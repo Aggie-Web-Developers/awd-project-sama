@@ -1,3 +1,8 @@
+.form-card {
+    min-width: 400px;
+    max-width: 400px;
+}
+
 .profileBtn {
     position: absolute;
     left: calc(50% + 54px);

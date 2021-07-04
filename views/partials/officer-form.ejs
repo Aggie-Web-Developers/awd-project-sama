@@ -1,23 +1,33 @@
-<form action="/portal/officer/<%=id%>" method="POST" class="col-auto p-3 m-3" style="background-color: papayawhip;">
+<% if(!create) { %> 
+<form action="/portal/officer/<%=id%>" method="POST" class="col-auto p-3 m-3 form-card" style="background-color: papayawhip;" enctype="multipart/form-data">
+<% } else { %>
+<form action="/portal/officer/create" method="POST" class="col-auto p-3 mx-auto my-3 form-card d-none newOfficerForm" style="background-color: pink;">
+<h2 class="text-center">New Officer</h2>
+<% } %>  
 <div class="form-row">
     <div class="form-group mx-auto p-1 position-relative">
         <div class="mx-auto">
         <div class="imgContainer">
+            <% var profPic = officer.profilePic %> 
+            <% if(officer.profilePic === ' ') { %> 
             <img id="officerProfileImg<%=id%>" class="profileImg" src="https://via.placeholder.com/150">
+            <% } else { %> 
+            <img id="officerProfileImg<%=id%>" class="profileImg" src="<%= profPic.substring(profPic.indexOf('/')) %>">
+            <% } %> 
         </div>
-        <input type="file" id="officerProfile<%=id%>" class="officerProfileBtn" hidden/>
+        <input type="file" id="officerProfile<%=id%>" class="officerProfileBtn" name="officerProfileImage" hidden/>
         <label for="officerProfile<%=id%>" class="btn btn-primary profileBtn"><b>+</b></label>
         </div>
     </div>
 </div>
 <div class="form-row">
-    <div class="form-group col-auto p-1">
+    <div class="form-group col-6 p-1">
         <label class="mx-2 font-weight-bold" for="officerName">Name</label>
-        <input type="text" class="form-control m-1 w-100" id="officerName" name="officerName" value="<%= officer.name %>">
+        <input type="text" class="form-control m-1 w-100" id="officerName" name="officerName" value="<%= officer.name %>" required>
     </div>
-    <div class="form-group col-auto p-1">
+    <div class="form-group col-6 p-1">
         <label class="mx-2 font-weight-bold" for="officerName">Role</label>
-        <input type="text" class="form-control m-1 w-100" id="officerRole" name="officerRole" value="<%= officer.officerRole %>">
+        <input type="text" class="form-control m-1 w-100" id="officerRole" name="officerRole" value="<%= officer.officerRole %>" required>
     </div>
 </div>
 <div class="form-row">
@@ -26,6 +36,21 @@
         <textarea class="form-control m-1 w-100" id="officerDescription" name="officerDescription" rows="3"><%= officer.bio %></textarea>
     </div>
 </div>
+<% if(!create) { %> 
 <button class="btn btn-primary" type="submit">Update Officer</button>
+<% } else { %> 
+<button class="btn btn-success" type="submit">Create Officer</button>
+<% } %> 
 <button class="btn btn-secondary float-right d-none cancelBtn" type="reset">Cancel</button>
+<button class="btn btn-danger float-right deleteBtn" id="deleteBtn<%=id%>" type="submit">Delete</button>
 </form>
+<script>
+    //Set delete function
+    document.getElementById("deleteBtn<%=id%>").addEventListener('click', function() {
+        $.ajax({
+            type: 'POST',
+            url: '/portal/officer/delete/<%=id%>',
+            contentType: 'application/json'
+        })
+    });
+</script>
