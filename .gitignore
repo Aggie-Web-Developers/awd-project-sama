@@ -6,4 +6,5 @@ config.json
 .env
 yarn.lock
 desktop.ini
+public/images/profiles/*.png
 .DS_STORE
