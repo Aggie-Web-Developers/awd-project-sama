@@ -50,10 +50,24 @@ router.get('/contact-us',  function (req, res) {
 
 });
 router.get('/portal/contact', function (req, res) {
-	var sqlQuery = "SELECT * FROM contact_forms";
+	var sqlQuery = "SELECT * FROM tbl_contact_form";
 
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
 		res.render('contact-us-back', {forms: result.recordset});
+	}).catch((err) => {
+		req.flash('error', 'Error loading contact forms');
+	});
+
+});
+
+router.get('/portal/contact/view-form', function (req, res) {
+	var sqlQuery = `SELECT name, email, company, message FROM tbl_contact_form WHERE id = ${req.params.form_id}`;
+
+	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		res.status(200).json({
+			status: 'success',
+			data: result.recordset
+		})
 	}).catch((err) => {
 		req.flash('error', 'Error loading contact forms');
 	});
