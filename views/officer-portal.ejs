@@ -7,11 +7,9 @@
 
 		<div id="content" class="container mx-auto mt-5">
 			<div class="d-flex flex-row flex-wrap mt-4 pt-5 justify-content-center">
-					<% let i=0; %>
-					<% officers.forEach(function(officer) { %>
-						<%- include('partials/officer-form', {officer: officer, id: officer.id, create:false}) %>
-						<% i++; %>
-					<% }); %>
+				<% officers.forEach(function(officer) { %>
+					<%- include('partials/officer-form', {officer: officer, id: officer.id, create:false}) %>
+				<% }); %>
 			</div>
 			<div class="mx-auto my-5 text-center">
 				<button class="btn btn-success btn-lg addOfficerBtn">+ Add Officer</button>

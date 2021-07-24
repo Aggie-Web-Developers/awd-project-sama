@@ -125,11 +125,12 @@ router.delete('/portal/officer/delete/:id',function (req, res) {
 	var sqlQuery = `DELETE FROM tbl_officer WHERE id=${req.params['id']};`;
 	
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		res.redirect('/');
 		console.log('WAITING');
-		// getOfficers(req, res);
+		res.status(200).send('SUCCESS!');
 	}).catch((err) => {
+		console.log(err);
 		req.flash('error', 'Error creating officer');
+		res.status(400).send();
 	});		
 });
 

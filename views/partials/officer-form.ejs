@@ -50,13 +50,15 @@
         var c = confirm("Are you sure you want to delete?");
         if(c) {
             $.ajax({
-                type: 'DELTE',
-                url: '/portal/officer/delete/<%=id%>',
+                type: 'DELETE',
+                dataType: 'text json',
+                url: '/portal/officer/delete/<%=id%>?_method=DELETE',
                 success: function() {
-                    console.log('SUCCESS');
+                    console.log('Succeed!');
+                    window.location.replace('https://developer.mozilla.org/en-US/docs/Web/API/Location.reload%27');
                 },
                 error: function(error) {
-                    console.log('ERROR');
+                    console.log(error);
                 }
             });
         }
