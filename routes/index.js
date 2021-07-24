@@ -4,15 +4,18 @@ const flash = require('express-flash');
 const sql = require('mssql');
 const path = require('path');
 const fetch = require('node-fetch');
+const fs = require('fs');
 
 // Setup multer with disk storage
 const multer = require('multer');
+const { nextTick } = require('process');
 var storage = multer.diskStorage({
 	destination: function (req, file, cb) {
 		cb(null, './public/images/profiles')
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.originalname.replace(/ /g,'_'))
+		var fname = file.originalname.slice(file.originalname.lastIndexOf('/')+1);
+		cb(null, fname.replace(/ /g,'_'))
 	}
   })
 var upload = multer({ storage: storage });
@@ -49,11 +52,13 @@ function getOfficers(req, res) {
 	var sqlQuery = "SELECT * FROM tbl_officer";
 
     var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		console.log('Ran SQL Request!');
         res.render('officer-portal', {officers: result.recordset});
     }).catch((err) => {
 		res.render('index');
         req.flash('error', 'Error loading officers');
     });
+	console.log('Done with SQL Request!');
 }
 
 router.get('/portal/officer/:id?', getOfficers);
@@ -80,29 +85,49 @@ router.post('/portal/officer/:id', upload.single('officerProfileImage'), functio
 	const role = req.body.officerRole;
 	const description = req.body.officerDescription;
 	const profPic = req.file === undefined ? undefined : req.file.path;
+	const picName = profPic ? profPic.slice(profPic.lastIndexOf('/')+1) : '';
 
 	var sqlQuery;
-	if(profPic)
-		sqlQuery = `UPDATE tbl_officer SET name = '${name}', officerRole = '${role}', bio = '${description}', profilePic = '${profPic}' 
-					WHERE id=${req.params['id']}`;
-	else
-		sqlQuery = `UPDATE tbl_officer SET name = '${name}', officerRole = '${role}', bio = '${description}' 
-					WHERE id=${req.params['id']}`;
+	// Query for old profile picture
+	sqlQuery = `SELECT profilePic FROM tbl_officer WHERE id=${req.params['id']}`;
+	new sql.Request().query(sqlQuery)
+	.then((result) => {
+		var oldProfPic = result.recordset[0]['profilePic'];
+		// Delete old profile picture if exists
+		if(oldProfPic != ' ') {
+			var oldPicPath = './public/images/profiles/'+oldProfPic;
+			fs.unlinkSync(oldPicPath);
+		}
 
-    var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-        getOfficers(req, res);
-    }).catch((err) => {
-        req.flash('error', 'Error loading officers');
-    });
+		if(profPic)
+		sqlQuery = `UPDATE tbl_officer SET name = '${name}', officerRole = '${role}', bio = '${description}', profilePic = '${picName}' 
+					WHERE id=${req.params['id']}`;
+		else
+			sqlQuery = `UPDATE tbl_officer SET name = '${name}', officerRole = '${role}', bio = '${description}' 
+						WHERE id=${req.params['id']}`;
+
+		var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+			getOfficers(req, res);
+		}).catch((err) => {
+			req.flash('error', 'Error loading officers');
+		});
+	})
+	.catch((err) => {
+		req.flash('error', `Error loading finding officer with id: ${req.params['id']}`);
+	});
+
+	
 });
 
-router.post('/portal/officer/delete/:id',function (req, res) { 
-	// console.log(`DELETING ${req.params['id']}`);
+router.delete('/portal/officer/delete/:id',function (req, res) { 
+	console.log(`DELETING ${req.params['id']}`);
 	
 	var sqlQuery = `DELETE FROM tbl_officer WHERE id=${req.params['id']};`;
 	
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		getOfficers(req, res);
+		res.redirect('/');
+		console.log('WAITING');
+		// getOfficers(req, res);
 	}).catch((err) => {
 		req.flash('error', 'Error creating officer');
 	});		
