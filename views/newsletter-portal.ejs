@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header') %>
+	<link rel="stylesheet" href="/styles/newsletter-portal.css" />
+	<body>
+		<%- include('partials/nav') %>
+
+		<div id="content" class="container">
+			<!-- upload newsletter -->
+			<div class="d-flex flex-row my-4 py-5">
+				<div class="col-lg-12 text-center">
+					<h2 class="">Newsletter portal</h2>
+				</div>
+			</div>
+
+			<!-- display newsletters -->
+			<div class="d-flex flex-row my-4 py-5">
+				<div class="col-lg-12 text-center">
+					<h2 class="">Newsletters</h2>
+					<table>
+						<caption>newsletters</caption>
+						<thead>
+							<tr>
+								<th scope="col">Title</th>
+								<th scope="col">Date Uploaded</th>
+								<th scope="col">Link</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>News1</td>
+								<td>23-Jul-2021</td>
+								<td>test link</td>
+								<td>
+									<button class="btn btn-danger float-right deleteBtn" id="deleteBtn" type="submit">
+										Delete
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<script src="/scripts/newsletter.js"></script>
+		<%- include('partials/footer') %>
+	</body>
+</html>
+
+<script>
+    
+</script>
