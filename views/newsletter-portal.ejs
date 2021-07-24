@@ -29,16 +29,20 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>News1</td>
-								<td>23-Jul-2021</td>
-								<td>test link</td>
-								<td>
-									<button class="btn btn-danger float-right deleteBtn" id="deleteBtn" type="submit">
-										Delete
-									</button>
-								</td>
-							</tr>
+							<% let id=0; %>
+							<% newsletters.forEach(function(newsletter) { %>
+								<tr>
+									<td><%= newsletter.name %></td>
+									<td><%= newsletter.date_uploaded %></td>
+									<td><%= newsletter.link%></td>
+									<td>
+										<button class="btn btn-danger float-right deleteBtn" id="deleteBtn<%=id%>" type="submit">
+											Delete
+										</button>
+									</td>
+								</tr>
+								<% id++; %>
+							<% }); %>
 						</tbody>
 					</table>
 				</div>
