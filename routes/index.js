@@ -152,6 +152,20 @@ router.get('/newsletter', function (req, res) {
         });
 })
 
+router.get('/portal/newsletter', function (req, res) {
+	getNewsletters(req, res);
+});
+
+function getNewsletters(req, res) {
+	var sqlQuery = "SELECT * FROM tbl_newsletter";
+    var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+        res.render('newsletter-portal', {newsletters: result.recordset});
+    }).catch((err) => {
+		res.render('index');
+        req.flash('error', 'Error loading newsletters');
+    });
+}
+
 // router.get('/sitemap.xml', function (req, res) {
 // 	res.sendFile(path.join(__dirname, '../sitemap.xml'));
 // });
