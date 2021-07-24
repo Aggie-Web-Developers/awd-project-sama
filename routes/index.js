@@ -169,6 +169,25 @@ function getNewsletters(req, res) {
 router.get('/portal/newsletter/:id?', getNewsletters);
 router.get('/portal/newsletter/create', getNewsletters);
 
+router.post('/portal/newsletter/create', function (req, res) {
+	const link = "example";
+	const name = req.body.newsletterName;
+	// sqlReq.input("name", sql.NVarChar, req.body.newsletterName);
+
+	var sqlQuery = `INSERT INTO tbl_newsletter (name, link) 
+					VALUES ('${name}', '${link}')`;
+	
+	// var sqlQuery = `INSERT INTO tbl_newsletter (name, link) 
+					// VALUES (@name, @link)`;
+	
+	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		getNewsletters(req, res);
+	}).catch((err) => {
+		req.flash('error', 'Error creating newsletter');
+	});	
+	res.redirect('/portal/newsletter/')
+});
+
 // router.get('/sitemap.xml', function (req, res) {
 // 	res.sendFile(path.join(__dirname, '../sitemap.xml'));
 // });
