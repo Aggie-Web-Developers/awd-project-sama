@@ -188,6 +188,18 @@ router.post('/portal/newsletter/create', function (req, res) {
 	res.redirect('/portal/newsletter/')
 });
 
+router.delete('/portal/newsletter/delete/:id',function (req, res) { 
+	// console.log(`DELETING ${req.params['id']}`);
+	
+	var sqlQuery = `DELETE FROM tbl_newsletter WHERE id=${req.params['id']};`;
+	
+	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		getNewsletters(req, res);
+	}).catch((err) => {
+		req.flash('error', 'Error creating newsletter');
+	});		
+});
+
 // router.get('/sitemap.xml', function (req, res) {
 // 	res.sendFile(path.join(__dirname, '../sitemap.xml'));
 // });
