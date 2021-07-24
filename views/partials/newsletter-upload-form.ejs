@@ -1,0 +1,15 @@
+<form action="/portal/newsletter/create" method="POST" class="col-auto p-3 m-3 form-card"
+    style="background-color: rgb(186, 255, 169);">
+    <div class="form-row">
+        <div class="form-group mx-auto p-1 position-relative">
+            <label class="mx-2 font-weight-bold" for="newsletter">Newsletter (.pdf)</label>
+            <div class="form-group col-6 p-1">
+                <label class="mx-2 font-weight-bold" for="newsletterName">Title</label>
+                <input type="text" class="form-control m-1 w-100" id="newsletterName" name="newsletterName">
+            </div>
+            <input type="file" class="form-control m-1 w-100" id="newsletter" name="newsletter"
+                accept="application/pdf">
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Upload Newsletter</button>
+</form>
