@@ -166,6 +166,9 @@ function getNewsletters(req, res) {
     });
 }
 
+router.get('/portal/newsletter/:id?', getNewsletters);
+router.get('/portal/newsletter/create', getNewsletters);
+
 // router.get('/sitemap.xml', function (req, res) {
 // 	res.sendFile(path.join(__dirname, '../sitemap.xml'));
 // });
