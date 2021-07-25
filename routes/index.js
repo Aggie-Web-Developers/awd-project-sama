@@ -12,10 +12,32 @@ var storage = multer.diskStorage({
 		cb(null, './public/images/profiles')
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.originalname.replace(/ /g,'_'))
+		cb(null, file.originalname.replace(/ /g, '_'))
 	}
-  })
+})
+
+const multerFilter = (req, file, cb) => {
+	if (file.mimetype.split("/")[1] === "pdf") {
+		cb(null, true);
+	} else {
+		cb(new Error("Not a PDF File!!"), false);
+	}
+};
+
+var storage_newsletters = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, './public/newsletters')
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.originalname.replace(/ /g, '_'))
+	}
+})
+
 var upload = multer({ storage: storage });
+var upload_newsletter = multer({
+	storage: storage,
+	fileFilter: multerFilter
+});
 
 router.get('/', function (req, res) {
 	res.render('index');
@@ -36,24 +58,24 @@ router.get('/privacy-policy', function (req, res) {
 
 
 router.get('/officers', function (req, res) {
-    var sqlQuery = "SELECT name, officerRole, bio, profilePic FROM officers";
+	var sqlQuery = "SELECT name, officerRole, bio, profilePic FROM officers";
 
-    var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-        res.render('officers', {officers: result.recordset});
-    }).catch((err) => {
-        req.flash('error', 'Error loading officers');
-    });
+	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		res.render('officers', { officers: result.recordset });
+	}).catch((err) => {
+		req.flash('error', 'Error loading officers');
+	});
 });
 
 function getOfficers(req, res) {
 	var sqlQuery = "SELECT * FROM tbl_officer";
 
-    var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-        res.render('officer-portal', {officers: result.recordset});
-    }).catch((err) => {
+	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		res.render('officer-portal', { officers: result.recordset });
+	}).catch((err) => {
 		res.render('index');
-        req.flash('error', 'Error loading officers');
-    });
+		req.flash('error', 'Error loading officers');
+	});
 }
 
 router.get('/portal/officer/:id?', getOfficers);
@@ -72,7 +94,7 @@ router.post('/portal/officer/create', function (req, res) {
 		getOfficers(req, res);
 	}).catch((err) => {
 		req.flash('error', 'Error creating officer');
-	});		
+	});
 });
 
 router.post('/portal/officer/:id', upload.single('officerProfileImage'), function (req, res) {
@@ -82,30 +104,30 @@ router.post('/portal/officer/:id', upload.single('officerProfileImage'), functio
 	const profPic = req.file === undefined ? undefined : req.file.path;
 
 	var sqlQuery;
-	if(profPic)
+	if (profPic)
 		sqlQuery = `UPDATE tbl_officer SET name = '${name}', officerRole = '${role}', bio = '${description}', profilePic = '${profPic}' 
 					WHERE id=${req.params['id']}`;
 	else
 		sqlQuery = `UPDATE tbl_officer SET name = '${name}', officerRole = '${role}', bio = '${description}' 
 					WHERE id=${req.params['id']}`;
 
-    var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-        getOfficers(req, res);
-    }).catch((err) => {
-        req.flash('error', 'Error loading officers');
-    });
+	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		getOfficers(req, res);
+	}).catch((err) => {
+		req.flash('error', 'Error loading officers');
+	});
 });
 
-router.post('/portal/officer/delete/:id',function (req, res) { 
+router.post('/portal/officer/delete/:id', function (req, res) {
 	// console.log(`DELETING ${req.params['id']}`);
-	
+
 	var sqlQuery = `DELETE FROM tbl_officer WHERE id=${req.params['id']};`;
-	
+
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
 		getOfficers(req, res);
 	}).catch((err) => {
 		req.flash('error', 'Error creating officer');
-	});		
+	});
 });
 
 router.get('/newsletter', function (req, res) {
@@ -116,7 +138,7 @@ router.get('/weekly-meeting-page', function (req, res) {
 	res.render('weekly-meeting-page');
 });
 
-router.get('/contact-us',  function (req, res) {
+router.get('/contact-us', function (req, res) {
 	res.render('contact-us');
 
 });
@@ -125,7 +147,7 @@ router.get('/portal/contact', function (req, res) {
 	var sqlQuery = "SELECT * FROM contact_forms";
 
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		res.render('contact-us-back', {forms: result.recordset});
+		res.render('contact-us-back', { forms: result.recordset });
 	}).catch((err) => {
 		req.flash('error', 'Error loading contact forms');
 	});
@@ -142,14 +164,14 @@ router.get('/newsletter', function (req, res) {
 	var sqlQuery = 'SELECT * FROM newsletters';
 
 	var sqlReq = new sql.Request()
-        .query(sqlQuery)
-        .then((result) => {
-            res.render('newsletter', { newsletters: result.recordset });
-        })
-        .catch((err) => {
-            req.flash('error', 'Error loading newsletter.');
-            res.render('index', { newsletters: []});
-        });
+		.query(sqlQuery)
+		.then((result) => {
+			res.render('newsletter', { newsletters: result.recordset });
+		})
+		.catch((err) => {
+			req.flash('error', 'Error loading newsletter.');
+			res.render('index', { newsletters: [] });
+		});
 })
 
 router.get('/portal/newsletter', function (req, res) {
@@ -158,47 +180,70 @@ router.get('/portal/newsletter', function (req, res) {
 
 function getNewsletters(req, res) {
 	var sqlQuery = "SELECT * FROM tbl_newsletter";
-    var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-        res.render('newsletter-portal', {newsletters: result.recordset});
-    }).catch((err) => {
+	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		res.render('newsletter-portal', { newsletters: result.recordset });
+	}).catch((err) => {
 		res.render('index');
-        req.flash('error', 'Error loading newsletters');
-    });
+		req.flash('error', 'Error loading newsletters');
+	});
 }
 
 router.get('/portal/newsletter/:id?', getNewsletters);
 router.get('/portal/newsletter/create', getNewsletters);
 
-router.post('/portal/newsletter/create', function (req, res) {
-	const link = "example";
+router.post('/portal/newsletter/create', upload_newsletter.single('newsletter'), function (req, res) {
 	const name = req.body.newsletterName;
+	console.log(name);
+	const link = req.file === undefined ? undefined : req.file.path;
 	// sqlReq.input("name", sql.NVarChar, req.body.newsletterName);
 
 	var sqlQuery = `INSERT INTO tbl_newsletter (name, link) 
 					VALUES ('${name}', '${link}')`;
-	
+
 	// var sqlQuery = `INSERT INTO tbl_newsletter (name, link) 
-					// VALUES (@name, @link)`;
-	
+	// VALUES (@name, @link)`;
+
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		getNewsletters(req, res);
+		res.redirect('/portal/newsletter/')
 	}).catch((err) => {
 		req.flash('error', 'Error creating newsletter');
-	});	
-	res.redirect('/portal/newsletter/')
+	});
 });
 
-router.delete('/portal/newsletter/delete/:id',function (req, res) { 
+router.delete('/portal/newsletter/delete/:id', function (req, res) {
 	// console.log(`DELETING ${req.params['id']}`);
-	
-	var sqlQuery = `DELETE FROM tbl_newsletter WHERE id=${req.params['id']};`;
-	
-	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		getNewsletters(req, res);
-	}).catch((err) => {
-		req.flash('error', 'Error creating newsletter');
-	});		
+	try {
+		var sqlQuery = `DELETE FROM tbl_newsletter WHERE id=${req.params['id']};`;
+		const name = req.body.newsletterName;
+		const link = "example";
+
+		var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+			getNewsletters(req, res);
+		}).catch((err) => {
+			req.flash('error', 'Error creating newsletter');
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(400).send();
+	}
+
 });
+
+// router.post('/portal/newsletter/:id', upload.single('newsletter'), async (req, res) => {
+// 	try {
+// 		const newFile = await File.create({
+// 			name: req.file.filename
+// 		})
+// 		res.status(200).json({
+// 			status: 'success',
+// 			message: 'File created successfully!!'
+// 		});
+// 	} catch (error) {
+// 		res.json({
+// 			error
+// 		});
+// 	}
+// });
 
 // router.get('/sitemap.xml', function (req, res) {
 // 	res.sendFile(path.join(__dirname, '../sitemap.xml'));
