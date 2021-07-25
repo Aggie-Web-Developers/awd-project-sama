@@ -137,25 +137,20 @@ router.post(
 );
 
 router.delete('/portal/officer/delete/:id', function (req, res) {
-	try {
-		console.log(`DELETING ${req.params['id']}`);
+	console.log(`DELETING ${req.params['id']}`);
 
-		var sqlQuery = `DELETE FROM tbl_officer WHERE id=${req.params['id']};`;
+	var sqlQuery = `DELETE FROM tbl_officer WHERE id=${req.params['id']};`;
 
-		var sqlReq = new sql.Request()
-			.query(sqlQuery)
-			.then((result) => {
-				res.status(200).send('SUCCESS!');
-			})
-			.catch((err) => {
-				console.log(err);
-				req.flash('error', 'Error creating officer');
-				res.status(400).send();
-			});
-	} catch (err) {
-		console.log(err);
-		res.status(400).send();
-	}
+	var sqlReq = new sql.Request()
+		.query(sqlQuery)
+		.then((result) => {
+			res.status(200).send('SUCCESS!');
+		})
+		.catch((err) => {
+			// console.log(err);
+			req.flash('error', 'Error creating officer');
+			res.status(400).send();
+		});
 });
 
 router.get('/newsletter', function (req, res) {
