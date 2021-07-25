@@ -5,55 +5,70 @@
 	<body>
 		<%- include('partials/nav') %>
 
-		<div id="content" class="container">
-			<!-- upload newsletter -->
-			<div class="d-flex flex-row my-4 py-5">
-				<div class="col-lg-12 text-center">
-					<h2 class="">Newsletter portal</h2>
-					<%- include('partials/newsletter-upload-form') %>
+			<div id="content" class="container">
+				<!-- upload newsletter -->
+				<div class="d-flex flex-row my-4 py-5">
+					<div class="col-lg-12 text-center">
+						<h2 class="">Newsletter portal</h2>
+						<%- include('partials/newsletter-upload-form') %>
+					</div>
 				</div>
-			</div>
 
-			<!-- display newsletters -->
-			<div class="d-flex flex-row my-4 py-5">
-				<div class="col-lg-12 text-center">
-					<h2 class="">Newsletters</h2>
-					<table>
-						<caption>newsletters</caption>
-						<thead>
-							<tr>
-								<th scope="col">Title</th>
-								<th scope="col">Date Uploaded</th>
-								<th scope="col">Link</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<% let id=0; %>
-							<% newsletters.forEach(function(newsletter) { %>
+				<!-- display newsletters -->
+				<div class="d-flex flex-row my-4 py-5">
+					<div class="col-lg-12 text-center">
+						<h2 class="">Newsletters</h2>
+						<table>
+							<caption>newsletters</caption>
+							<thead>
 								<tr>
-									<td><%= newsletter.name %></td>
-									<td><%= newsletter.date_uploaded %></td>
-									<td><%= newsletter.link%></td>
-									<td>
-										<button class="btn btn-danger float-right deleteBtn" id="deleteBtn<%=id%>" type="submit">
-											Delete
-										</button>
-									</td>
+									<th scope="col">Title</th>
+									<th scope="col">Date Uploaded</th>
+									<th scope="col">Link</th>
+									<th scope="col"></th>
 								</tr>
-								<% id++; %>
-							<% }); %>
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								<% newsletters.forEach(function(newsletter) { %>
+									<tr>
+										<td>
+											<%= newsletter.name %>
+										</td>
+										<td>
+											<%= newsletter.date_uploaded %>
+										</td>
+										<td>
+											<%= newsletter.link%>
+										</td>
+										<td>
+											<button class="btn btn-danger float-right deleteBtn"
+												id="deleteBtn<%= newsletter.id %>" type="submit">
+												Delete
+											</button>
+											<script>
+												//Set delete function
+												document.getElementById("deleteBtn<%=newsletter.id%>").addEventListener('click', function () {
+													$.ajax({
+														type: 'DELETE',
+														url: '/portal/newsletter/delete/<%=newsletter.id%>',
+														contentType: 'application/json'
+													})
+												});
+											</script>
+										</td>
+									</tr>
+									<% }); %>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<script src="/scripts/newsletter.js"></script>
-		<%- include('partials/footer') %>
+			<!-- <script src="/scripts/newsletter.js"></script> -->
+			<%- include('partials/footer') %>
 	</body>
 </html>
 
 <script>
-    
+
 </script>

@@ -35,7 +35,7 @@ var storage_newsletters = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 var upload_newsletter = multer({
-	storage: storage,
+	storage: storage_newsletters,
 	fileFilter: multerFilter
 });
 
@@ -193,7 +193,7 @@ router.get('/portal/newsletter/create', getNewsletters);
 
 router.post('/portal/newsletter/create', upload_newsletter.single('newsletter'), function (req, res) {
 	const name = req.body.newsletterName;
-	console.log(name);
+	console.log(req.file);
 	const link = req.file === undefined ? undefined : req.file.path;
 	// sqlReq.input("name", sql.NVarChar, req.body.newsletterName);
 
@@ -211,14 +211,12 @@ router.post('/portal/newsletter/create', upload_newsletter.single('newsletter'),
 });
 
 router.delete('/portal/newsletter/delete/:id', function (req, res) {
-	// console.log(`DELETING ${req.params['id']}`);
 	try {
 		var sqlQuery = `DELETE FROM tbl_newsletter WHERE id=${req.params['id']};`;
-		const name = req.body.newsletterName;
-		const link = "example";
+		console.log(sqlQuery);
 
 		var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-			getNewsletters(req, res);
+			res.redirect('/portal/newsletter/');
 		}).catch((err) => {
 			req.flash('error', 'Error creating newsletter');
 		});
@@ -226,7 +224,6 @@ router.delete('/portal/newsletter/delete/:id', function (req, res) {
 		console.log(error);
 		res.status(400).send();
 	}
-
 });
 
 // router.post('/portal/newsletter/:id', upload.single('newsletter'), async (req, res) => {
