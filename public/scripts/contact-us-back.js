@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 async function helper(form_id) {
     try {
@@ -9,6 +9,7 @@ async function helper(form_id) {
           form_id
         }
       });
+      // console.log(res);
       if (res.data.status === 'success') {
         return res.data;
       }
@@ -17,4 +18,6 @@ async function helper(form_id) {
     }
 }
 
-document.querySelectorAll(".contact_form_open").forEach(button => {})
+// document.querySelectorAll(".contact_form_open").forEach(button => {})
+console.log(helper(0));
+console.log("test");
