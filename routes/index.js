@@ -4,6 +4,8 @@ const flash = require('express-flash');
 const sql = require('mssql');
 const path = require('path');
 const fetch = require('node-fetch');
+const fs = require('fs');
+var moment = require('moment');
 
 // Setup multer with disk storage
 const multer = require('multer');
@@ -120,7 +122,6 @@ router.post('/portal/officer/:id', upload.single('officerProfileImage'), functio
 
 router.post('/portal/officer/delete/:id', function (req, res) {
 	// console.log(`DELETING ${req.params['id']}`);
-
 	var sqlQuery = `DELETE FROM tbl_officer WHERE id=${req.params['id']};`;
 
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
@@ -181,7 +182,7 @@ router.get('/portal/newsletter', function (req, res) {
 function getNewsletters(req, res) {
 	var sqlQuery = "SELECT * FROM tbl_newsletter";
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		res.render('newsletter-portal', { newsletters: result.recordset });
+		res.render('newsletter-portal', { newsletters: result.recordset, moment: moment});
 	}).catch((err) => {
 		res.render('index');
 		req.flash('error', 'Error loading newsletters');
@@ -193,10 +194,10 @@ router.get('/portal/newsletter/create', getNewsletters);
 
 router.post('/portal/newsletter/create', upload_newsletter.single('newsletter'), function (req, res) {
 	const name = req.body.newsletterName;
-	console.log(req.file);
 	const link = req.file === undefined ? undefined : req.file.path;
 	// sqlReq.input("name", sql.NVarChar, req.body.newsletterName);
 
+	console.log(link);
 	var sqlQuery = `INSERT INTO tbl_newsletter (name, link) 
 					VALUES ('${name}', '${link}')`;
 
@@ -212,14 +213,24 @@ router.post('/portal/newsletter/create', upload_newsletter.single('newsletter'),
 
 router.delete('/portal/newsletter/delete/:id', function (req, res) {
 	try {
-		var sqlQuery = `DELETE FROM tbl_newsletter WHERE id=${req.params['id']};`;
-		console.log(sqlQuery);
-
-		var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-			res.redirect('/portal/newsletter/');
+		//get the link from db
+		var selectQuery = `SELECT link from tbl_newsletter WHERE id=${req.params['id']}`;
+		let link = null;
+		var sqlReq = new sql.Request().query(selectQuery).then((result) => {
+			link = result.recordset[0].link;
+			var sqlQuery = `DELETE FROM tbl_newsletter WHERE id=${req.params['id']};`;
+			console.log(sqlQuery);
+			var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+				console.log(link)
+				fs.unlinkSync(link)
+				res.redirect('/portal/newsletter/');
+			}).catch((err) => {
+				req.flash('error', 'Error creating newsletter');
+			});
 		}).catch((err) => {
-			req.flash('error', 'Error creating newsletter');
+			req.flash('error', 'Error getting newsletter link');
 		});
+
 	} catch (error) {
 		console.log(error);
 		res.status(400).send();

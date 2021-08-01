@@ -35,7 +35,7 @@
 											<%= newsletter.name %>
 										</td>
 										<td>
-											<%= newsletter.date_uploaded %>
+											<%= moment(newsletter.date_uploaded).format('MM/DD/YYYY') %>
 										</td>
 										<td>
 											<%= newsletter.link%>
@@ -53,6 +53,8 @@
 														url: '/portal/newsletter/delete/<%=newsletter.id%>',
 														contentType: 'application/json'
 													})
+													//delete the parents' parent element
+													document.getElementById("deleteBtn<%=newsletter.id%>").parentElement.parentElement.remove();
 												});
 											</script>
 										</td>
