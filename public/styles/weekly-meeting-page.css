@@ -21,6 +21,7 @@ body .purple-text {
 
 .meeting-item {
     max-width: 400px!important;
+    min-width: 400px!important;
 }
 
 .chatbox{
