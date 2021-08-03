@@ -19,10 +19,15 @@ body .purple-text {
     background: linear-gradient(180deg, #F1E4FF 75.52%, rgba(241, 228, 255, 0) 100%);
 }
 
+.meeting-item {
+    max-width: 400px!important;
+}
+
 .chatbox{
+    height: 250px;
     background-color: white;
     border-radius: 15px;
-    padding: 2em;
+    padding: 0;
     margin-bottom: 2em;
     position: relative;
 }
@@ -42,9 +47,35 @@ body .purple-text {
     margin-bottom: 0.8em;
 }
 
+.trip p {
+    padding: 0;
+    margin: 0;
+}
+
+.trip h5 {
+    font-size: x-large;
+}
+
+.trip img {
+    /* width: 100%; */
+    color: white;
+}
+
+.allTrips {
+    margin-bottom: 1rem;
+}
+
+.allTrips p {
+    padding-left: 0rem;
+}
+
+.event-list {
+    min-width: 300px;
+}
+
 .circle{
-    width: 72px;
-    height: 72px;
+    width: 3.75rem;
+    height: 3.75rem;
     border-radius: 50%;
     background: white;
 }
@@ -53,7 +84,7 @@ body .purple-text {
     padding-bottom: 122px;
 }
 
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
     .division-title {
         text-align: center;
     }
@@ -61,4 +92,4 @@ body .purple-text {
         margin-left: 69px;
         margin-right: 69px;
     }
-}
+} */
