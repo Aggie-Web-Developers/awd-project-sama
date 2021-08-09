@@ -6,9 +6,14 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const sql = require('mssql');
 const bcrypt = require('bcrypt');
+const initPassport = require('./passport-config');
+const passport = require('passport');
 const flash = require('express-flash');
 const baseRoutes = require('./routes');
+const portalRoutes = require('./routes/portal/index');
 const cookie = require('express-session/session/cookie');
+
+initPassport(passport);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
@@ -23,6 +28,8 @@ app.use(
 	})
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 const config = {
 	server: process.env.DB_SERVER || '',
@@ -42,7 +49,6 @@ const config = {
 	},
 };
 
-// Uncomment this if you want a database connection
 sql
 	.connect(config)
 	.then((pool) => {
@@ -57,8 +63,8 @@ sql
 		console.log(err);
 	});
 
-
 app.use(baseRoutes);
+app.use('/portal', portalRoutes);
 
 app.get('/*', function (req, res) {
 	res.render('404');
