@@ -2,69 +2,101 @@
 <html lang="en">
 	<%- include('../partials/header') %>
 	<body>
-		<%- include('../partials/nav') %>
-		<div class="container">
+		<%- include('../partials/portal-nav') %>
+		<div class="container" style="padding-top: 4rem;">
 			<div class="row justify-content-center mt-5">
-				<h1>SAMA Officer Portal</h1>
+				<h1>Officer Portal</h1>
 			</div>
 		</div>
-		<!-- TODO: Create Landing Page for Officer Portal -->
-		<div class="container">
-			<div class="row justify-content-around">
-				<div class="col-10 col-md-4 text-center mt-5">
-					<a href="./events" class="portal-card">
-						<div class="row justify-content-center">
-							<i class="fas fa-calendar-alt"></i>
-						</div>
-						<div class="row justify-content-center">
-							<h2 class="pt-4">Manage Events</h2>
-						</div>
-					</a>
+
+		<div class="container mt-5">
+			<div class="row px-4 px-md-0">
+				<div class="col-12 col-md-6 col-lg-4 mt-3 mt-md-0">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-chess-queen mb-4"
+							aria-hidden="true"
+						></i>
+
+						<h2 class="font-weight-bold font-175 mb-4">Officers</h2>
+
+						<a href="#" class="portal-link d-block"
+							>View Officers <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+						<a href="#" class="portal-link d-block mt-1"
+							>Add an Officer <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
 				</div>
 
-				<div class="col-10 col-md-4 text-center mt-5">
-					<a href="./projects" class="portal-card">
-						<div class="row justify-content-center">
-							<i class="fas fa-tasks"></i>
-						</div>
-						<div class="row justify-content-center">
-							<h2 class="pt-4">Manage Projects</h2>
-						</div>
-					</a>
+				<div class="col-12 col-md-6 col-lg-4 mt-3 mt-md-0">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-feather-alt mb-4"
+							aria-hidden="true"
+						></i>
+
+						<h2 class="font-weight-bold font-175 mb-4">Static Content</h2>
+
+						<a href="#" class="portal-link d-block"
+							>Edit Meeting Time + Venue
+							<i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+						<a href="#" class="portal-link d-block mt-1"
+							>Second Link <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
 				</div>
 
-				<div class="col-10 col-md-4 text-center mt-5">
-					<a href="./emails" class="portal-card">
-						<div class="row justify-content-center">
-							<i class="far fa-paper-plane"></i>
-						</div>
-						<div class="row justify-content-center">
-							<h2 class="pt-4">Manage Emails</h2>
-						</div>
-					</a>
-				</div>
-			</div>
+				<div class="col-12 col-md-6 col-lg-4 mt-3 mt-lg-0">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-mail-bulk mb-4"
+							aria-hidden="true"
+						></i>
 
-			<div class="row justify-content-center">
-				<div class="col-10 col-md-4 text-center mt-5">
-					<a href="./sponsors" class="portal-card">
-						<div class="row justify-content-center">
-							<i class="fas fa-store"></i>
-						</div>
-						<div class="row justify-content-center">
-							<h2 class="pt-4">Manage Sponsors</h2>
-						</div>
-					</a>
+						<h2 class="font-weight-bold font-175 mb-4">Contact Us Forms</h2>
+
+						<a href="#" class="portal-link d-block"
+							>View Forms <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
 				</div>
-				<div class="col-10 col-md-4 text-center mt-5">
-					<a href="./officers" class="portal-card">
-						<div class="row justify-content-center">
-							<i class="fas fa-user-tie"></i>
-						</div>
-						<div class="row justify-content-center">
-							<h2 class="pt-4">Manage Officers</h2>
-						</div>
-					</a>
+				<div class="col-12 col-md-6 col-lg-4 mt-3">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-bullhorn mb-4"
+							aria-hidden="true"
+						></i>
+
+						<h2 class="font-weight-bold font-175 mb-4">Announcements</h2>
+
+						<a href="#" class="portal-link d-block"
+							>View Announcements <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+						<a href="#" class="portal-link d-block mt-1"
+							>Make an Announcement
+							<i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mt-3 mb-5">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-user-lock mb-4"
+							aria-hidden="true"
+						></i>
+
+						<h2 class="font-weight-bold font-175 mb-4">Logins</h2>
+
+						<a href="#" class="portal-link d-block"
+							>View Logins <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+						<a href="#" class="portal-link d-block mt-1"
+							>Create New Login <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
 				</div>
 			</div>
 		</div>

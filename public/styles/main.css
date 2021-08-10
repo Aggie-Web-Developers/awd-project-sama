@@ -39,6 +39,10 @@ label:focus,
 	font-weight: 500;
 }
 
+.font-175 {
+	font-size: 1.75rem !important;
+}
+
 .page-header {
 	font-size: 6rem;
 	z-index: 0;
@@ -723,4 +727,28 @@ label:focus,
 	margin-left: 0;
 	height: auto;
 }
+
+.login-button {
+	background-color: blueviolet;
+}
 /** End of Login Page **/
+
+/** Portal Index Page **/
+.officer-section-container {
+	width: 100%;
+	height: auto;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+	padding: 30px;
+	min-height: 275px;
+}
+
+.officer-section-icon {
+	font-size: 2rem;
+	color: blueviolet;
+}
+
+.portal-link {
+	font-weight: bold;
+	color: blueviolet;
+}
+/** End of Portal Index Page **/

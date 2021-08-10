@@ -63,6 +63,12 @@ sql
 		console.log(err);
 	});
 
+app.use(function (req, res, next) {
+	// store current user
+	res.locals.user = req.user;
+	next();
+});
+
 app.use(baseRoutes);
 app.use('/portal', portalRoutes);
 
