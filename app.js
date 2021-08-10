@@ -11,6 +11,7 @@ const passport = require('passport');
 const flash = require('express-flash');
 const baseRoutes = require('./routes');
 const portalRoutes = require('./routes/portal/index');
+const loginsRoutes = require('./routes/portal/logins');
 const cookie = require('express-session/session/cookie');
 
 initPassport(passport);
@@ -71,6 +72,7 @@ app.use(function (req, res, next) {
 
 app.use(baseRoutes);
 app.use('/portal', portalRoutes);
+app.use('/portal/logins', loginsRoutes);
 
 app.get('/*', function (req, res) {
 	res.render('404');

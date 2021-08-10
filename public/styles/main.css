@@ -751,4 +751,9 @@ label:focus,
 	font-weight: bold;
 	color: blueviolet;
 }
+
+.delete-link {
+	color: red;
+	font-weight: bold;
+}
 /** End of Portal Index Page **/

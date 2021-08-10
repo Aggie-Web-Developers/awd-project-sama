@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('../../partials/header') %>
+	<body>
+		<%- include('../../partials/portal-nav') %> <% if (messages.error) { %>
+		<div class="alert alert-danger" role="alert"><%= messages.error %></div>
+		<% } %> <% if (messages.success) { %>
+		<div class="alert alert-success" role="alert">
+			<%= messages.success %>
+		</div>
+		<% } %>
+
+		<div class="container" style="padding-top: 4rem;">
+			<div class="row justify-content-center mt-5">
+				<h1>Manage Logins</h1>
+			</div>
+		</div>
+
+		<div class="container mt-5">
+			<table class="table table-bordered table-striped">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col">Email</th>
+						<th scope="col">Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% logins.forEach(function(login) { %>
+					<tr>
+						<td><%= login.email %></td>
+						<td>
+							<a
+								href="/portal/logins/delete/<%= login.id %>"
+								class="delete-link"
+								onclick="return confirm('Remove <%= login.email %>\'s access to the portal? This action is irreversible.')"
+								title="Remove Access"
+							>
+								<i class="fas fa-ban"></i>
+							</a>
+						</td>
+					</tr>
+					<% }); %>
+				</tbody>
+			</table>
+		</div>
+
+		<script src="/scripts/portal/logins/index.js"></script>
+	</body>
+</html>
