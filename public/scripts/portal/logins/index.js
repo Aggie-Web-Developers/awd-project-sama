@@ -1,4 +1,4 @@
-// JS File for Index View
+// JS File for Logins Index View
 
 $(function () {
 	document.title = 'Aggie SAMA - Logins';

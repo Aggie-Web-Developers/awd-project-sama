@@ -79,6 +79,12 @@ label:focus,
 	z-index: 1;
 }
 
+.form-control.default {
+	width: 100%;
+	margin-left: 0;
+	height: auto;
+}
+
 /***** /Global/ ******/
 /***** Home Page *****/
 #mainLogo {
@@ -722,13 +728,17 @@ label:focus,
 	border-radius: 3px;
 }
 
-.form-control.login {
-	width: 100%;
-	margin-left: 0;
-	height: auto;
+.portal-button {
+	background-color: blueviolet;
 }
 
-.login-button {
+.portal-button-alt {
+	border: blueviolet 1px solid;
+	color: blueviolet;
+}
+
+.portal-button-alt:hover {
+	color: white;
 	background-color: blueviolet;
 }
 /** End of Login Page **/
