@@ -38,7 +38,8 @@
 											<%= moment(newsletter.date_uploaded).format('MM/DD/YYYY') %>
 										</td>
 										<td>
-											<%= newsletter.link%>
+											<a href=<%= hostname + ':8080/' + newsletter.link%> target="_blank">Open</a></br>
+											(<%= hostname + ':8080/' + newsletter.link%>)
 										</td>
 										<td>
 											<button class="btn btn-danger float-right deleteBtn"

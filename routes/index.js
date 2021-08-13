@@ -131,10 +131,6 @@ router.post('/portal/officer/delete/:id', function (req, res) {
 	});
 });
 
-router.get('/newsletter', function (req, res) {
-	res.render('newsletter')
-})
-
 router.get('/weekly-meeting-page', function (req, res) {
 	res.render('weekly-meeting-page');
 });
@@ -162,14 +158,15 @@ router.post('/contact-us-submission', function (req, res) {
 });
 
 router.get('/newsletter', function (req, res) {
-	var sqlQuery = 'SELECT * FROM newsletters';
-
+	var sqlQuery = 'SELECT * FROM tbl_newsletter';
+	console.log(sqlQuery);
 	var sqlReq = new sql.Request()
 		.query(sqlQuery)
 		.then((result) => {
-			res.render('newsletter', { newsletters: result.recordset });
+			res.render('newsletter', { newsletters: result.recordset,  moment: moment, hostname: req.hostname });
 		})
 		.catch((err) => {
+			console.log(err);
 			req.flash('error', 'Error loading newsletter.');
 			res.render('index', { newsletters: [] });
 		});
@@ -182,21 +179,26 @@ router.get('/portal/newsletter', function (req, res) {
 function getNewsletters(req, res) {
 	var sqlQuery = "SELECT * FROM tbl_newsletter";
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		res.render('newsletter-portal', { newsletters: result.recordset, moment: moment});
+		res.render('newsletter-portal', { newsletters: result.recordset, moment: moment, hostname: req.hostname});
 	}).catch((err) => {
 		res.render('index');
 		req.flash('error', 'Error loading newsletters');
 	});
 }
 
+// router.get('/portal/newsletter/public/newsletters/:id?', function (req, res)) {
+
+// }
+
 router.get('/portal/newsletter/:id?', getNewsletters);
 router.get('/portal/newsletter/create', getNewsletters);
 
 router.post('/portal/newsletter/create', upload_newsletter.single('newsletter'), function (req, res) {
 	const name = req.body.newsletterName;
-	const link = req.file === undefined ? undefined : req.file.path;
+	console.log(req.file.path);
+	let link = req.file === undefined ? undefined : req.file.path.replace(/\\/g, '/');
 	// sqlReq.input("name", sql.NVarChar, req.body.newsletterName);
-
+	link = link.substr(7)
 	console.log(link);
 	var sqlQuery = `INSERT INTO tbl_newsletter (name, link) 
 					VALUES ('${name}', '${link}')`;
@@ -205,7 +207,7 @@ router.post('/portal/newsletter/create', upload_newsletter.single('newsletter'),
 	// VALUES (@name, @link)`;
 
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		res.redirect('/portal/newsletter/')
+		res.redirect('/portal/newsletter/');
 	}).catch((err) => {
 		req.flash('error', 'Error creating newsletter');
 	});
