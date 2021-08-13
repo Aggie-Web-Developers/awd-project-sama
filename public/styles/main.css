@@ -674,20 +674,59 @@ label:focus,
 /** End of Meetings Page **/
 
 /** Calendar Page **/
+#calendar {
+	background-color: #f5f6f8;
+	padding: 40px;
+	font-family: Montserrat;
+}
+
 .fc .fc-button-primary {
 	text-transform: capitalize;
 	font-family: Montserrat;
 	padding: 12.5px 10px 12.5px 10px;
-	border: 1px solid #23a6f0 !important;
+	border: 1px solid blueviolet !important;
 	background-color: transparent;
-	color: #23a6f0;
+	color: blueviolet;
+	font-weight: bold;
+}
+
+.fc-toolbar-title {
 	font-weight: bold;
 }
 
 .fc .fc-button-primary:not(:disabled).fc-button-active,
 .fc .fc-button-primary:not(:disabled):active,
 .fc .fc-button-primary:hover {
-	background-color: #23a6f0;
+	background-color: blueviolet;
 	color: white;
 }
+
+.fc-event-title {
+	color: blueviolet;
+}
+
+.fc-event-main {
+	background-color: blueviolet;
+}
+
+.fc-event-title-container .fc-event-title {
+	color: white;
+}
+
+.portal-button {
+	background-color: blueviolet;
+}
+
+@media (max-width: 790px) {
+	.fc-toolbar-chunk:last-of-type {
+		display: none;
+	}
+}
+
+@media (max-width: 446px) {
+	.fc-toolbar-chunk:first-of-type {
+		display: none;
+	}
+}
+
 /** End of Calendar Page **/
