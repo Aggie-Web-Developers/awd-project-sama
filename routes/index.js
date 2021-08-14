@@ -34,6 +34,7 @@ router.get('/privacy-policy', function (req, res) {
 	res.render('privacy-policy');
 });
 
+
 router.get('/calendar', function (req, res) {
 	res.render('calendar');
 });
@@ -47,7 +48,6 @@ router.get('/officers', function (req, res) {
 			res.render('officers', { officers: result.recordset });
 		})
 		.catch((err) => {
-			res.render('index');
 			req.flash('error', 'Error loading officers');
 		});
 });
