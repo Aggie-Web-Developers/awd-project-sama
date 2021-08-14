@@ -34,9 +34,13 @@ router.get('/privacy-policy', function (req, res) {
 	res.render('privacy-policy');
 });
 
-router.get('/officers', function (req, res) {
 
-	var sqlQuery = 'SELECT name, officerRole, bio, profilePic FROM officers';
+router.get('/calendar', function (req, res) {
+	res.render('calendar');
+});
+
+router.get('/officers', function (req, res) {
+	var sqlQuery = 'SELECT name, officerRole, bio, profilePic FROM tbl_officer';
 
 	var sqlReq = new sql.Request()
 		.query(sqlQuery)
@@ -136,32 +140,35 @@ router.get('/weekly-meeting-page', async (req, res) => {
 		var sqlQuery = `SELECT * FROM tbl_event`;
 
 		var events, event_types, meeting;
-		await new sql.Request().query(sqlQuery)
+		await new sql.Request()
+			.query(sqlQuery)
 			.then((result) => {
 				events = result.recordset;
 			})
 			.catch((err) => {
-				req.flash('error', 'Error getting meetings and events')
+				req.flash('error', 'Error getting meetings and events');
 			});
 
 		sqlQuery = `SELECT * FROM tbl_event_type`;
 
-		await new sql.Request().query(sqlQuery)
+		await new sql.Request()
+			.query(sqlQuery)
 			.then((result) => {
 				event_types = result.recordset;
 			})
 			.catch((err) => {
-				req.flash('error', 'Error getting meetings and events')
+				req.flash('error', 'Error getting meetings and events');
 			});
 
 		sqlQuery = `SELECT * FROM tbl_meeting`;
 
-		await new sql.Request().query(sqlQuery)
+		await new sql.Request()
+			.query(sqlQuery)
 			.then((result) => {
 				meetings = result.recordset;
 			})
 			.catch((err) => {
-				req.flash('error', 'Error getting meetings and events')
+				req.flash('error', 'Error getting meetings and events');
 			});
 
 		var sortedEvents = [];
@@ -170,14 +177,16 @@ router.get('/weekly-meeting-page', async (req, res) => {
 			obj['type'] = type;
 			obj['events'] = [];
 			events.forEach((event) => {
-				if(event.event_type_id === type.id) 
-					obj['events'].push(event);
+				if (event.event_type_id === type.id) obj['events'].push(event);
 			});
 			sortedEvents.push(obj);
 		});
 
-		res.render('weekly-meeting-page', {event_map: sortedEvents, meetings: meetings});
-	} catch(err) {
+		res.render('weekly-meeting-page', {
+			event_map: sortedEvents,
+			meetings: meetings,
+		});
+	} catch (err) {
 		console.log(err);
 		res.render('index');
 	}
