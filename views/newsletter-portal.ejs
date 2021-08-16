@@ -2,10 +2,9 @@
 <html lang="en">
 <%- include('partials/header') %>
 	<link rel="stylesheet" href="/styles/newsletter-portal.css" />
-	<body>
+	<body >
 		<%- include('partials/nav') %>
-
-			<div id="content" class="container">
+			<div id="content" class="container mx-auto">
 				<!-- upload newsletter -->
 				<div class="d-flex flex-row my-4 py-5">
 					<div class="col-lg-12 text-center">
@@ -15,14 +14,14 @@
 				</div>
 
 				<!-- display newsletters -->
-				<div class="d-flex flex-row my-4 py-5">
-					<div class="col-lg-12 text-center">
+				<div class="d-flex flex-row my-4 py-5 justify-content-center">
+					<div class="col-lg-6 text-center">
 						<h2 class="">Newsletters</h2>
 						<table>
 							<caption>newsletters</caption>
 							<thead>
 								<tr>
-									<th scope="col">Title</th>
+									<th scope="col">News Title</th>
 									<th scope="col">Date Uploaded</th>
 									<th scope="col">Link</th>
 									<th scope="col"></th>
@@ -38,8 +37,7 @@
 											<%= moment(newsletter.date_uploaded).format('MM/DD/YYYY') %>
 										</td>
 										<td>
-											<a href=<%= hostname + ':8080/' + newsletter.link%> target="_blank">Open</a></br>
-											(<%= hostname + ':8080/' + newsletter.link%>)
+											<a href=<%='http://' + hostname + ':8080/' + newsletter.link%> target="_blank">Open</a>
 										</td>
 										<td>
 											<button class="btn btn-danger float-right deleteBtn"
@@ -67,11 +65,6 @@
 				</div>
 			</div>
 
-			<!-- <script src="/scripts/newsletter.js"></script> -->
 			<%- include('partials/footer') %>
 	</body>
 </html>
-
-<script>
-
-</script>

@@ -157,9 +157,12 @@ router.post('/contact-us-submission', function (req, res) {
 	res.render('contact-us-submission');
 });
 
+/*
+	newsletter
+*/
+
 router.get('/newsletter', function (req, res) {
 	var sqlQuery = 'SELECT * FROM tbl_newsletter';
-	console.log(sqlQuery);
 	var sqlReq = new sql.Request()
 		.query(sqlQuery)
 		.then((result) => {
@@ -186,27 +189,20 @@ function getNewsletters(req, res) {
 	});
 }
 
-// router.get('/portal/newsletter/public/newsletters/:id?', function (req, res)) {
-
-// }
-
 router.get('/portal/newsletter/:id?', getNewsletters);
 router.get('/portal/newsletter/create', getNewsletters);
 
 router.post('/portal/newsletter/create', upload_newsletter.single('newsletter'), function (req, res) {
 	const name = req.body.newsletterName;
-	console.log(req.file.path);
 	let link = req.file === undefined ? undefined : req.file.path.replace(/\\/g, '/');
-	// sqlReq.input("name", sql.NVarChar, req.body.newsletterName);
+	var sqlReq = new sql.Request();
+	sqlReq.input('name', sql.NVarChar, name);
+	sqlReq.input('link', sql.NVarChar, link);
 	link = link.substr(7)
-	console.log(link);
-	var sqlQuery = `INSERT INTO tbl_newsletter (name, link) 
-					VALUES ('${name}', '${link}')`;
 
-	// var sqlQuery = `INSERT INTO tbl_newsletter (name, link) 
-	// VALUES (@name, @link)`;
+	var queryText = `INSERT INTO tbl_newsletter (name, link) VALUES (@name, @link)`;
 
-	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+	sqlReq.query(queryText).then((result) => {
 		res.redirect('/portal/newsletter/');
 	}).catch((err) => {
 		req.flash('error', 'Error creating newsletter');
@@ -221,9 +217,7 @@ router.delete('/portal/newsletter/delete/:id', function (req, res) {
 		var sqlReq = new sql.Request().query(selectQuery).then((result) => {
 			link = result.recordset[0].link;
 			var sqlQuery = `DELETE FROM tbl_newsletter WHERE id=${req.params['id']};`;
-			console.log(sqlQuery);
 			var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-				console.log(link)
 				fs.unlinkSync(link)
 				res.redirect('/portal/newsletter/');
 			}).catch((err) => {
@@ -232,28 +226,11 @@ router.delete('/portal/newsletter/delete/:id', function (req, res) {
 		}).catch((err) => {
 			req.flash('error', 'Error getting newsletter link');
 		});
-
 	} catch (error) {
 		console.log(error);
 		res.status(400).send();
 	}
 });
-
-// router.post('/portal/newsletter/:id', upload.single('newsletter'), async (req, res) => {
-// 	try {
-// 		const newFile = await File.create({
-// 			name: req.file.filename
-// 		})
-// 		res.status(200).json({
-// 			status: 'success',
-// 			message: 'File created successfully!!'
-// 		});
-// 	} catch (error) {
-// 		res.json({
-// 			error
-// 		});
-// 	}
-// });
 
 // router.get('/sitemap.xml', function (req, res) {
 // 	res.sendFile(path.join(__dirname, '../sitemap.xml'));
