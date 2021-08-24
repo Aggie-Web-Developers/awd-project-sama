@@ -196,10 +196,10 @@ router.post('/portal/newsletter/create', upload_newsletter.single('newsletter'),
 	const name = req.body.newsletterName;
 	let link = req.file === undefined ? undefined : req.file.path.replace(/\\/g, '/');
 	var sqlReq = new sql.Request();
+	link = link.substr(7)
 	sqlReq.input('name', sql.NVarChar, name);
 	sqlReq.input('link', sql.NVarChar, link);
-	link = link.substr(7)
-
+	
 	var queryText = `INSERT INTO tbl_newsletter (name, link) VALUES (@name, @link)`;
 
 	sqlReq.query(queryText).then((result) => {
