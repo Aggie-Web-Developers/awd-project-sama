@@ -1,7 +1,7 @@
 // JS File for New Announcement View
 
 $(function () {
-	document.title = 'Aggie SAMA - Add Announcement';
+	document.title = 'Aggie SAMA - Edit Announcement';
 
 	$('#frm').validate({
 		ignore: ':hidden',

@@ -34,7 +34,6 @@ router.get('/privacy-policy', function (req, res) {
 	res.render('privacy-policy');
 });
 
-
 router.get('/calendar', function (req, res) {
 	res.render('calendar');
 });

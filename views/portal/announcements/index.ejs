@@ -35,13 +35,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% announcements.forEach(function(announcement) { %>
+					<% announcements.forEach(function(announcement) { const createDate =
+					new Date(announcement.create_date).toLocaleString() %>
 					<tr>
 						<td><%= announcement.subject %></td>
-						<td><%= announcement.create_date %></td>
+						<td><%= createDate %></td>
 						<td>
 							<a
-								href="/portal/logins/edit/<%= announcement.id %>"
+								href="/portal/announcements/edit/<%= announcement.id %>"
 								class="mr-2 edit-link"
 								title="Edit Announcement"
 							>

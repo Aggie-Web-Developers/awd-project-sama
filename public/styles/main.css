@@ -230,10 +230,6 @@ label:focus,
 	min-height: 100%;
 }
 
-.About-Us h2 {
-	/* margin: 0; */
-}
-
 .flex-column {
 	padding-right: 2em;
 	align-items: baseline;
@@ -796,12 +792,12 @@ label:focus,
 
 .portal-button-alt {
 	border: blueviolet 1px solid;
-	color: blueviolet;
+	color: blueviolet !important;
 }
 
 .portal-button-alt:hover {
-	color: white;
-	background-color: blueviolet;
+	color: white !important;
+	background-color: blueviolet !important;
 }
 /** End of Login Page **/
 
