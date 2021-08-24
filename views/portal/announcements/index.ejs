@@ -41,7 +41,15 @@
 						<td><%= announcement.create_date %></td>
 						<td>
 							<a
-								href="/portal/logins/delete/<%= announcement.id %>"
+								href="/portal/logins/edit/<%= announcement.id %>"
+								class="mr-2 edit-link"
+								title="Edit Announcement"
+							>
+								<i class="fas fa-edit"></i>
+							</a>
+
+							<a
+								href="/portal/announcements/delete/<%= announcement.id %>"
 								class="delete-link"
 								onclick="return confirm('Delete the announcement \'<%= announcement.subject %>\'?')"
 								title="Remove Access"

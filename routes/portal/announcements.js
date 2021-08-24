@@ -22,31 +22,24 @@ router.get('/', middleware.checkAuthenticated, function (req, res) {
 });
 
 router.get('/new', middleware.checkAuthenticated, function (req, res) {
-	res.render('portal/logins/new');
+	res.render('portal/announcements/new');
 });
 
 router.post('/new', middleware.checkAuthenticated, async function (req, res) {
 	try {
-		const hashedPassword = await bcrypt.hash(req.body.txtPassword, 10);
-
 		var sqlReq = new sql.Request();
 
-		sqlReq.input('email', sql.NVarChar, req.body.txtEmail);
-		sqlReq.input('password_hash', sql.NVarChar, hashedPassword);
-
-		var queryText =
-			'IF NOT EXISTS (SELECT * FROM tbl_user WHERE email = @email) ' +
-			'BEGIN ' +
-			'INSERT INTO tbl_user (email, password_hash) ' +
-			'values (@email, @password_hash) ' +
-			'END';
+		sqlReq.input('subject', sql.NVarChar, req.body.txtSubject);
+		sqlReq.input('body', sql.NVarChar, req.body.txtBody);
 
 		sqlReq
-			.query(queryText)
+			.query(
+				'INSERT INTO tbl_announcement (subject, body) VALUES (@subject, @body)'
+			)
 			.then((result) => {
 				req.flash(
 					'success',
-					'Account created! The new login is able to access the portal.'
+					'Announcement created! We also sent a Discord message.'
 				);
 				res.redirect('/portal/announcements');
 			})
@@ -54,12 +47,12 @@ router.post('/new', middleware.checkAuthenticated, async function (req, res) {
 				console.error(err);
 
 				req.flash('error', 'Error creating announcement.');
-				res.redirect('/portal/logins/new');
+				res.redirect('/portal/announcements/new');
 			});
 	} catch (err) {
 		console.error(err);
 		req.flash('error', 'Unable to create announcement.');
-		res.redirect('/portal/logins/new');
+		res.redirect('/portal/announcements/new');
 	}
 });
 
