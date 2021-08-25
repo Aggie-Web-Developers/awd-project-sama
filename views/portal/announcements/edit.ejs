@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('../../partials/header') %>
+	<body>
+		<%- include('../../partials/portal-nav') %> <% if (messages.error) { %>
+		<div class="alert alert-danger" role="alert"><%= messages.error %></div>
+		<% } %> <% if (messages.success) { %>
+		<div class="alert alert-success" role="alert">
+			<%= messages.success %>
+		</div>
+		<% } %>
+
+		<div class="container" style="padding-top: 4rem;">
+			<div class="row justify-content-center mt-5">
+				<h1>Create Announcement</h1>
+			</div>
+		</div>
+
+		<div class="container mt-5">
+			<form
+				id="frm"
+				action="/portal/announcements/edit/<%= announcement.id %>?_method=PUT"
+				method="POST"
+				style="background-color: #e9ecef;"
+				class="p-5"
+			>
+				<div class="form-group">
+					<label for="txtSubject">Subject</label>
+					<input
+						type="text"
+						class="form-control default"
+						id="txtSubject"
+						name="txtSubject"
+						placeholder="New Officers Selected"
+						value="<%= announcement.subject %>"
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="txtBody">Body</label>
+					<textarea
+						class="form-control default"
+						id="txtBody"
+						name="txtBody"
+						rows="5"
+					>
+<%= announcement.body %>
+					</textarea
+					>
+				</div>
+
+				<small class="d-block mb-3">
+					Edited Announcements will not update Discord messages.
+				</small>
+
+				<a
+					onclick="window.history.back();"
+					class="btn btn-outline-primary portal-button-alt mr-3"
+				>
+					Back
+				</a>
+				<button type="submit" class="btn btn-primary portal-button">
+					Submit
+				</button>
+			</form>
+		</div>
+
+		<script src="/scripts/portal/announcements/edit.js"></script>
+	</body>
+</html>

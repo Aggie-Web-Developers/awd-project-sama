@@ -230,12 +230,6 @@ label:focus,
 	min-height: 100%;
 }
 
-
-.About-Us h2 {
-	/* margin: 0; */
-}
-
-
 .flex-column {
 	padding-right: 2em;
 	align-items: baseline;
@@ -700,7 +694,6 @@ label:focus,
 }
 /** End of Meetings Page **/
 
-
 /** Calendar Page **/
 #calendar {
 	background-color: #f5f6f8;
@@ -799,12 +792,12 @@ label:focus,
 
 .portal-button-alt {
 	border: blueviolet 1px solid;
-	color: blueviolet;
+	color: blueviolet !important;
 }
 
 .portal-button-alt:hover {
-	color: white;
-	background-color: blueviolet;
+	color: white !important;
+	background-color: blueviolet !important;
 }
 /** End of Login Page **/
 
@@ -830,5 +823,10 @@ label:focus,
 .delete-link {
 	color: red;
 	font-weight: bold;
+}
+
+.edit-link {
+	color: blueviolet;
+	text-decoration: none !important;
 }
 /** End of Portal Index Page **/
