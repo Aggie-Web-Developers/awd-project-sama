@@ -17,8 +17,31 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-router.get('/', function (req, res) {
-	res.render('index');
+router.get('/', async function (req, res) {
+	let events;
+	let announcements;
+
+	await new sql.Request()
+		.query(`SELECT TOP 5 * FROM tbl_announcement ORDER BY create_date DESC`)
+		.then((result) => {
+			announcements = result.recordset;
+		})
+		.catch((err) => {
+			console.error(err);
+			req.flash(
+				'error',
+				'Whoops! We ran into a problem grabbing announcements.'
+			);
+
+			res.render('index');
+		});
+
+	res.render('index', {
+		data: {
+			events: events,
+			announcements: announcements,
+		},
+	});
 });
 router.get('/meetings', function (req, res) {
 	res.render('meetings.ejs');

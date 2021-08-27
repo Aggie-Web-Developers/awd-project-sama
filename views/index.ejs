@@ -70,22 +70,23 @@
 							Announcements
 						</h2>
 
-						<!-- Foreach announcement -->
+						<% if (data.announcements) {%> <%
+						data.announcements.forEach(function (announcement) { const
+						createDate = new
+						Date(announcement.create_date).toLocaleDateString('en-US', {month:
+						'numeric', day: 'numeric'}) %>
 						<div class="row mt-5">
 							<div class="col-12">
 								<h3 class="announcement-title">
-									<span style="color: #8c30f5;">08/15</span> - Announcement
-									Title
+									<span style="color: #8c30f5;"><%= createDate%></span>
+									- <%= announcement.subject %>
 								</h3>
 								<p>
-									Details; details; details; details; details; details; details;
-									details; details; details; details; details;Details; details;
-									details; details; details; details; details; details; details;
-									details; details; details;
+									<%= announcement.body %>
 								</p>
 							</div>
 						</div>
-						<!-- End foreach -->
+						<% }); } %>
 
 						<a class="event-link text-center" href="/discord"
 							>See all announcements on Discord
