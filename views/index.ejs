@@ -39,26 +39,24 @@
 					<div class="col-12 col-lg-5">
 						<h2 class="home-page-header">Upcoming Events</h2>
 
-						<!-- Foreach event -->
+						<% if (data.events) {%> <% data.events.forEach(function (event) { %>
 						<div class="row mt-5">
 							<div class="col-2">
-								<div class="date-container">8/30</div>
+								<div class="date-container"><%= event.date %></div>
 							</div>
 							<div class="col-10 pl-4">
 								<h3 class="event-title">
-									Super Duper Long Event Title -
-									<span style="color: #8c30f5;">August 30th, 7pm</span>
+									<%= event.name %> -
+									<span style="color: #8c30f5;"
+										><%= event.dateLong %>, <%= event.time %></span
+									>
 								</h3>
-								<p class="event-text">
-									Announcement content; announcement content;announcement
-									content;announcement content;announcement content;announcement
-									content;
-								</p>
+								<p><%= event.description %></p>
 							</div>
 						</div>
-						<!-- End foreach -->
+						<% }); }%>
 
-						<a class="event-link text-center" href="/events"
+						<a class="event-link text-center mt-5" href="/calendar"
 							>See all upcoming events <i class="fas fa-arrow-right ml-2"></i
 						></a>
 					</div>
@@ -88,7 +86,7 @@
 						</div>
 						<% }); } %>
 
-						<a class="event-link text-center" href="/discord"
+						<a class="event-link text-center mt-5" href="/discord"
 							>See all announcements on Discord
 							<i class="fas fa-arrow-right ml-2"></i
 						></a>

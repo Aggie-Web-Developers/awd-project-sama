@@ -4,6 +4,7 @@ const flash = require('express-flash');
 const sql = require('mssql');
 const path = require('path');
 const fetch = require('node-fetch');
+const axios = require('axios');
 
 // Setup multer with disk storage
 const multer = require('multer');
@@ -18,13 +19,16 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 router.get('/', async function (req, res) {
-	let events;
+	const events = [];
 	let announcements;
+	let dateString = new Date();
+	dateString = dateString.toISOString();
 
+	// Pull list of announcements
 	await new sql.Request()
 		.query(`SELECT TOP 5 * FROM tbl_announcement ORDER BY create_date DESC`)
 		.then((result) => {
-			announcements = result.recordset;
+			announcements = result.recordset; // set announcements object
 		})
 		.catch((err) => {
 			console.error(err);
@@ -34,6 +38,50 @@ router.get('/', async function (req, res) {
 			);
 
 			res.render('index');
+		});
+
+	// query google calendar to get events starting happing during or after the current time, sort by creation date
+	await axios
+		.get(
+			`https://www.googleapis.com/calendar/v3/calendars/${process.env.GCAL_ID}/events?key=${process.env.GCAL_API_KEY}&singleEvents=true&orderBy=startTime&timeMin=${dateString}`
+		)
+		.then(function (response) {
+			const googleCalendarEvents = response.data.items.slice(0, 3); // only use the top 3 events
+
+			googleCalendarEvents.forEach(function (event) {
+				const gooogleEventStart = new Date(event.start.dateTime);
+
+				// get the event date in mm/dd form
+				const eventDate = gooogleEventStart.toLocaleDateString('en-US', {
+					month: 'numeric',
+					day: 'numeric',
+				});
+
+				let eventDateLong = gooogleEventStart.toLocaleDateString('en-US', {
+					month: 'long',
+				});
+
+				// create a date string that has the mnonth written and the date ordinal i.e. (August 27th)
+				eventDateLong = eventDateLong + ' ' + getDateOrdinal(gooogleEventStart);
+
+				// Get a hh:mm am/pm time
+				const eventTime = gooogleEventStart.toLocaleString('en-US', {
+					hour: 'numeric',
+					minute: 'numeric',
+					hour12: true,
+				});
+
+				events.push({
+					name: event.summary,
+					date: eventDate,
+					dateLong: eventDateLong,
+					time: eventTime,
+					description: event.description,
+				});
+			});
+		})
+		.catch(function (error) {
+			console.error(error);
 		});
 
 	res.render('index', {
@@ -258,5 +306,18 @@ router.get('/newsletter', function (req, res) {
 // router.get('/robots.txt', function (req, res) {
 // 	res.sendFile(path.join(__dirname, '../robots.txt'));
 // });
+
+function getDateOrdinal(dt) {
+	return (
+		dt.getDate() +
+		(dt.getDate() % 10 == 1 && dt.getDate() != 11
+			? 'st'
+			: dt.getDate() % 10 == 2 && dt.getDate() != 12
+			? 'nd'
+			: dt.getDate() % 10 == 3 && dt.getDate() != 13
+			? 'rd'
+			: 'th')
+	);
+}
 
 module.exports = router;
