@@ -5,30 +5,102 @@
 	<body>
 		<%- include('partials/nav') %>
 
-		<div class="jumbotron" style="background: transparent !important;">
-			<div id="content" class="container">
-				<div class="col-sm-6">
-					<h1 class="display-4">Aggie Society for Anime and Manga Art</h1>
-					<p class="lead">
-						Aggie-SAMA is a society for the study, appreciation, and production
-						of Japanese Anime and Manga. We study existing works in the field
-						with the intent of sharing & widening our perspective of the style.
-						We also encourage artists, writers, and others creators involved in
-						the development of this art form to pursue improvement of their art
-						form.
-					</p>
-					<p class="lead">
-						<a class="btn btn-primary custom-btn btn-lg" href="#" role="button"
-							>Meetings Calendar</a
+
+		<div class="container-fluid" style="margin-top: 74px;">
+			<div class="row">
+				<div class="col-12 col-lg-7 p-5 p-sm-5 hero-companion-content">
+					<div class="p-0 p-md-5 p-lg-3 p-xl-5 display-flex align-items-center">
+						<h1 class="home-page-header">
+							Aggie Society for Anime and Manga Art
+						</h1>
+						<p class="lead hero-lead mt-3 mt-lg-4">
+							Aggie-SAMA is a society for the study, appreciation, and
+							production of Japanese Anime and Manga. We study existing works in
+							the field with the intent of sharing & widening our perspective of
+							the style. We also encourage artists, writers, and others creators
+							involved in the development of this art form to pursue improvement
+							of their art form.
+						</p>
+						<a
+							class="btn btn-primary custom-btn btn-lg mt-3 mt-lg-4"
+							href="#"
+							role="button"
 						>
-					</p>
+							Meetings Calendar
+						</a>
+					</div>
+				</div>
+				<div class="d-none d-lg-block col-lg-5 hero-image"></div>
+			</div>
+		</div>
+
+		<div class="events-background">
+			<div class="container py-5">
+				<div class="row justify-content-between">
+					<div class="col-12 col-lg-5">
+						<h2 class="home-page-header">Upcoming Events</h2>
+
+						<% if (data.events) {%> <% data.events.forEach(function (event) { %>
+						<div class="row mt-5">
+							<div class="col-2">
+								<div class="date-container"><%= event.date %></div>
+							</div>
+							<div class="col-10 pl-4">
+								<h3 class="event-title">
+									<%= event.name %> -
+									<span style="color: #8c30f5;"
+										><%= event.dateLong %>, <%= event.time %></span
+									>
+								</h3>
+								<p><%= event.description %></p>
+							</div>
+						</div>
+						<% }); }%>
+
+						<a class="event-link text-center mt-5" href="/calendar"
+							>See all upcoming events <i class="fas fa-arrow-right ml-2"></i
+						></a>
+					</div>
+					<div class="col-12 col-lg-5 text-center">
+						<h2
+							id="hAnnouncements"
+							class="home-page-header text-center mt-5 mt-lg-0"
+						>
+							Announcements
+						</h2>
+
+						<% if (data.announcements) {%> <%
+						data.announcements.forEach(function (announcement) { const
+						createDate = new
+						Date(announcement.create_date).toLocaleDateString('en-US', {month:
+						'numeric', day: 'numeric'}) %>
+						<div class="row mt-5">
+							<div class="col-12">
+								<h3 class="announcement-title">
+									<span style="color: #8c30f5;"><%= createDate%></span>
+									- <%= announcement.subject %>
+								</h3>
+								<p>
+									<%= announcement.body %>
+								</p>
+							</div>
+						</div>
+						<% }); } %>
+
+						<a
+							class="event-link text-center mt-5"
+							href="https://discord.gg/gtdEGTZ"
+							>See all announcements on Discord
+							<i class="fas fa-arrow-right ml-2"></i
+						></a>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="About-Us-Background">
 			<div class="container About-Us">
-				<h1 class="pb-5">About Us</h1>
+				<h2 class="py-5 home-page-header">About Us</h2>
 				<div class="row">
 					<div class="col-md-4 flex-column">
 						<h2>Weekly Meetings</h2>
@@ -61,13 +133,14 @@
 							Join our Discord Server to stay in touch, and check out the rest
 							of the website for more details and information!
 						</p>
-						<a href="#">Join our Discord <i class="fas fa-arrow-right"></i></a>
+						<a href="https://discord.gg/gtdEGTZ"
+							>Join our Discord <i class="fas fa-arrow-right"></i
+						></a>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<%- include('partials/footer') %>
+    <%- include('partials/footer') %>
 		<script src="/scripts/index.js"></script>
 	</body>
 </html>
