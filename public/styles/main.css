@@ -175,10 +175,6 @@ label:focus,
 /***** /Navbar/ *****/
 
 /***** Footer *****/
-.icon-row {
-	font-size: 2rem;
-}
-
 @media (max-width: 762px) {
 	.footer-copyright {
 		font-size: 0.8rem;
@@ -213,8 +209,10 @@ label:focus,
 }
 
 .footer {
-	background-color: #27968c;
-	color: #fff;
+	background-color: #0b0d17;
+	color: #d9dbe1;
+	font-size: 14px;
+	font-family: 'Manrope', sans-serif;
 }
 /***** /Footer/ *****/
 
