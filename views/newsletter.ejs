@@ -103,6 +103,7 @@
 							</div>
 						</div>
 
+
 						<!-- <div>
 							<p style="font-family: Manrope; font-size: 29px; line-height: 29px; color: #FFFFFF; font-weight: 800; font-style: normal;">
 								Get our most recent newsletter!
@@ -115,7 +116,6 @@
 			</div>
 
 		</div>
-
 
 
 		<div class="container-fluid past-newsletters">
@@ -139,8 +139,12 @@
 								console.log(newsletter);%>
 								<tr>
 									<td><%= newsletter.name %></td>
-									<td><%= newsletter.date_uploaded %></td>
-									<td><%= newsletter.link %></td>
+									<td>
+										<%= moment(newsletter.date_uploaded).format('MM/DD/YYYY') %>
+									</td>
+									<td>
+										<a href='<%='http://' + hostname + ':8080/' + newsletter.link%>' target="_blank">Open</a></br>
+									</td>
 								</tr>
 							<% }); %>
 						</tbody>
