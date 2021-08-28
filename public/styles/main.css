@@ -1,6 +1,7 @@
 /***** Global *****/
 body {
 	max-width: 100%;
+	font-family: 'Manrope', sans-serif;
 }
 
 textarea:hover,
@@ -83,6 +84,12 @@ label:focus,
 	width: 100%;
 	margin-left: 0;
 	height: auto;
+}
+
+@media (min-width: 1200px) {
+	.container {
+		max-width: 1460px;
+	}
 }
 
 /***** /Global/ ******/
@@ -211,7 +218,19 @@ label:focus,
 }
 /***** /Footer/ *****/
 
-/***** /Home Page/ *****/
+/***** Home Page *****/
+.home-page-header {
+	font-family: 'Manrope', sans-serif;
+	font-size: 48px;
+	font-weight: 800;
+}
+
+@media (max-width: 800px) {
+	.home-page-header {
+		font-size: 32px;
+	}
+}
+
 .btn-primary.custom-btn {
 	background-color: blueviolet;
 	border-color: blueviolet;
@@ -226,15 +245,17 @@ label:focus,
 	);
 }
 
+.events-background {
+	background: linear-gradient(
+		180deg,
+		#f1e4ff 98.23%,
+		rgba(241, 228, 255, 0) 100%
+	);
+}
+
 .About-Us .row .col-md-4 {
 	min-height: 100%;
 }
-
-
-.About-Us h2 {
-	/* margin: 0; */
-}
-
 
 .flex-column {
 	padding-right: 2em;
@@ -244,6 +265,111 @@ label:focus,
 	justify-content: space-between;
 	padding-bottom: 3em;
 }
+
+.date-container {
+	background: #f4f5f7;
+	height: 4vw;
+	max-height: 83px;
+	width: 4wh;
+	max-width: 83px;
+	border-radius: 100%;
+	text-align: center;
+	vertical-align: middle;
+	line-height: min(4vw, 83px);
+	color: #8c30f5;
+	font-weight: 700;
+	font-size: 20px;
+	font-family: 'Manrope', sans-serif;
+}
+
+@media (max-width: 1400px) {
+	.date-container {
+		height: 8vw;
+		width: 8vw;
+		line-height: min(8vw, 83px);
+	}
+}
+
+@media (max-width: 1200px) {
+	.date-container {
+		height: 6vw;
+		width: 6vw;
+		line-height: min(6vw, 83px);
+	}
+}
+
+@media (max-width: 865px) {
+	.date-container {
+		height: 10vw;
+		width: 10vw;
+		line-height: min(10vw, 83px);
+	}
+}
+
+@media (max-width: 992px) {
+	#hAnnouncements {
+		text-align: left !important;
+	}
+}
+
+@media (max-width: 650px) {
+	.date-container {
+		height: 14vw;
+		width: 14vw;
+		line-height: min(14vw, 83px);
+	}
+}
+
+@media (max-width: 475px) {
+	.date-container {
+		height: 16vw;
+		width: 16vw;
+		line-height: min(16vw, 83px);
+	}
+}
+
+@media (max-width: 500px) {
+	.hero-lead {
+		font-size: 16px !important;
+	}
+}
+
+.event-title {
+	font-weight: 600;
+	font-size: 24px;
+}
+
+.event-text {
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.announcement-title {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.event-link {
+	color: #8c30f5;
+	font-weight: 700;
+	font-size: 20px;
+	display: block;
+}
+
+.hero-image {
+	background-image: url('/../images/hero.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 92.5vh;
+}
+
+.hero-companion-content {
+	height: 92.5vh;
+	display: inline-flex;
+	align-items: center !important;
+}
+/***** /Home Page/ *****/
+
 /***** 404 Page *****/
 /***** /404 Page/ *****/
 
@@ -252,9 +378,9 @@ label:focus,
 	opacity: 0;
 }
 
-#content {
+/* #content {
 	margin: 10vh 0 0 10vw;
-}
+} */
 
 /* .col-xs-12.col-sm-12.col-md-12.col-lg-12 {
 	padding: 0 20% 0 20%;
@@ -700,7 +826,6 @@ label:focus,
 }
 /** End of Meetings Page **/
 
-
 /** Calendar Page **/
 #calendar {
 	background-color: #f5f6f8;
@@ -799,12 +924,12 @@ label:focus,
 
 .portal-button-alt {
 	border: blueviolet 1px solid;
-	color: blueviolet;
+	color: blueviolet !important;
 }
 
 .portal-button-alt:hover {
-	color: white;
-	background-color: blueviolet;
+	color: white !important;
+	background-color: blueviolet !important;
 }
 /** End of Login Page **/
 
@@ -830,5 +955,10 @@ label:focus,
 .delete-link {
 	color: red;
 	font-weight: bold;
+}
+
+.edit-link {
+	color: blueviolet;
+	text-decoration: none !important;
 }
 /** End of Portal Index Page **/
