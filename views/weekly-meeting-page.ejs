@@ -13,103 +13,62 @@
                 </div>
             </div>
             <div class="container-fluid weekly-meetings">
-                <div class="container text-center">
-                    <h2 class="pt-4 purple-text font-weight-bold">Weekly Meetings</h2>
+                <div class="container text-center pt-4 pb-1">
+                    <h1 class="pt-4 purple-text font-weight-bold">Weekly Meetings</h1>
                     <p>
                         Our weekly slate of meetings and events - come and check them out!
                     </p>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="chatbox text-center">
-                            <h5 class="mb-4">Anime Meetings</h5>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo et laudantium inventore
-                                aliquid! Explicabo iure veritatis aliquam delectus, odio deleniti tempore, consequuntur
-                                quaerat perspiciatis, nostrum vitae eligendi quam optio accusamus.</p>
+                <div class="row justify-content-center">
+                    <% meetings.forEach((meeting) => { %> 
+                        <div class="col meeting-item">
+                            <div class="chatbox text-center">
+                                <h4 class="py-4"><%- meeting.name %></h4>
+                                <p class="mx-4 my-auto h-75"><%- meeting.description %> </p>
+                            </div>
+                            <div class="text-center mb-5">
+                                <h5 class="font-weight-bold"><%- meeting.day %>, <%- meeting.time %> </h5>
+                                <h6>On our <a href="https://www.<%- meeting.link %> " class="purple-text"><u>Discord</u></a></h6>
+                            </div>
                         </div>
-                        <div class="text-center mb-5">
-                            <h5 class="font-weight-bold">Wednesdays, 6-8pm</h5>
-                            <h6>On our <a href="" class="purple-text"><u>Discord</u></a></h6>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="chatbox text-center">
-                            <h5 class="mb-4">General Meetings</h5>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo et laudantium inventore
-                                aliquid! Explicabo iure veritatis aliquam delectus, odio deleniti tempore, consequuntur
-                                quaerat perspiciatis, nostrum vitae eligendi quam optio accusamus.</p>
-                        </div>
-                        <div class="text-center mb-5">
-                            <h5 class="font-weight-bold">Wednesdays, 6-8pm</h5>
-                            <h6>On our <a href="" class="purple-text"><u>Discord</u></a></h6>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="chatbox text-center">
-                            <h5 class="mb-4">Art Meetings</h5>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo et laudantium inventore
-                                aliquid! Explicabo iure veritatis aliquam delectus, odio deleniti tempore, consequuntur
-                                quaerat perspiciatis, nostrum vitae eligendi quam optio accusamus.</p>
-                        </div>
-                        <div class="text-center mb-5">
-                            <h5 class="font-weight-bold">Wednesdays, 6-8pm</h5>
-                            <h6>On our <a href="" class="purple-text"><u>Discord</u></a></h6>
-                        </div>
-                    </div>
+                    <% }); %> 
                 </div>
             </div>
 
             <div class="container-fluid past-events-and-socials">
-                <div class="container py-4">
-                    <h2 class="division-title">Past Events & Socials</h2>
+                <div class="row justify-content-center py-5">
+                    <div class="col-lg-5 col-sm-12">
+                        <h1 class="division-title text-center p-4"><b>Past Events & Socials</b></h1>
+                    </div>
+                    <div class="col-lg-3 col-sm-0"></div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-sm-8">
                         <div class="container px-5 text-center">
                             <p>
                                 Outside of our weekly meetings, we host a variety of social events and special trips. Check out what we've done in the past below, and let us know if you'd like to see any of these events on our schedule again!
                             </p>
-                            <div class="pb-3">
+                            <div class="pb-3 my-4">
                                 <a href="" class="font-weight-bold purple-text">Let us know on Discord &rarr;</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="row container-fluid justify-content-between">
-                            <div class="col-2">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="col-10">
-                                <h5>Convention Trips</h5>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe</p>
-                            </div>
-                        </div>
-                        <div class="row container-fluid justify-content-between">
-                            <div class="col-2">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="col-10">
-                                <h5>Convention Trips</h5>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe</p>
-                            </div>
-                        </div>
-                        <div class="row container-fluid justify-content-between">
-                            <div class="col-2">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="col-10">
-                                <h5>Convention Trips</h5>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe</p>
-                            </div>
-                        </div>
-                        <div class="row container-fluid justify-content-between">
-                            <div class="col-2">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="col-10">
-                                <h5>Convention Trips</h5>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tempore saepe</p>
-                            </div>
+                    <div class="col-lg-3 col-auto">
+                        <div class="event-list">
+                            <% event_map.forEach(function(obj) { %>
+                                <% type = obj.type; events = obj.events; %> 
+                                <div class="row trip">
+                                    <div class="circle mx-3">
+                                        <img src="<%- type.img %> "></img>
+                                    </div>
+                                    <div class="col allTrips">
+                                        <h5><%- type.name %></h5>
+                                        <% events.forEach((event) => { %> 
+                                            <p><%- event.name %> </p>
+                                        <% }); %> 
+                                    </div>
+                                </div>
+                            <% }); %>
                         </div>
                     </div>
                 </div>

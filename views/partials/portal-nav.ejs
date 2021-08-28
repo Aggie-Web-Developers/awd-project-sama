@@ -6,13 +6,13 @@
 		>
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/meetings" target="_blank">Events</a>
+					<a class="nav-link" id="navlink" href="#" target="_blank">Events</a>
 				</li>
 				<li class="nav-item active">
 					<a class="nav-link" id="navlink" href="/officers">Officers</a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/calendar">Calender</a>
+					<a class="nav-link" id="navlink" href="#">Calender</a>
 				</li>
 				<li class="nav-item active">
 					<a class="nav-link" id="navlink" href="/newsletter">Newsletter</a>
@@ -26,7 +26,9 @@
 			class="mx-lg-auto order-0 order-lg-1 text-lg-center"
 			style="width: 100%;"
 		>
-			<a id="mainLogo" class="navbar-brand mx-auto" href="/">Aggie-SAMA</a>
+			<a id="mainLogo" class="navbar-brand mx-auto" href="/portal"
+				>Aggie-SAMA</a
+			>
 			<button
 				class="navbar-toggler ml-auto float-right"
 				type="button"
@@ -46,40 +48,16 @@
 				<li
 					class="nav-item d-flex justify-content-between align-items-center active"
 				>
-					<a class="nav-link d-inline-block" id="navlink" href="/portal/login"
-						>Member Login</a
+					<% if (user) { %>
+					<a class="nav-link d-inline-block" id="navlink" href="/portal/logout"
+						>Logout</a
 					>
-					<div class="socials d-inline-block">
-						<a
-							class="nav-link d-inline-block"
-							href="https://discord.gg/gtdEGTZ"
-							style="width: 30%;"
-						>
-							<span
-								><img
-									src="../images/image 13.png"
-									class="img-fluid"
-									alt="Discord" /></span
-						></a>
-						<a class="nav-link d-inline-block" href="#" style="width: 30%;">
-							<span
-								><img
-									src="../images/image 14.png"
-									class="img-fluid"
-									alt="Instagram" /></span
-						></a>
-						<a class="nav-link d-inline-block" href="#" style="width: 30%;">
-							<span
-								><img
-									src="../images/image 11.png"
-									class="img-fluid"
-									alt="Facebook" /></span
-						></a>
-					</div>
+					<% } else { %>
+					<a class="nav-link d-inline-block" id="navlink" href="/portal/login"
+						>Login</a
+					>
+					<% } %>
 				</li>
-				<!-- <li class="nav-item">
-					<a class="nav-link d-inline-block" id="navlink" href="/login-page">Member Login</a>
-				</li> -->
 			</ul>
 		</div>
 	</nav>
