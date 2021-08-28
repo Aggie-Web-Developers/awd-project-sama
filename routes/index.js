@@ -225,9 +225,9 @@ router.post('/portal/officer/delete/:id', function (req, res) {
 		});
 });
 
-router.get('/newsletter', function (req, res) {
-	res.render('newsletter');
-});
+// router.get('/newsletter', function (req, res) {
+// 	res.render('newsletter');
+// });
 
 router.get('/weekly-meeting-page', async (req, res) => {
 	try {
