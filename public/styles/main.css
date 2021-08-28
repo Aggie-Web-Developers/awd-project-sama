@@ -231,8 +231,6 @@ label:focus,
 	}
 }
 
-
-
 .btn-primary.custom-btn {
 	background-color: blueviolet;
 	border-color: blueviolet;
@@ -320,10 +318,6 @@ label:focus,
 		width: 14vw;
 		line-height: min(14vw, 83px);
 	}
-
-	.announcement-title{
-		tex
-	}
 }
 
 @media (max-width: 475px) {
@@ -331,6 +325,12 @@ label:focus,
 		height: 16vw;
 		width: 16vw;
 		line-height: min(16vw, 83px);
+	}
+}
+
+@media (max-width: 500px) {
+	.hero-lead {
+		font-size: 16px !important;
 	}
 }
 
@@ -354,6 +354,19 @@ label:focus,
 	font-weight: 700;
 	font-size: 20px;
 	display: block;
+}
+
+.hero-image {
+	background-image: url('/../images/hero.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 92.5vh;
+}
+
+.hero-companion-content {
+	height: 92.5vh;
+	display: inline-flex;
+	align-items: center !important;
 }
 /***** /Home Page/ *****/
 
