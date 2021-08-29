@@ -7,6 +7,7 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 var moment = require('moment');
 const axios = require('axios');
+const discord = require('../discord/discord');
 
 // Setup multer with disk storage
 const multer = require('multer');
@@ -15,31 +16,31 @@ var storage = multer.diskStorage({
 		cb(null, './public/images/profiles');
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.originalname.replace(/ /g, '_'))
-	}
-})
+		cb(null, file.originalname.replace(/ /g, '_'));
+	},
+});
 
 const multerFilter = (req, file, cb) => {
-	if (file.mimetype.split("/")[1] === "pdf") {
+	if (file.mimetype.split('/')[1] === 'pdf') {
 		cb(null, true);
 	} else {
-		cb(new Error("Not a PDF File!!"), false);
+		cb(new Error('Not a PDF File!!'), false);
 	}
 };
 
 var storage_newsletters = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, './public/newsletters')
+		cb(null, './public/newsletters');
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.originalname.replace(/ /g, '_'))
-	}
-})
+		cb(null, file.originalname.replace(/ /g, '_'));
+	},
+});
 
 var upload = multer({ storage: storage });
 var upload_newsletter = multer({
 	storage: storage_newsletters,
-	fileFilter: multerFilter
+	fileFilter: multerFilter,
 });
 
 router.get('/', async function (req, res) {
@@ -303,80 +304,129 @@ router.get('/portal/contact', function (req, res) {
 		});
 });
 
-router.post('/contact-us-submission', function (req, res) {
-	/* do something with the form req */
+router.post('/contact-us', function (req, res) {
+	try {
+		var sqlReq = new sql.Request();
 
-	res.render('contact-us-submission');
+		sqlReq.input('name', sql.NVarChar, req.body.txtName);
+		sqlReq.input('email', sql.NVarChar, req.body.txtEmail);
+		sqlReq.input('company', sql.NVarChar, req.body.txtCompany);
+		sqlReq.input('message', sql.NVarChar, req.body.txtMessage);
+
+		sqlReq
+			.query(
+				'INSERT INTO tbl_contact_form (name, email, company, message) VALUES (@name, @email, @company, @message)'
+			)
+			.then(async (result) => {
+				await discord.sendOfficerMessage(req.body);
+
+				req.flash('success', "Message sent, we'll be in touch soon.");
+
+				res.redirect('/contact-us');
+			})
+			.catch((err) => {
+				console.error(err);
+
+				req.flash('error', "Whoops, we we're unable send your message.");
+				res.redirect('/contact-us');
+			});
+	} catch (err) {
+		console.error(err);
+
+		req.flash('error', "Whoops, we we're unable send your message.");
+		res.redirect('/contact-us');
+	}
 });
-
-/*
-	newsletter
-*/
 
 router.get('/newsletter', function (req, res) {
 	var sqlQuery = 'SELECT * FROM tbl_newsletter';
 	var sqlReq = new sql.Request()
 		.query(sqlQuery)
 		.then((result) => {
-			res.render('newsletter', { newsletters: result.recordset,  moment: moment, hostname: req.hostname });
+			res.render('newsletter', {
+				newsletters: result.recordset,
+				moment: moment,
+				hostname: req.hostname,
+			});
 		})
 		.catch((err) => {
 			req.flash('error', 'Error loading newsletter.');
 			res.render('index', { newsletters: [] });
 		});
-})
+});
 
 router.get('/portal/newsletter', function (req, res) {
 	getNewsletters(req, res);
 });
 
 function getNewsletters(req, res) {
-	var sqlQuery = "SELECT * FROM tbl_newsletter";
-	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		res.render('newsletter-portal', { newsletters: result.recordset, moment: moment, hostname: req.hostname});
-	}).catch((err) => {
-		res.render('index');
-		req.flash('error', 'Error loading newsletters');
-	});
+	var sqlQuery = 'SELECT * FROM tbl_newsletter';
+	var sqlReq = new sql.Request()
+		.query(sqlQuery)
+		.then((result) => {
+			res.render('newsletter-portal', {
+				newsletters: result.recordset,
+				moment: moment,
+				hostname: req.hostname,
+			});
+		})
+		.catch((err) => {
+			res.render('index');
+			req.flash('error', 'Error loading newsletters');
+		});
 }
 
 router.get('/portal/newsletter/:id?', getNewsletters);
 router.get('/portal/newsletter/create', getNewsletters);
 
-router.post('/portal/newsletter/create', upload_newsletter.single('newsletter'), function (req, res) {
-	const name = req.body.newsletterName;
-	let link = req.file === undefined ? undefined : req.file.path.replace(/\\/g, '/');
-	var sqlReq = new sql.Request();
-	link = link.substr(7)
-	sqlReq.input('name', sql.NVarChar, name);
-	sqlReq.input('link', sql.NVarChar, link);
-	
-	var queryText = `INSERT INTO tbl_newsletter (name, link) VALUES (@name, @link)`;
+router.post(
+	'/portal/newsletter/create',
+	upload_newsletter.single('newsletter'),
+	function (req, res) {
+		const name = req.body.newsletterName;
+		let link =
+			req.file === undefined ? undefined : req.file.path.replace(/\\/g, '/');
+		var sqlReq = new sql.Request();
+		link = link.substr(7);
+		sqlReq.input('name', sql.NVarChar, name);
+		sqlReq.input('link', sql.NVarChar, link);
 
-	sqlReq.query(queryText).then((result) => {
-		res.redirect('/portal/newsletter/');
-	}).catch((err) => {
-		req.flash('error', 'Error creating newsletter');
-	});
-});
+		var queryText = `INSERT INTO tbl_newsletter (name, link) VALUES (@name, @link)`;
+
+		sqlReq
+			.query(queryText)
+			.then((result) => {
+				res.redirect('/portal/newsletter/');
+			})
+			.catch((err) => {
+				req.flash('error', 'Error creating newsletter');
+			});
+	}
+);
 
 router.delete('/portal/newsletter/delete/:id', function (req, res) {
 	try {
 		//get the link from db
 		var selectQuery = `SELECT link from tbl_newsletter WHERE id=${req.params['id']}`;
 		let link = null;
-		var sqlReq = new sql.Request().query(selectQuery).then((result) => {
-			link = result.recordset[0].link;
-			var sqlQuery = `DELETE FROM tbl_newsletter WHERE id=${req.params['id']};`;
-			var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-				fs.unlinkSync(link)
-				res.redirect('/portal/newsletter/');
-			}).catch((err) => {
-				req.flash('error', 'Error creating newsletter');
+		var sqlReq = new sql.Request()
+			.query(selectQuery)
+			.then((result) => {
+				link = result.recordset[0].link;
+				var sqlQuery = `DELETE FROM tbl_newsletter WHERE id=${req.params['id']};`;
+				var sqlReq = new sql.Request()
+					.query(sqlQuery)
+					.then((result) => {
+						fs.unlinkSync(link);
+						res.redirect('/portal/newsletter/');
+					})
+					.catch((err) => {
+						req.flash('error', 'Error creating newsletter');
+					});
+			})
+			.catch((err) => {
+				req.flash('error', 'Error getting newsletter link');
 			});
-		}).catch((err) => {
-			req.flash('error', 'Error getting newsletter link');
-		});
 	} catch (error) {
 		console.log(error);
 		res.status(400).send();

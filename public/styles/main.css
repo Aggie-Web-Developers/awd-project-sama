@@ -24,11 +24,11 @@ label:focus,
 	margin-top: 5rem;
 }
 
-table{
+table {
 	table-layout: fixed;
 }
 
-td{
+td {
 	word-wrap: break-word;
 }
 
@@ -409,20 +409,6 @@ td{
 	/* border: 1px solid red; */
 }
 
-#banner-right {
-	display: flex;
-	flex-direction: row;
-	position: relative;
-	/* border: 1px solid green; */
-}
-
-#banner-left {
-	display: flex;
-	flex-direction: column;
-	margin: 0 0 0 2vw;
-	/* border: 1px solid red; */
-}
-
 .discord-banner-title {
 	font-family: Manrope;
 	font-style: normal;
@@ -438,9 +424,6 @@ td{
 	/* flex-grow: 0; */
 	margin: 32px 0px 18px 1vw;
 	/* border: 1px solid blue; */
-	width: 100%;
-	overflow: hidden;
-	white-space: nowrap;
 }
 
 .discord-banner-button {
@@ -479,80 +462,42 @@ td{
 	justify-content: center;
 }
 
-.arrow-img {
-	position: relative;
-	width: 114px;
-	height: 48px;
-	left: 24px;
-	top: 50%;
-	/* margin: 0 175px 0 50px; */
-
-	/* border: 1px solid blue; */
-
-	content: url('/../images/Vector 1.svg');
-}
-
-.arrow-tip-img {
-	position: relative;
-	width: 22.15px;
-	height: 10.34px;
-	left: 0;
-	top: 66%;
-
-	content: url('/../images/Vector 2.svg');
-}
-
-.sama-logo {
-	position: absolute;
-	left: 200px;
-	bottom: 0;
-	width: 135.62px;
-	height: 166.3px;
-
-	z-index: 3;
-
-	content: url('/../images/image 10.png');
-
-	/* border: 1px solid blue; */
-}
-
-.discord-logo {
-	content: url('/../images/image 9.png');
-
-	width: 300px;
-	height: 100%;
-
-	position: relative;
-	left: 151px;
-
-	clip-path: circle(60.4% at 60% 50%);
-}
-
 .banner-background {
 	background: #2ec5ce;
 	border-radius: 16px;
-	height: 227px;
-	max-width: 846px;
-	display: flex;
-	flex-direction: row;
 }
 
-@media (max-width: 48rem) {
-	.arrow-img {
-		display: none;
-	}
+.btn-discord {
+	position: relative;
+	bottom: 69px;
+	left: 47px;
+	background-color: white;
+	color: #8c30f5;
+	border: none;
+	font-family: 'Manrope', sans-serif;
+	font-size: 15px;
+	font-weight: 600;
+}
 
-	.arrow-tip-img {
-		display: none;
-	}
+.btn-discord:hover {
+	background-color: #8c30f5;
+}
 
-	.sama-logo {
-		left: 25px;
+@media (max-width: 500px) {
+	.btn-discord {
+		bottom: 21%;
+		left: 5%;
 	}
+}
 
-	.discord-logo {
-		left: 100px;
-	}
+.btn-contact-us {
+	width: 100%;
+	background-color: blueviolet;
+	color: white;
+	border: none;
+	padding: 20px 10px;
+	font-weight: bold;
+	font-family: 'Montserrat';
 }
 
 .form-container {
