@@ -304,6 +304,20 @@ router.get('/portal/contact', function (req, res) {
 		});
 });
 
+router.get('/portal/contact/view-form/:id', function (req, res) {
+	var sqlQuery = `SELECT name, email, company, message FROM tbl_contact_form WHERE id = ${req.params.id}`;
+
+	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		res.status(200).json({
+			status: 'success',
+			data: result.recordset
+		});
+	}).catch((err) => {
+		console.log('query failed');
+		req.flash('error', 'Error loading contact forms');
+	});
+});
+
 router.post('/contact-us', function (req, res) {
 	try {
 		var sqlReq = new sql.Request();
