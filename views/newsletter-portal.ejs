@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="/styles/newsletter-portal.css" />
 	<body >
 		<%- include('partials/portal-nav') %>
-			<div id="content" class="container mx-auto">
+			<div id="content" class="container mx-auto" style="min-height: 90vh">
 				<!-- upload newsletter -->
 				<div class="row">
 					<div class="col-12 d-flex flex-row my-4 py-5">
@@ -18,9 +18,8 @@
 					<div class="col-12 d-flex flex-row my-4 py-5 justify-content-center">
 						<div class="text-center">
 							<h2 class="">Newsletters</h2>
-							<table class="table">
-								<caption>newsletters</caption>
-								<thead>
+							<table class="table table-bordered table-striped">
+								<thead class="thead-light">
 									<tr>
 										<th scope="col">News Title</th>
 										<th scope="col">Date Uploaded</th>
