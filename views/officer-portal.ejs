@@ -16,8 +16,15 @@
 						<% i++; %>
 					<% }); %>
 			</div>
+			
 			<div class="mx-auto my-5 text-center">
-				<button class="btn btn-success btn-lg addOfficerBtn">+ Add Officer</button>
+				<a
+					onclick="window.history.back();"
+					class="btn btn-lg btn-outline-primary portal-button-alt mr-3"
+				>
+				Back
+			</a>
+				<button class="btn btn-primary portal-button btn-lg addOfficerBtn">+ Add Officer</button>
 			</div>
 			<%- include('partials/officer-form', {officer:{name:'', profilePic:' ', role:'', bio:''}, id:'', create:true}) %>
 		</div>
