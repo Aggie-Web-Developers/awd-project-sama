@@ -1,75 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('partials/header') %>
-
-<%- include('partials/nav') %>
+	<%- include('partials/header') %>
 
 	<body>
-		<div id="content" class="container">
-      <div id="title" class="row">
-        <!-- <div class="col-sm-12 col-md-4"> -->
-          <h1 class="page-title">Contact Us</h1>
-        <!-- </div> -->
-      </div>
+		<style>
+			img {
+				max-width: 100%;
+				max-height: 100%;
+			}
+		</style>
+		<%- include('partials/nav') %>
 
-      <div id="discord-banner" class="row">
-        <div class="banner-background" >
-          
-          <div id="banner-left">
-            <!-- <div class="col-xs-6 col-sm-6">  -->
-              <h2 class="discord-banner-title">Join our Discord<br> community</h2>
-            <!-- </div> -->
-            <!-- <div class="col-xs-5 col-sm-4"> -->
-              <button class="discord-banner-button">
-                <p class="discord-banner-button-text">Join the server</p>
-              </button>
-            <!-- </div> -->
-          </div>
+		<% if (messages.error) { %>
+			<div class="alert alert-danger" role="alert"><%= messages.error %></div>
+		<% } %> <% if (messages.success) { %>
+			<div class="alert alert-success" role="alert">
+				<%= messages.success %>
+			</div>
+		<% } %>
 
-          <div id="banner-right">
-            <img class="arrow-img col-xs-3 col-sm-3"/>
-            <img class="arrow-tip-img" />
-            <img class="sama-logo" />
-            <img class="discord-logo" />
-          </div> 
+		<div class="container" style="margin-top: 100px;">
+			<div class="row">
+				<div class="col-12 col-xl-12">
+					<h1 class="home-page-header" style="color: #474a57;">
+						Contact Us
+					</h1>
 
-        </div>
-      </div>
+					<div class="discord-banner mt-5">
+						<img
+							class="d-none d-md-inline"
+							src="/images/Discord-banner-lg.png"
+							alt=""
+						/>
+						<img
+							class="d-inline d-md-none"
+							src="/images/Discord-banner.png"
+							alt=""
+						/>
+					</div>
 
-      <div id="form-container" class="row">
-        <div class="col-xs-12 col-sm-7 offset-sm-1 form-container">
-          <div class="row justify-content-center">
-            <h3 class="form-header-primary">Specific Questions, Comments, or Concerns?</h3>
-            <h4 class="form-header-secondary">We'll get back to you as soon as we can!</p>
+					<a
+						href="https://discord.gg/gtdEGTZ"
+						class="btn btn-primary btn-discord px-md-3 py-md-2"
+						target="_blank"
+						>Join the server</a
+					>
+				</div>
+			</div>
+		</div>
 
-            <form id="contact-form" name="myForm" class="form" action="/contact-us/submit" onsubmit="return validateForm()" method="POST" role="form">
-              <div class="form-group">
-                <label class="form-label" id="nameLabel" for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" tabindex="1">
-              </div>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-8">
+					<h2 class="form-header-primary text-center">
+						Specific Questions, Comments, or Concerns?
+					</h2>
+					<h3 class="form-header-secondary">
+						We'll get back to you as soon as we can!
+					</h3>
 
-              <div class="form-group">
-                <label class="form-label" id="emailLabel" for="email">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="you@aggiesama.com" tabindex="2">
-              </div>
+					<form id="frm" class="my-5" action="/contact-us" method="POST">
+						<div class="form-group">
+							<label class="font-weight-bold" for="txtName">Name</label>
+							<input
+								type="text"
+								class="form-control default"
+								id="txtName"
+								name="txtName"
+								placeholder="Full Name"
+							/>
+						</div>
+            
+						<div class="form-group">
+							<label class="font-weight-bold" for="txtEmail">Email</label>
+							<input
+								type="email"
+								class="form-control default"
+								id="txtEmail"
+								name="txtEmail"
+								placeholder="you@aggiesama.com"
+							/>
+						</div>
 
-              <div class="form-group">
-                <label class="form-label" id="companyLabel" for="name">Company/Group</label>
-                <input type="text" class="form-control" id="company" name="company" placeholder="Your Company" tabindex="1">
-              </div>
+						<div class="form-group">
+							<label class="font-weight-bold" for="txtCompany"
+								>Company/Group</label
+							>
+							<input
+								type="text"
+								class="form-control default"
+								id="txtCompany"
+								name="txtCompany"
+								placeholder="Your Company"
+							/>
+						</div>
 
-              <div class="form-group">
-                <label class="form-label" id="messageLabel" for="message" >Message</label>
-                <textarea type="text" class="form-control" id="message" name="message" placeholder="Your Message" tabindex="2" rows="2"></textarea>
-              </div>
-              <button type="submit" class="submit-button"><p class="submit-button-text">Submit</p></button>
-            </form>            
-          </div>
-        </div>
-      </div>
-    </div>
+						<div class="form-group">
+							<label class="font-weight-bold" for="txtMessage">Message</label>
+							<textarea
+								class="form-control default"
+								id="txtMessage"
+								name="txtMessage"
+								rows="5"
+							>Your message</textarea>
+						</div>
 
-		<script src="/scripts/contact-us.js"></script>
+						<button type="submit" class="btn btn-primary btn-contact-us">
+							Send Message
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+    
 		<%- include('partials/footer') %>
+		<script src="/scripts/contact-us.js"></script>
 	</body>
 </html>

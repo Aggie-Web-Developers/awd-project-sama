@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('../partials/header') %>
+	<body>
+		<%- include('../partials/portal-nav') %>
+
+		<!-- Page Content-->
+		<div class="wrapper-background">
+			<% if (messages.error) { %>
+			<div class="alert alert-danger" role="alert"><%= messages.error %></div>
+			<% } %> <% if (messages.success) { %>
+			<div class="alert alert-success" role="alert">
+				<%= messages.success %>
+			</div>
+			<% } %>
+
+			<div class="center-flex">
+				<div class="container login-container">
+					<div class="row justify-content-center my-auto">
+						<div class="col-12 my-4 p-4">
+							<h1 class="page-title">Login</h1>
+							<form class="mt-4" id="frm" action="/portal/login" method="POST">
+								<div class="form-group">
+									<label for="email">Email address</label>
+									<input
+										type="email"
+										class="form-control default"
+										id="email"
+										name="email"
+										placeholder="lordzuko@firenation.gov"
+									/>
+								</div>
+								<div class="form-group">
+									<label for="password">Password</label>
+									<input
+										type="password"
+										class="form-control default"
+										id="password"
+										name="password"
+									/>
+								</div>
+								<button
+									type="submit"
+									class="btn btn-primary portal-button mt-2"
+								>
+									Login
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="/scripts/portal/login.js"></script>
+	</body>
+</html>

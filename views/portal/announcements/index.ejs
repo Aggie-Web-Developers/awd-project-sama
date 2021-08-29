@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('../../partials/header') %>
+	<body>
+		<%- include('../../partials/portal-nav') %> <% if (messages.error) { %>
+		<div class="alert alert-danger" role="alert"><%= messages.error %></div>
+		<% } %> <% if (messages.success) { %>
+		<div class="alert alert-success" role="alert">
+			<%= messages.success %>
+		</div>
+		<% } %>
+
+		<div class="container" style="padding-top: 4rem;">
+			<div class="row justify-content-center mt-5">
+				<h1>Manage Announcements</h1>
+			</div>
+		</div>
+
+		<div class="container mt-5">
+			<a href="/portal/" class="btn btn-outline-primary mb-4 portal-button-alt">
+				Back
+			</a>
+			<a
+				href="/portal/announcements/new"
+				class="btn btn-primary float-right mb-4 portal-button"
+			>
+				Create New Announcement
+			</a>
+			<table class="table table-bordered table-striped">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col">Subject</th>
+						<th scope="col">Create Date</th>
+						<th scope="col">Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% announcements.forEach(function(announcement) { const createDate =
+					new Date(announcement.create_date).toLocaleString() %>
+					<tr>
+						<td><%= announcement.subject %></td>
+						<td><%= createDate %></td>
+						<td>
+							<a
+								href="/portal/announcements/edit/<%= announcement.id %>"
+								class="mr-2 edit-link"
+								title="Edit Announcement"
+							>
+								<i class="fas fa-edit"></i>
+							</a>
+
+							<a
+								href="/portal/announcements/delete/<%= announcement.id %>"
+								class="delete-link"
+								onclick="return confirm('Delete the announcement \'<%= announcement.subject %>\'?')"
+								title="Remove Access"
+							>
+								<i class="fas fa-ban"></i>
+							</a>
+						</td>
+					</tr>
+					<% }); %>
+				</tbody>
+			</table>
+		</div>
+
+		<script src="/scripts/portal/announcements/index.js"></script>
+	</body>
+</html>

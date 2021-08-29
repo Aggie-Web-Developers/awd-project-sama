@@ -103,6 +103,7 @@
 							</div>
 						</div>
 
+
 						<!-- <div>
 							<p style="font-family: Manrope; font-size: 29px; line-height: 29px; color: #FFFFFF; font-weight: 800; font-style: normal;">
 								Get our most recent newsletter!
@@ -117,7 +118,6 @@
 		</div>
 
 
-
 		<div class="container-fluid past-newsletters">
 			<div class="container mt-4 mb-5 px-5">
 				<div class="row pt-5 pb-2">
@@ -130,17 +130,21 @@
 				<div class="row">
 					<table id="past-newsletters-table">
 						<thead><tr>
-							<th style="width: 65%">Name</th>
-							<th style="width: 20%">Date Uploaded</th>
-							<th style="width: 15%">Link</th>
+							<th style="width: 60%">Name</th>
+							<th style="width: 20%">Date</th>
+							<th style="width: 20%">Link</th>
 						</tr></thead>
 						<tbody>
 							<% newsletters.forEach(function(newsletter) {
 								console.log(newsletter);%>
 								<tr>
 									<td><%= newsletter.name %></td>
-									<td><%= newsletter.date_uploaded %></td>
-									<td><%= newsletter.link %></td>
+									<td>
+										<%= moment(newsletter.date_uploaded).format('MM/DD/YYYY') %>
+									</td>
+									<td>
+										<a href='<%='http://' + hostname + ':8080/' + newsletter.link%>' target="_blank">Open</a></br>
+									</td>
 								</tr>
 							<% }); %>
 						</tbody>

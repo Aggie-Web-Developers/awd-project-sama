@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('../partials/header') %>
+	<body>
+		<%- include('../partials/portal-nav') %>
+		<div class="container" style="padding-top: 4rem;">
+			<div class="row justify-content-center mt-5">
+				<h1>Officer Portal</h1>
+			</div>
+		</div>
+
+		<div class="container mt-5">
+			<div class="row px-4 px-md-0">
+				<div class="col-12 col-md-6 col-lg-4 mt-3 mt-md-0">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-chess-queen mb-4"
+							aria-hidden="true"
+						></i>
+
+						<h2 class="font-weight-bold font-175 mb-4">Officers</h2>
+
+						<a href="#" class="portal-link d-block"
+							>Manage Officers<i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mt-3 mt-md-0">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-feather-alt mb-4"
+							aria-hidden="true"
+						></i>
+
+						<h2 class="font-weight-bold font-175 mb-4">Static Content</h2>
+
+						<a href="#" class="portal-link d-block"
+							>Manage Meetings/Past Events
+							<i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mt-3 mt-lg-0">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-mail-bulk mb-4"
+							aria-hidden="true"
+						></i>
+
+						<h2 class="font-weight-bold font-175 mb-4">Contact Us Forms</h2>
+
+						<a href="/portal/contact" class="portal-link d-block"
+							>View Forms <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 mt-3">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-bullhorn mb-4"
+							aria-hidden="true"
+						></i>
+
+						<h2 class="font-weight-bold font-175 mb-4">Announcements</h2>
+
+						<a href="/portal/announcements" class="portal-link d-block"
+							>View Announcements <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+						<a href="/portal/announcements/new" class="portal-link d-block mt-1"
+							>Make an Announcement
+							<i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
+				</div>
+
+				<div class="col-12 col-md-6 col-lg-4 mt-3 mb-5">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-user-lock mb-4"
+							aria-hidden="true"
+						></i>
+
+						<h2 class="font-weight-bold font-175 mb-4">Logins</h2>
+
+						<a href="/portal/logins" class="portal-link d-block"
+							>View Logins <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+						<a href="/portal/logins/new" class="portal-link d-block mt-1"
+							>Create New Login <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-lg-4 mt-3 mb-5">
+					<div class="officer-section-container">
+						<i
+							class="officer-section-icon main-blue fas fa-user-lock mb-4"
+							aria-hidden="true"
+						></i>
+
+						<h2 class="font-weight-bold font-175 mb-4">Newsletters</h2>
+
+						<a href="/portal/newsletter" class="portal-link d-block"
+							>Upload/Mange Newsletters <i class="fas fa-arrow-circle-right ml-1"></i
+						></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="/scripts/portal/index.js"></script>
+	</body>
+</html>

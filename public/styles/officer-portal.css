@@ -1,0 +1,29 @@
+.form-card {
+	min-width: 400px;
+	max-width: 400px;
+}
+
+.profileBtn {
+	position: absolute;
+	left: calc(50% + 54px);
+	bottom: 0;
+	border-radius: 50%;
+	width: 28px;
+	height: 28px;
+	text-align: center;
+	font-size: 25px;
+	padding: 0;
+	line-height: 25px;
+	margin: 0;
+}
+
+.imgContainer {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	border-radius: 15%;
+}
+
+.profileImg {
+	width: 100%;
+}

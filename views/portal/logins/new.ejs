@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('../../partials/header') %>
+	<body>
+		<%- include('../../partials/portal-nav') %> <% if (messages.error) { %>
+		<div class="alert alert-danger" role="alert"><%= messages.error %></div>
+		<% } %> <% if (messages.success) { %>
+		<div class="alert alert-success" role="alert">
+			<%= messages.success %>
+		</div>
+		<% } %>
+
+		<div class="container" style="padding-top: 4rem;">
+			<div class="row justify-content-center mt-5">
+				<h1>Create New Login</h1>
+			</div>
+		</div>
+
+		<div class="container mt-5">
+			<form
+				id="frm"
+				action="/portal/logins/new"
+				method="POST"
+				style="background-color: #e9ecef;"
+				class="p-5"
+			>
+				<div class="form-group">
+					<label for="txtEmail">Email address</label>
+					<input
+						type="email"
+						class="form-control default"
+						id="txtEmail"
+						name="txtEmail"
+						aria-describedby="emailHelp"
+						placeholder="tenzin@republiccity.gov.ur"
+					/>
+					<small id="emailHelp" style="color: #212529;" class="form-text"
+						>This email is used for authentication solely, and is not shared
+						with any services.
+					</small>
+				</div>
+				<div class="form-group">
+					<label for="txtPassword">Password</label>
+					<input
+						type="password"
+						class="form-control default"
+						id="txtPassword"
+						name="txtPassword"
+						placeholder="Password"
+					/>
+				</div>
+				<a
+					onclick="window.history.back();"
+					class="btn btn-outline-primary portal-button-alt mr-3"
+				>
+					Back
+				</a>
+				<button type="submit" class="btn btn-primary portal-button">
+					Submit
+				</button>
+			</form>
+		</div>
+
+		<script src="/scripts/portal/logins/new.js"></script>
+	</body>
+</html>
