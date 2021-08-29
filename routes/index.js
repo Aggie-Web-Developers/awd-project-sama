@@ -60,24 +60,49 @@ router.get('/portal/contact', function (req, res) {
 
 });
 
-router.get('/portal/contact/view-form', function (req, res) {
-	var sqlQuery = `SELECT name, email, company, message FROM tbl_contact_form WHERE id = ${req.params.form_id}`;
+router.get('/portal/contact/view-form/:id', function (req, res) {
+	console.log(req.params.id);
+	var sqlQuery = `SELECT name, email, company, message FROM tbl_contact_form WHERE id = ${req.params.id}`;
 
 	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		console.log('query successful');
 		res.status(200).json({
 			status: 'success',
 			data: result.recordset
-		})
+		});
 	}).catch((err) => {
+		console.log('query failed');
 		req.flash('error', 'Error loading contact forms');
 	});
 
 });
 
-router.post('/contact-us-submission', function (req, res) {
+router.post('/contact-us/submit', function (req, res) {
 	/* do something with the form req */
+	console.log('submit');
 
-	res.render('contact-us-submission');
+	const name = req.body.name;
+	const email = req.body.email;
+	const company = req.body.company;
+	const message = req.body.message;
+
+	var sqlQuery = `INSERT INTO tbl_contact_form (name, email, company, message) 
+					VALUES ('${name}', '${email}', '${company}', '${message}')`;
+
+	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
+		console.log('query successful');
+		// thank you page
+		res.status(200).json({
+			status: 'success',
+			data: result.recordset
+		});
+	}).catch((err) => {
+		console.log('query failed');
+		console.log(err)
+		req.flash('error', 'Error uploading contact form');
+	});
+
+	// res.render('contact-us');
 });
 
 router.get('/newsletter', function (req, res) {

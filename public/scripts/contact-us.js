@@ -1,7 +1,7 @@
 function validateForm() {
 	var n = document.getElementById('name').value;
 	var e = document.getElementById('email').value;
-	var s = document.getElementById('subject').value;
+	var s = document.getElementById('company').value;
 	var m = document.getElementById('message').value;
 
 	var onlyLetters = /^[a-zA-Z\s]*$/;
@@ -43,21 +43,6 @@ function validateForm() {
 	} else {
 		document.getElementById('emailLabel').innerHTML = '';
 		document.getElementById('email').style.borderColor = 'black';
-	}
-
-	if (s == '' || s == null) {
-		document.getElementById('subjectLabel').innerHTML =
-			'Please enter your subject';
-		document.getElementById('subject').style.borderColor = 'red';
-		return false;
-	} else if (!s.match(onlyLetters)) {
-		document.getElementById('subjectLabel').innerHTML =
-			'Please enter only letters';
-		document.getElementById('subject').style.borderColor = 'red';
-		return false;
-	} else {
-		document.getElementById('subjectLabel').innerHTML = '';
-		document.getElementById('subject').style.borderColor = 'black';
 	}
 
 	if (m == '' || m == null) {
