@@ -24,6 +24,14 @@ label:focus,
 	margin-top: 5rem;
 }
 
+table{
+	table-layout: fixed;
+}
+
+td{
+	word-wrap: break-word;
+}
+
 .hidden {
 	display: none;
 }
