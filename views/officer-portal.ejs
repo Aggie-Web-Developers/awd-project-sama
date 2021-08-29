@@ -5,8 +5,11 @@
 	<body>
 		<%- include('partials/nav') %>
 
-		<div id="content" class="container mx-auto mt-5">
-			<div class="d-flex flex-row flex-wrap mt-4 pt-5 justify-content-center">
+		<div id="content" class="container mx-auto" style="min-height: 100vh; margin-top: 78px">
+
+			<h1 class="pt-5 text-center">Manage Officers</h1>
+
+			<div class="d-flex flex-row flex-wrap mt-4 pt-3 justify-content-center">
 					<% let i=0; %>
 					<% officers.forEach(function(officer) { %>
 						<%- include('partials/officer-form', {officer: officer, id: officer.id, create:false}) %>
