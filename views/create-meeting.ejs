@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/styles/meeting-portal.css" />
+<%- include('partials/header') %>
+
+	<body>
+		<%- include('partials/nav') %>
+        <div class="form-container">
+            <h1>New Meeting</h1>
+
+            <form action="/portal/meeting/create " method="POST" class="col-auto p-3 m-3 form-card">
+
+            <div class="form-row mb-3">
+                <div class="form-group col-12 p-1">
+                    <label class="mx-2 font-weight-bold" for="meetingName">Name</label>
+                    <input type="text" class="form-control m-1 w-100" id="meetingName" name="meetingName" required>
+                </div>
+                <div class="form-group col-12 p-1">
+                    <label class="mx-2 font-weight-bold" for="meetingDescription">Description</label>
+                    <textarea class="form-control m-1 w-100" id="meetingDescription" name="meetingDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group col-12 p-1">
+                    <label class="mx-2 font-weight-bold" for="meetingLink">Link</label>
+                    <input type="text" class="form-control m-1 w-100" id="meetingLink" name="meetingLink" required>
+                </div>
+                <div class="form-group col-6 p-1">
+                    <label class="mx-2 font-weight-bold" for="meetingDay">Day</label>
+                    <input type="text" class="form-control m-1 w-100" id="meetingDay" name="meetingDay" required>
+                </div>
+                <div class="form-group col-6 p-1">
+                    <label class="mx-2 font-weight-bold" for="meetingTime">Time</label>
+                    <input type="text" class="form-control m-1 w-100" id="meetingTime" name="meetingTime" required>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Create</button>
+            </form>
+        </div>
+
+		<%- include('partials/footer') %>
+	</body>
+
+</html>

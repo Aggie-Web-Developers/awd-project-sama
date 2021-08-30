@@ -1,157 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-	<%- include('partials/header') %>
-	<!-- <%- include('partials/nav') %> -->
-    <!-- <head>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="SAMA-header">
-                    <p>Aggie-SAMA</p>
+<%- include('partials/header') %>
+    <link rel="stylesheet" href="/styles/weekly-meeting-page.css" />
+    <body>
+        <%- include('partials/nav') %>
+
+            <div id="content" class="container">
+                <div class="d-flex flex-row py-3">
+                    <div class="col-sm-12 gray-text">
+                        <h1 class="division-title">Meetings and Events</h1>
+                    </div>
                 </div>
             </div>
-        </div>
-    </head> -->
-	<body>
-        <div class="page-header">
-            <h1>Meetings and Events</h1>
-        </div>
-		<div class="meetings-officer-background1">
-			<div class="row">
-				<div class="meetings-officer-style-top1 container">
-					<h3>Weekly Meetings</h3>
-				</div>
-                <div class="meetings-officer-style-top2  container">
-					<h6>Our weekly slate of meetings and events - come and check them out!</h6>
-				</div>
-			</div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="chatbox text-center">
-                            <div class="container">
-                                <form>
-                                    <div class="form-group">
-                                        <!-- <label for="exampleFormControlInput1">Meeting Name</label> -->
-                                        <input class="form-control" id="exampleFormControlInput1" placeholder="Meeting Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- <label for="exampleFormControlTextarea1">Meeting Information</label> -->
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- <label for="exampleFormControlInput1">Meeting Time</label> -->
-                                        <input class="form-control" id="exampleFormControlInput1" placeholder="Meeting Time">
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- <label for="exampleFormControlInput1">Meeting Location</label> -->
-                                        <input class="form-control" id="exampleFormControlInput1" placeholder="Meeting Location">
-                                    </div>
-                                </form>
+            <div class="container-fluid weekly-meetings">
+                <div class="container text-center pt-4 pb-1">
+                    <h1 class="pt-4 purple-text font-weight-bold">Weekly Meetings</h1>
+                    <p>
+                        Our weekly slate of meetings and events - come and check them out!
+                    </p>
+                </div>
+                <div class="row justify-content-center">
+                    <% meetings.forEach((meeting) => { %> 
+                        <div class="col meeting-item">
+                            <div class="chatbox text-center">
+                                <h4 class="py-4"><%- meeting.name %></h4>
+                                <p class="mx-4 my-auto h-75"><%- meeting.description %> </p>
+                            </div>
+                            <div class="text-center mb-5">
+                                <h5 class="font-weight-bold"><%- meeting.day %>, <%- meeting.time %> </h5>
+                                <h6>On our <a href="https://www.<%- meeting.link %> " class="purple-text"><u>Discord</u></a></h6>
+                            </div>
+                        </div>
+                    <% }); %> 
+                </div>
+            </div>
+
+            <div class="container-fluid past-events-and-socials">
+                <div class="row justify-content-center py-5">
+                    <div class="col-lg-5 col-sm-12">
+                        <h1 class="division-title text-center p-4"><b>Past Events & Socials</b></h1>
+                    </div>
+                    <div class="col-lg-3 col-sm-0"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-sm-8">
+                        <div class="container px-5 text-center">
+                            <p>
+                                Outside of our weekly meetings, we host a variety of social events and special trips. Check out what we've done in the past below, and let us know if you'd like to see any of these events on our schedule again!
+                            </p>
+                            <div class="pb-3 my-4">
+                                <a href="" class="font-weight-bold purple-text">Let us know on Discord &rarr;</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="chatbox text-center">
-                            <div class="container">
-                                <form>
-                                    <div class="form-group">
-                                    <!-- <label for="exampleFormControlInput1">Meeting Name</label> -->
-                                    <input class="form-control" id="exampleFormControlInput1" placeholder="Meeting Name">
+                    <div class="col-lg-3 col-auto">
+                        <div class="event-list">
+                            <% event_map.forEach(function(obj) { %>
+                                <% type = obj.type; events = obj.events; %> 
+                                <div class="row trip">
+                                    <div class="circle mx-3">
+                                        <% if(type.img !== '') { %> 
+                                        <img src="<%- type.img %> "></img>
+                                        <% } %>
                                     </div>
-                                    <div class="form-group">
-                                    <!-- <label for="exampleFormControlTextarea1">Meeting Information</label> -->
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                    <div class="col allTrips">
+                                        <h5><%- type.name %></h5>
+                                        <% events.forEach((event) => { %> 
+                                            <p><%- event.name %> </p>
+                                        <% }); %> 
                                     </div>
-                                    <div class="form-group">
-                                        <!-- <label for="exampleFormControlInput1">Meeting Time</label> -->
-                                        <input class="form-control" id="exampleFormControlInput1" placeholder="Meeting Time">
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- <label for="exampleFormControlInput1">Meeting Location</label> -->
-                                        <input class="form-control" id="exampleFormControlInput1" placeholder="Meeting Location">
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                            <% }); %>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="chatbox text-center">
-                            <div class="container">
-                                <form>
-                                    <div class="form-group">
-                                    <!-- <label for="exampleFormControlInput1">Meeting Name</label> -->
-                                    <input class="form-control" id="exampleFormControlInput1" placeholder="Meeting Name">
-                                    </div>
-                                    <div class="form-group">
-                                    <!-- <label for="exampleFormControlTextarea1">Meeting Information</label> -->
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- <label for="exampleFormControlInput1">Meeting Time</label> -->
-                                        <input class="form-control" id="exampleFormControlInput1" placeholder="Meeting Time">
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- <label for="exampleFormControlInput1">Meeting Location</label> -->
-                                        <input class="form-control" id="exampleFormControlInput1" placeholder="Meeting Location">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-			    </div>
-            </div>
-		</div>
-		<div class="meetings-officer-background2">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class=""></div>
-                    <h1>Past Events & Socials</h1>
-			    </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                    </div>
-                    <div class="col-md-6 ml-auto">
-                        <input class="form-control" id="exampleFormControlInput1" placeholder="Event Name">
-                        <ul>
-                            <li><input class="form-control" id="exampleFormControlInput1" placeholder="Event 1"></li>
-                            <li><input class="form-control" id="exampleFormControlInput1" placeholder="Event 2"></li>
-                            <li><input class="form-control" id="exampleFormControlInput1" placeholder="Event 3"></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <input class="form-control" id="exampleFormControlInput1" placeholder="Enter link">
-                    </div>
-                    <div class="col-md-6 ml-auto">
-                        <input class="form-control" id="exampleFormControlInput1" placeholder="Event Name">
-                        <ul>
-                            <li><input class="form-control" id="exampleFormControlInput1" placeholder="Event 1"></li>
-                            <li><input class="form-control" id="exampleFormControlInput1" placeholder="Event 2"></li>
-                            <li><input class="form-control" id="exampleFormControlInput1" placeholder="Event 3"></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 ml-auto">
-                        <input class="form-control" id="exampleFormControlInput1" placeholder="Event Name">
-                        <ul>
-                            <li><input class="form-control" id="exampleFormControlInput1" placeholder="Event 1"></li>
-                            <li><input class="form-control" id="exampleFormControlInput1" placeholder="Event 2"></li>
-                            <li><input class="form-control" id="exampleFormControlInput1" placeholder="Event 3"></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
-		</div>
-	<!-- <%- include('partials/footer') %> -->
-	</body>
-    <footer>
-        <div class="footer-background">
-            <div class="page-footer">
-                <p>© 2020 Aggie SAMA. All rights reserved</p>
-            </div>
-        </div>
-    </footer>
+
+            <script src="/scripts/template.js"></script>
+            <%- include('partials/footer') %>
+
+    </body>
+
 </html>

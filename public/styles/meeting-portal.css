@@ -1,0 +1,51 @@
+.form-container {
+    margin-top: 6rem !important;
+    padding: 1rem 4rem !important;
+}
+
+.form-container h1 {
+    /* text-align: center; */
+    margin: 2rem auto;
+}
+
+.btnContainer {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 4rem;
+}
+
+.subContainer {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    font-size: 2rem;
+}
+
+.createBtn {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 6rem;
+    width: 6rem;
+
+    font-size: 3.5rem;
+    border-radius: 50%;
+    
+    margin: auto 0;
+}
+
+.btnContainer .filler {
+    height: 9rem;
+}
+
+.allTrips {
+    display: inline-block;
+}
