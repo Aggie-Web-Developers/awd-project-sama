@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/styles/meeting-portal.css" />
+<%- include('partials/header') %>
+
+	<body>
+		<%- include('partials/nav') %>
+        <div class="form-container">
+            <h1>Update Event Type</h1>
+
+            <form action="/portal/eventType/update/<%=id%> " method="POST" class="col-auto p-3 m-3 form-card">
+
+            <div class="form-row mb-3">
+                <div class="form-group col-12 p-1">
+                    <label class="mx-2 font-weight-bold" for="eventTypeName">Name</label>
+                    <input type="text" class="form-control m-1 w-100" id="eventTypeName" name="eventTypeName" value="<%= event_type.name %>" required>
+                </div>
+            </div>
+            <div id="eventsParent" class="form-row mb-3">
+                <div class="container py-3">
+                    <h2 class="d-inline-block">Events</h2>
+                    <div class="btn btn-success float-right" id="addEvent">Add Event</div>
+                </div>
+                <% for(var i=0;i<events.length;++i) { %> 
+                <div id="form<%=i%>" class="form-group d-flex align-items-center col-12">
+                    <div id="delEventBtn<%=i%>" class="btn btn-danger w-15 h-50 d-flex align-items-center mr-2"><b style="font-size: 1.5rem;">-</b></div>
+                    <input type="text" class="form-control m-1 col-8" id="events[<%=events[i].id%>][name]" name="events[<%=events[i].id%>][name]"" value="<%= events[i].name %>" required>
+                    <input type="hidden" id="events[<%=events[i].id%>][id]" name="events[<%=events[i].id%>][id]"" value="<%= events[i].id %>" required>
+                </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function(){
+                        var form = document.getElementById("form<%=i%>");
+                        document.getElementById("delEventBtn<%=i%>").addEventListener('click', function() {
+                            if(confirm('Delete Event?')) {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/portal/event/delete/<%=events[i].id%>',
+                                    contentType: 'application/json',
+                                    success: function(data) {
+                                        form.remove();
+                                    },
+                                    error: function(xhr, ajaxOptions, err) {
+                                        console.log(xhr.status);
+                                        console.log(err);
+                                    }
+                                })
+                            }
+                        });
+                    });
+                </script>
+                <% } %> 
+            </div>
+            <button class="btn btn-primary" type="submit">Update</button>
+            </form>
+        </div>
+        <script>
+            var counter = <%=events.length + 1%>;
+            var id = 0;
+            var template = `
+            <div id="delEventBtn${counter}" class="btn btn-danger w-15 h-50 d-flex align-items-center mr-2"><b style="font-size: 1.5rem;">-</b></div>
+            <input type="text" class="form-control m-1 col-8" id="events[${id}][name]" name="events[${id}][name]"" value="New Event" required>
+            <input type="hidden" id="events[${id}][id]" name="events[${id}][id]"" value="${id}" required>`;
+            
+            document.getElementById("addEvent").addEventListener('click', function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/portal/event/create/<%=id%>',
+                    contentType: 'application/json',
+                    success: function(data) {
+                        console.log(data);
+                        var parent = document.getElementById("eventsParent");
+
+                        var div = document.createElement('div');
+                        id = data;
+                        div.className = "form-group d-flex align-items-center col-12";
+                        div.id = `form${counter}`
+                        div.innerHTML = template;
+                        parent.appendChild(div);
+
+                        console.log(`delEventBtn${counter}`);
+                        document.getElementById(`delEventBtn${counter}`).addEventListener('click', function() {
+                            if(confirm('Delete Event?')) {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: `/portal/event/delete/${id}`,
+                                    contentType: 'application/json',
+                                    success: function(data) {
+                                        div.remove();
+                                    },
+                                    error: function(xhr, ajaxOptions, err) {
+                                        console.log(xhr.status);
+                                        console.log(err);
+                                    }
+                                })
+                            }
+                        });
+
+                        counter++;
+                    },
+                    error: function(xhr, ajaxOptions, err) {
+                        console.log(xhr.status);
+                        console.log(err);
+                    }
+                })
+            })
+        </script>
+
+		<%- include('partials/footer') %>
+	</body>
+
+</html>

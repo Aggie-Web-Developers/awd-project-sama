@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header') %>
+    <link rel="stylesheet" href="/styles/weekly-meeting-page.css" />
+    <link rel="stylesheet" href="/styles/meeting-portal.css" />
+    <body>
+        <%- include('partials/nav') %>
+            <div class="container-fluid weekly-meetings">
+                <div class="container text-center pt-4 pb-1">
+                    <h1 class="mt-5 pt-5 pb-4 purple-text font-weight-bold">Weekly Meetings</h1>
+                </div>
+                <div class="row justify-content-center">
+                    <% meetings.forEach((meeting, index) => { %> 
+                        <div class="col meeting-item">
+                            <div class="chatbox text-center">
+                                <h4 class="py-4"><%- meeting.name %></h4>
+                                <p class="mx-4 mt-auto mb-4"><%- meeting.description %> </p>
+                                <div class="flex px-5">
+                                    <div class="btn btn-primary float-left" id="editBtn<%= meeting.id %>">Edit</div>
+                                    <div class="btn btn-danger float-right" id="delBtn<%= meeting.id %>">Delete</div>
+                                </div>
+                            </div>
+                            <div class="text-center mb-5">
+                                <h5 class="font-weight-bold"><%- meeting.day %>, <%- meeting.time %> </h5>
+                                <h6>On our <a href="https://www.<%- meeting.link %>" class="purple-text"><u>Discord</u></a></h6>
+                            </div>
+                        </div>
+                        <script>
+                        document.addEventListener("DOMContentLoaded", function(){
+                            document.getElementById("editBtn<%= meeting.id %>").addEventListener('click', function() {
+                                window.location = "/portal/meeting/update/<%= meeting.id %>";
+                            });
+                            document.getElementById("delBtn<%= meeting.id %>").addEventListener('click', function() {
+                                window.location = "/portal/meeting/delete/<%= meeting.id %>";
+                            });
+                        });
+                        </script>
+                    <% }); %> 
+                    <div class="col meeting-item">
+                        <div class="chatbox text-center">
+                            <h4 class="py-4">New Meeting</h4>
+                            <div class="createBtn btn btn-success mx-auto" id="newMeeting"><b>+</b></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid past-events-and-socials">
+                <div class="row justify-content-center py-5">
+                    <div class="col-lg-5 col-sm-12">
+                        <h1 class="division-title text-center"><b>Past Events & Socials</b></h1>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="container-fluid">
+                        <div class="d-flex flex-wrap w-auto px-5 event-list justify-content-around">
+                            <% event_map.forEach(function(obj) { %>
+                                <% type = obj.type; events = obj.events; %> 
+                                <div class="m-2 p-4 trip">
+                                    <div class="d-flex flex-row">
+                                        <div class="circle mx-3">
+                                            <% if(type.img !== '') { %> 
+                                            <img src="<%- type.img %> "></img>
+                                            <% } %> 
+                                        </div>
+                                        <div class="allTrips">
+                                            <h5><%- type.name %></h5>
+                                            <% events.forEach((event) => { %> 
+                                                <p><%- event.name %> </p>
+                                            <% }); %> 
+                                        </div>
+                                    </div>
+                                    <div class="flex pl-4 pr-2">
+                                        <div class="btn btn-primary float-left" id="editEventBtn<%= type.id %>">Edit</div>
+                                        <div class="btn btn-danger float-right" id="delEventBtn<%= type.id %>">Delete</div>
+                                    </div>
+                                </div>
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function(){
+                                        document.getElementById("editEventBtn<%= type.id %>").addEventListener('click', function() {
+                                            window.location = "/portal/eventType/update/<%= type.id %>";
+                                        });
+                                        document.getElementById("delEventBtn<%= type.id %>").addEventListener('click', function() {
+                                            window.location = "/portal/eventType/delete/<%= type.id %>";
+                                        });
+                                    });
+                                </script>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="/scripts/template.js"></script>
+            <script>
+                //Set delete function
+                document.getElementById("newMeeting").addEventListener('click', function() {
+                    window.location = "/portal/meeting/create/";
+                });
+            </script>
+            <%- include('partials/footer') %>
+
+    </body>
+
+</html>
