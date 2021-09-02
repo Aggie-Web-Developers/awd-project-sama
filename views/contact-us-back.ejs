@@ -21,10 +21,29 @@
 							<th style="width: 20%">Date Uploaded</th>
 							<th style="width: 15%">Link</th>
 						</tr>
+						<tbody>
+							<% forms.forEach(function(form) {
+								console.log(form);%>
+								<tr>
+									<td><%= form.name %></td>
+									<td><%= form.date_sent %></td>
+									<td>
+										<button type="button" class="btn btn-primary contact_form_open" 
+										id="view_form_<%= form.id %>" data-toggle="modal" data-target="#exampleModalLong">
+										See more
+									  	</button>
+									</td>
+								</tr>
+							<% }); %>
+						</tbody>
+
+
 						<tr>
 							<td>..</td>
 							<td>..</td>
-							<td>..</td>
+							<td>
+								
+							</td>
 						</tr>
 						<tr>
 							<td>..</td>
@@ -58,8 +77,8 @@
 		
 
 
-
-		<script src="/scripts/newsletter.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script type="module" src="/scripts/contact-us-back.js"></script>
 		<%- include('partials/footer') %>
 	</body>
 

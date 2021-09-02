@@ -1,6 +1,3 @@
-$(function () {
-	document.title = 'Aggie SAMA - Edit Announcement';
-
 	$('#frm').validate({
 		ignore: ':hidden',
 		rules: {
@@ -18,8 +15,8 @@ $(function () {
 			error.appendTo(element.closest('.form-group'));
 		},
 	});
-
 	$('.alert').click(function () {
 		$(this).hide();
 	});
 });
+
