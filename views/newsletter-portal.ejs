@@ -49,7 +49,7 @@
 													document.getElementById("deleteBtn<%=newsletter.id%>").addEventListener('click', function () {
 														$.ajax({
 															type: 'DELETE',
-															url: '/portal/newsletter/delete/<%=newsletter.id%>',
+															url: '/portal/newsletters/delete/<%=newsletter.id%>',
 															contentType: 'application/json'
 														})
 														//delete the parents' parent element
