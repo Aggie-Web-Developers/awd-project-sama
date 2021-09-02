@@ -5,18 +5,21 @@
 			class="navbar-collapse collapse w-100 order-1 order-lg-0 dual-collapse2"
 		>
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/portal/meetings">Events</a>
-				</li>
-				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/portal/officer">Officers</a>
-				</li>
-				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/portal/announcements">Announcements</a>
-				</li>
-				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/portal/newsletter">Newsletters</a>
-				</li>
+				<% if (user) { %>
+					<li class="nav-item active">
+						<a class="nav-link" id="navlink" href="/portal/meetings">Events</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" id="navlink" href="/portal/officers">Officers</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" id="navlink" href="/portal/announcements">Announcements</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" id="navlink" href="/portal/newsletter">Newsletters</a>
+					</li>
+				<% } %>
+				
 			</ul>
 		</div>
 		<div
