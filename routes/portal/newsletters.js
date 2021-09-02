@@ -40,8 +40,8 @@ function getNewsletters(req, res) {
 		})
 		.catch((err) => {
 			console.error(err);
-			res.redirect('/portal/');
 			req.flash('error', 'Error loading newsletters');
+			res.redirect('/portal/');
 		});
 }
 
@@ -68,7 +68,9 @@ router.post(
 				res.redirect('/portal/newsletters/');
 			})
 			.catch((err) => {
+				console.error(err);
 				req.flash('error', 'Error creating newsletter');
+				res.redirect('/portal/newsletters');
 			});
 	}
 );
@@ -96,11 +98,15 @@ router.delete('/delete/:id', middleware.checkAuthenticated, function (
 						res.redirect('/portal/newsletters/');
 					})
 					.catch((err) => {
+						console.error(err);
 						req.flash('error', 'Error creating newsletter');
+						res.redirect('/portal/newsletters');
 					});
 			})
 			.catch((err) => {
+				console.error(err);
 				req.flash('error', 'Error getting newsletter link');
+				res.redirect('/portal/newsletters');
 			});
 	} catch (error) {
 		console.log(error);
