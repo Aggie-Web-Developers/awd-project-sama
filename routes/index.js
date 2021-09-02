@@ -14,7 +14,7 @@ const multer = require('multer');
 const { assert } = require('console');
 var storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, './public/images/profiles');
+		cb(null, 'public/images/profiles');
 	},
 	filename: function (req, file, cb) {
 		cb(null, file.originalname.replace(/ /g, '_'));
@@ -31,7 +31,7 @@ const multerFilter = (req, file, cb) => {
 
 var storage_newsletters = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, './public/newsletters');
+		cb(null, 'public/newsletters');
 	},
 	filename: function (req, file, cb) {
 		cb(null, file.originalname.replace(/ /g, '_'));
@@ -133,7 +133,8 @@ router.get('/calendar', function (req, res) {
 });
 
 router.get('/officers', function (req, res) {
-	var sqlQuery = 'SELECT name, officerRole, bio, profilePic FROM tbl_officer';
+	var sqlQuery =
+		"SELECT name, officerRole, bio, profilePic FROM tbl_officer WHERE profilePic is NOT NULL ANd profilePic != '' ";
 
 	var sqlReq = new sql.Request()
 		.query(sqlQuery)
@@ -223,10 +224,6 @@ router.post('/portal/officer/delete/:id', function (req, res) {
 			req.flash('error', 'Error creating officer');
 		});
 });
-
-// router.get('/newsletter', function (req, res) {
-// 	res.render('newsletter');
-// });
 
 router.get('/meetings', async (req, res) => {
 	try {
@@ -370,14 +367,14 @@ router.post('/portal/meeting/create', async (req, res) => {
 		});
 });
 
-router.get('/portal/meeting/update/:id', function(req, res) {
+router.get('/portal/meeting/update/:id', function (req, res) {
 	var sqlQuery = `SELECT * FROM tbl_meeting WHERE id=${req.params['id']};`;
 
 	var sqlReq = new sql.Request()
 		.query(sqlQuery)
 		.then((result) => {
 			res.render('update-meeting', {
-				id: `${req.params['id']}`, 
+				id: `${req.params['id']}`,
 				meeting: result.recordset[0],
 			});
 		})
@@ -386,7 +383,7 @@ router.get('/portal/meeting/update/:id', function(req, res) {
 		});
 });
 
-router.post('/portal/meeting/update/:id', function(req, res) {
+router.post('/portal/meeting/update/:id', function (req, res) {
 	const name = req.body.meetingName;
 	const description = req.body.meetingDescription;
 	const link = req.body.meetingLink;
@@ -397,7 +394,7 @@ router.post('/portal/meeting/update/:id', function(req, res) {
 				WHERE id=${req.params['id']}`;
 
 	console.log(sqlQuery);
-		
+
 	var sqlReq = new sql.Request()
 		.query(sqlQuery)
 		.then((result) => {
@@ -409,7 +406,7 @@ router.post('/portal/meeting/update/:id', function(req, res) {
 		});
 });
 
-router.get('/portal/meeting/delete/:id', function(req, res) {
+router.get('/portal/meeting/delete/:id', function (req, res) {
 	var sqlQuery = `DELETE FROM tbl_meeting WHERE id=${req.params['id']}`;
 
 	var sqlReq = new sql.Request()
@@ -423,7 +420,7 @@ router.get('/portal/meeting/delete/:id', function(req, res) {
 		});
 });
 
-router.get('/portal/eventType/update/:id', async function(req, res) {
+router.get('/portal/eventType/update/:id', async function (req, res) {
 	var sqlQuery = `SELECT * FROM tbl_event_type WHERE id=${req.params['id']}`;
 	var event_type, events;
 
@@ -436,7 +433,7 @@ router.get('/portal/eventType/update/:id', async function(req, res) {
 			console.log(err);
 			req.flash('error', 'Error getting event type');
 		});
-	
+
 	sqlQuery = `SELECT * FROM tbl_event WHERE event_type_id=${req.params['id']}`;
 
 	await new sql.Request()
@@ -448,32 +445,39 @@ router.get('/portal/eventType/update/:id', async function(req, res) {
 			console.log(err);
 			req.flash('error', 'Error getting events');
 		});
-	
+
 	console.log(event_type);
 	console.log(events);
-	res.render('update-eventType', { id: `${req.params['id']}`, event_type: event_type[0], events: events });
+	res.render('update-eventType', {
+		id: `${req.params['id']}`,
+		event_type: event_type[0],
+		events: events,
+	});
 });
 
 async function updateEvent(name, id) {
 	var sqlQuery = `UPDATE tbl_event SET name='${name}' WHERE id=${id};`;
 	console.log(sqlQuery);
 
-	return new Promise( function(resolve, reject) {
-		new sql.Request().query(sqlQuery).then((result) => {
-			resolve(result);
-		}).catch(err => {
-			reject(err);
-		})
-	}).catch(err => {
-		console.log("SSQS");
+	return new Promise(function (resolve, reject) {
+		new sql.Request()
+			.query(sqlQuery)
+			.then((result) => {
+				resolve(result);
+			})
+			.catch((err) => {
+				reject(err);
+			});
+	}).catch((err) => {
+		console.log('SSQS');
 	});
 }
 
-router.post('/portal/eventType/update/:id', async function(req, res) {
+router.post('/portal/eventType/update/:id', async function (req, res) {
 	console.log(req.body.events);
 
-	var updateEvents = []
-	req.body.events.forEach(event => {
+	var updateEvents = [];
+	req.body.events.forEach((event) => {
 		console.log(event);
 		updateEvents.push(updateEvent(event.name, event.id));
 	});
@@ -489,10 +493,9 @@ router.post('/portal/eventType/update/:id', async function(req, res) {
 			console.log(err);
 			req.flash('error', 'Error updating event type');
 		});
-	
 });
 
-router.post('/portal/event/create/:id', async function(req, res) {
+router.post('/portal/event/create/:id', async function (req, res) {
 	var sqlQuery = 'SELECT MAX(id) FROM tbl_event';
 	var maxID = 0;
 	await new sql.Request()
@@ -505,14 +508,14 @@ router.post('/portal/event/create/:id', async function(req, res) {
 			res.status(400);
 			res.send('Error!');
 		});
-	
+
 	sqlQuery = `INSERT INTO tbl_event(name, event_type_id) VALUES ('New Event', ${req.params['id']})`;
-	
+
 	new sql.Request()
 		.query(sqlQuery)
 		.then((result) => {
 			res.status(200);
-			res.send(String(maxID+1));
+			res.send(String(maxID + 1));
 		})
 		.catch((err) => {
 			res.status(400);
@@ -520,7 +523,7 @@ router.post('/portal/event/create/:id', async function(req, res) {
 		});
 });
 
-router.post('/portal/event/delete/:id', function(req, res) {
+router.post('/portal/event/delete/:id', function (req, res) {
 	var sqlQuery = `DELETE FROM tbl_event WHERE id=${req.params['id']}`;
 
 	var sqlReq = new sql.Request()
@@ -535,7 +538,7 @@ router.post('/portal/event/delete/:id', function(req, res) {
 		});
 });
 
-router.get('/portal/eventType/delete/:id', function(req, res) {
+router.get('/portal/eventType/delete/:id', function (req, res) {
 	var sqlQuery = `DELETE FROM tbl_event WHERE event_type_id=${req.params['id']}`;
 
 	var sqlReq = new sql.Request()
@@ -554,7 +557,10 @@ router.get('/portal/eventType/delete/:id', function(req, res) {
 		})
 		.catch((err) => {
 			console.log(err);
-			req.flash('error', `Error deleting event under type: ${req.params['id']}` );
+			req.flash(
+				'error',
+				`Error deleting event under type: ${req.params['id']}`
+			);
 		});
 });
 
@@ -578,15 +584,18 @@ router.get('/portal/contact', function (req, res) {
 router.get('/portal/contact/view-form/:id', function (req, res) {
 	var sqlQuery = `SELECT name, email, company, message FROM tbl_contact_form WHERE id = ${req.params.id}`;
 
-	var sqlReq = new sql.Request().query(sqlQuery).then((result) => {
-		res.status(200).json({
-			status: 'success',
-			data: result.recordset
+	var sqlReq = new sql.Request()
+		.query(sqlQuery)
+		.then((result) => {
+			res.status(200).json({
+				status: 'success',
+				data: result.recordset,
+			});
+		})
+		.catch((err) => {
+			console.log('query failed');
+			req.flash('error', 'Error loading contact forms');
 		});
-	}).catch((err) => {
-		console.log('query failed');
-		req.flash('error', 'Error loading contact forms');
-	});
 });
 
 router.post('/contact-us', function (req, res) {
