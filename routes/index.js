@@ -5,35 +5,9 @@ const sql = require('mssql');
 const path = require('path');
 const fetch = require('node-fetch');
 const fs = require('fs');
-var moment = require('moment');
+const moment = require('moment');
 const axios = require('axios');
 const discord = require('../discord/discord');
-
-// Setup multer with disk storage
-const multer = require('multer');
-const { assert } = require('console');
-
-const multerFilter = (req, file, cb) => {
-	if (file.mimetype.split('/')[1] === 'pdf') {
-		cb(null, true);
-	} else {
-		cb(new Error('Not a PDF File!!'), false);
-	}
-};
-
-var storage_newsletters = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, 'public/newsletters');
-	},
-	filename: function (req, file, cb) {
-		cb(null, file.originalname.replace(/ /g, '_'));
-	},
-});
-
-var upload_newsletter = multer({
-	storage: storage_newsletters,
-	fileFilter: multerFilter,
-});
 
 router.get('/', async function (req, res) {
 	const events = [];
@@ -108,9 +82,7 @@ router.get('/', async function (req, res) {
 		},
 	});
 });
-// router.get('/newsletter', function (req, res) {
-// 	res.render('newsletter.ejs');
-// });
+
 router.get('/terms-and-conditions', function (req, res) {
 	res.render('terms-and-conditions');
 });
@@ -561,84 +533,6 @@ router.get('/newsletter', function (req, res) {
 			req.flash('error', 'Error loading newsletter.');
 			res.render('index', { newsletters: [] });
 		});
-});
-
-router.get('/portal/newsletter', function (req, res) {
-	getNewsletters(req, res);
-});
-
-function getNewsletters(req, res) {
-	var sqlQuery = 'SELECT * FROM tbl_newsletter';
-	var sqlReq = new sql.Request()
-		.query(sqlQuery)
-		.then((result) => {
-			res.render('newsletter-portal', {
-				newsletters: result.recordset,
-				moment: moment,
-				hostname: req.hostname,
-			});
-		})
-		.catch((err) => {
-			res.render('index');
-			req.flash('error', 'Error loading newsletters');
-		});
-}
-
-router.get('/portal/newsletter/:id?', getNewsletters);
-router.get('/portal/newsletter/create', getNewsletters);
-
-router.post(
-	'/portal/newsletter/create',
-	upload_newsletter.single('newsletter'),
-	function (req, res) {
-		const name = req.body.newsletterName;
-		let link =
-			req.file === undefined ? undefined : req.file.path.replace(/\\/g, '/');
-		var sqlReq = new sql.Request();
-		link = link.substr(7);
-		sqlReq.input('name', sql.NVarChar, name);
-		sqlReq.input('link', sql.NVarChar, link);
-
-		var queryText = `INSERT INTO tbl_newsletter (name, link) VALUES (@name, @link)`;
-
-		sqlReq
-			.query(queryText)
-			.then((result) => {
-				res.redirect('/portal/newsletter/');
-			})
-			.catch((err) => {
-				req.flash('error', 'Error creating newsletter');
-			});
-	}
-);
-
-router.delete('/portal/newsletter/delete/:id', function (req, res) {
-	try {
-		// get the link from db
-		var selectQuery = `SELECT link from tbl_newsletter WHERE id=${req.params['id']}`;
-		let link = null;
-		var sqlReq = new sql.Request()
-			.query(selectQuery)
-			.then((result) => {
-				link = result.recordset[0].link;
-				var sqlQuery = `DELETE FROM tbl_newsletter WHERE id=${req.params['id']};`;
-				var sqlReq = new sql.Request()
-					.query(sqlQuery)
-					.then((result) => {
-						fs.unlinkSync(link);
-						res.redirect('/portal/newsletter/');
-					})
-					.catch((err) => {
-						req.flash('error', 'Error creating newsletter');
-					});
-			})
-			.catch((err) => {
-				req.flash('error', 'Error getting newsletter link');
-			});
-	} catch (error) {
-		console.log(error);
-		res.status(400).send();
-	}
 });
 
 // router.get('/sitemap.xml', function (req, res) {
