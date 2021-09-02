@@ -109,7 +109,7 @@ router.delete('/delete/:id', middleware.checkAuthenticated, function (
 				res.redirect('/portal/newsletters');
 			});
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		res.status(400).send();
 	}
 });

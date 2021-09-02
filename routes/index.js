@@ -161,7 +161,7 @@ router.get('/meetings', async (req, res) => {
 			meetings: meetings,
 		});
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 		res.render('index');
 	}
 });
@@ -197,7 +197,7 @@ router.get('/portal/contact/view-form/:id', function (req, res) {
 			});
 		})
 		.catch((err) => {
-			console.log('query failed');
+			console.error(err);
 			req.flash('error', 'Error loading contact forms');
 		});
 });

@@ -59,7 +59,7 @@ router.get('/meetings', middleware.checkAuthenticated, async (req, res) => {
 	try {
 		getMeeting(req, res);
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 		res.render('index');
 	}
 });
@@ -128,15 +128,13 @@ router.post('/meeting/update/:id', middleware.checkAuthenticated, function (
 	var sqlQuery = `UPDATE tbl_meeting SET name = '${name}', description = '${description}', link = '${link}', time = '${time}', day = '${day}'
 				WHERE id=${req.params['id']}`;
 
-	console.log(sqlQuery);
-
 	var sqlReq = new sql.Request()
 		.query(sqlQuery)
 		.then((result) => {
 			getMeeting(req, res);
 		})
 		.catch((err) => {
-			console.log(err);
+			console.error(err);
 			req.flash('error', 'Error updating meeting');
 		});
 });
@@ -153,7 +151,7 @@ router.get('/meeting/delete/:id', middleware.checkAuthenticated, function (
 			getMeeting(req, res);
 		})
 		.catch((err) => {
-			console.log(err);
+			console.error(err);
 			req.flash('error', 'Error deleting meeting');
 		});
 });
@@ -171,7 +169,7 @@ router.get(
 				event_type = result.recordset;
 			})
 			.catch((err) => {
-				console.log(err);
+				console.error(err);
 				req.flash('error', 'Error getting event type');
 			});
 
@@ -183,12 +181,10 @@ router.get(
 				events = result.recordset;
 			})
 			.catch((err) => {
-				console.log(err);
+				console.error(err);
 				req.flash('error', 'Error getting events');
 			});
 
-		console.log(event_type);
-		console.log(events);
 		res.render('update-eventType', {
 			id: `${req.params['id']}`,
 			event_type: event_type[0],
@@ -199,7 +195,6 @@ router.get(
 
 async function updateEvent(name, id) {
 	var sqlQuery = `UPDATE tbl_event SET name='${name}' WHERE id=${id};`;
-	console.log(sqlQuery);
 
 	return new Promise(function (resolve, reject) {
 		new sql.Request()
@@ -211,7 +206,7 @@ async function updateEvent(name, id) {
 				reject(err);
 			});
 	}).catch((err) => {
-		console.log('SSQS');
+		console.error(error);
 	});
 }
 
@@ -219,11 +214,8 @@ router.post(
 	'/eventType/update/:id',
 	middleware.checkAuthenticated,
 	async function (req, res) {
-		console.log(req.body.events);
-
 		var updateEvents = [];
 		req.body.events.forEach((event) => {
-			console.log(event);
 			updateEvents.push(updateEvent(event.name, event.id));
 		});
 		await Promise.all(updateEvents);
@@ -235,7 +227,7 @@ router.post(
 				getMeeting(req, res);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.error(err);
 				req.flash('error', 'Error updating event type');
 			});
 	}
@@ -250,7 +242,6 @@ router.post('/event/create/:id', middleware.checkAuthenticated, async function (
 	await new sql.Request()
 		.query(sqlQuery)
 		.then((result) => {
-			console.log(result.recordset[0]['']);
 			maxID = result.recordset[0][''];
 		})
 		.catch((err) => {
@@ -306,12 +297,12 @@ router.get('/eventType/delete/:id', middleware.checkAuthenticated, function (
 					getMeeting(req, res);
 				})
 				.catch((err) => {
-					console.log(err);
+					console.error(err);
 					req.flash('error', 'Error deleting event type');
 				});
 		})
 		.catch((err) => {
-			console.log(err);
+			console.error(err);
 			req.flash(
 				'error',
 				`Error deleting event under type: ${req.params['id']}`

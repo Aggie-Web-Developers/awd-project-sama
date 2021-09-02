@@ -65,7 +65,7 @@ sql
 	})
 	.catch(function (err) {
 		console.log('Connecting to database: [FAILED]');
-		console.log(err);
+		console.error(err);
 	});
 
 app.use(function (req, res, next) {

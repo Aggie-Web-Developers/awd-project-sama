@@ -41,7 +41,7 @@
                                     },
                                     error: function(xhr, ajaxOptions, err) {
                                         console.log(xhr.status);
-                                        console.log(err);
+                                        console.error(err);
                                     }
                                 })
                             }
@@ -67,7 +67,6 @@
                     url: '/portal/event/create/<%=id%>',
                     contentType: 'application/json',
                     success: function(data) {
-                        console.log(data);
                         var parent = document.getElementById("eventsParent");
 
                         var div = document.createElement('div');
@@ -77,7 +76,6 @@
                         div.innerHTML = template;
                         parent.appendChild(div);
 
-                        console.log(`delEventBtn${counter}`);
                         document.getElementById(`delEventBtn${counter}`).addEventListener('click', function() {
                             if(confirm('Delete Event?')) {
                                 $.ajax({
@@ -89,7 +87,7 @@
                                     },
                                     error: function(xhr, ajaxOptions, err) {
                                         console.log(xhr.status);
-                                        console.log(err);
+                                        console.error(err);
                                     }
                                 })
                             }
@@ -99,7 +97,7 @@
                     },
                     error: function(xhr, ajaxOptions, err) {
                         console.log(xhr.status);
-                        console.log(err);
+                        console.error(err);
                     }
                 })
             })

@@ -12,7 +12,6 @@
 				</div>
 				<div class="row">
 					<p class="pb-3">A running archive of all contact form submissions</p>
-					<p><%- console.log(forms); %></p>
 				</div>
 				<div class="row" style="min-height: 51vh">
 					<table id="past-newsletters-table">
@@ -22,8 +21,7 @@
 							<th style="width: 15%">Link</th>
 						</tr>
 						<tbody>
-							<% forms.forEach(function(form) {
-								console.log(form);%>
+							<% forms.forEach(function(form) { %>
 								<tr>
 									<td><%= form.name %></td>
 									<td><%= form.date_sent %></td>
