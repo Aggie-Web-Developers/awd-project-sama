@@ -13,6 +13,7 @@ const baseRoutes = require('./routes');
 const portalRoutes = require('./routes/portal/index');
 const loginsRoutes = require('./routes/portal/logins');
 const announcementRoutes = require('./routes/portal/announcements');
+const officerRoutes = require('./routes/portal/officers');
 const cookie = require('express-session/session/cookie');
 
 initPassport(passport);
@@ -75,6 +76,7 @@ app.use(baseRoutes);
 app.use('/portal', portalRoutes);
 app.use('/portal/logins', loginsRoutes);
 app.use('/portal/announcements', announcementRoutes);
+app.use('/portal/officers', officerRoutes);
 
 app.get('/*', function (req, res) {
 	res.render('404');
