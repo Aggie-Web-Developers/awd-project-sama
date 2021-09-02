@@ -3,6 +3,15 @@
 	<%- include('../partials/header') %>
 	<body>
 		<%- include('../partials/portal-nav') %>
+
+		<% if (messages.error) { %>
+			<div class="alert alert-danger" role="alert"><%= messages.error %></div>
+		<% } %> <% if (messages.success) { %>
+			<div class="alert alert-success" role="alert">
+				<%= messages.success %>
+			</div>
+		<% } %>
+
 		<div class="container" style="padding-top: 4rem;">
 			<div class="row justify-content-center mt-5">
 				<h1>Officer Portal</h1>
@@ -35,7 +44,7 @@
 
 						<h2 class="font-weight-bold font-175 mb-4">Static Content</h2>
 
-						<a href="#" class="portal-link d-block"
+						<a href="/portal/meetings" class="portal-link d-block"
 							>Manage Meetings/Past Events
 							<i class="fas fa-arrow-circle-right ml-1"></i
 						></a>
@@ -95,7 +104,7 @@
 				<div class="col-12 col-md-6 col-lg-4 mt-3 mb-5">
 					<div class="officer-section-container">
 						<i
-							class="officer-section-icon main-blue fas fa-user-lock mb-4"
+							class="officer-section-icon main-blue fas fa-newspaper mb-4"
 							aria-hidden="true"
 						></i>
 
