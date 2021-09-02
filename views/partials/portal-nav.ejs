@@ -6,19 +6,16 @@
 		>
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/meetings" target="_blank">Events</a>
+					<a class="nav-link" id="navlink" href="/portal/meetings">Events</a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/officers">Officers</a>
+					<a class="nav-link" id="navlink" href="/portal/officer">Officers</a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/calendar">Calender</a>
+					<a class="nav-link" id="navlink" href="/portal/announcements">Announcements</a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/newsletter">Newsletter</a>
-				</li>
-				<li class="nav-item active">
-					<a class="nav-link" id="navlink" href="/contact-us">Contact</a>
+					<a class="nav-link" id="navlink" href="/portal/newsletter">Newsletters</a>
 				</li>
 			</ul>
 		</div>
@@ -26,9 +23,17 @@
 			class="mx-lg-auto order-0 order-lg-1 text-lg-center"
 			style="width: 100%;"
 		>
-			<a id="mainLogo" class="navbar-brand mx-auto" href="/portal"
+
+			<% if (user) { %>
+				<a id="mainLogo" class="navbar-brand mx-auto" href="/portal"
+					>Aggie-SAMA</a
+				>
+			<% } else { %>
+				<a id="mainLogo" class="navbar-brand mx-auto" href="/"
 				>Aggie-SAMA</a
 			>
+			<% } %>
+			
 			<button
 				class="navbar-toggler ml-auto float-right"
 				type="button"

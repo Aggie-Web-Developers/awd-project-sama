@@ -569,15 +569,17 @@ router.get('/contact-us', function (req, res) {
 });
 
 router.get('/portal/contact', function (req, res) {
-	var sqlQuery = 'SELECT * FROM contact_forms';
+	var sqlQuery = 'SELECT * FROM tbl_contact_form ORDER BY date_sent DESC';
 
-	var sqlReq = new sql.Request()
+	new sql.Request()
 		.query(sqlQuery)
 		.then((result) => {
 			res.render('contact-us-back', { forms: result.recordset });
 		})
 		.catch((err) => {
+			console.error(err);
 			req.flash('error', 'Error loading contact forms');
+			res.redirect('/portal');
 		});
 });
 
@@ -700,7 +702,7 @@ router.post(
 
 router.delete('/portal/newsletter/delete/:id', function (req, res) {
 	try {
-		//get the link from db
+		// get the link from db
 		var selectQuery = `SELECT link from tbl_newsletter WHERE id=${req.params['id']}`;
 		let link = null;
 		var sqlReq = new sql.Request()

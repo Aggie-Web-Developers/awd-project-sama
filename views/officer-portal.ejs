@@ -5,16 +5,26 @@
 	<body>
 		<%- include('partials/portal-nav') %>
 
-		<div id="content" class="container mx-auto mt-5">
-			<div class="d-flex flex-row flex-wrap mt-4 pt-5 justify-content-center">
+		<div id="content" class="container mx-auto" style="min-height: 100vh; margin-top: 78px">
+
+			<h1 class="pt-5 text-center">Manage Officers</h1>
+
+			<div class="d-flex flex-row flex-wrap mt-4 pt-3 justify-content-center">
 					<% let i=0; %>
 					<% officers.forEach(function(officer) { %>
 						<%- include('partials/officer-form', {officer: officer, id: officer.id, create:false}) %>
 						<% i++; %>
 					<% }); %>
 			</div>
+			
 			<div class="mx-auto my-5 text-center">
-				<button class="btn btn-success btn-lg addOfficerBtn">+ Add Officer</button>
+				<a
+					onclick="window.history.back();"
+					class="btn btn-lg btn-outline-primary portal-button-alt mr-3"
+				>
+				Back
+			</a>
+				<button class="btn btn-primary portal-button btn-lg addOfficerBtn">+ Add Officer</button>
 			</div>
 			<%- include('partials/officer-form', {officer:{name:'', profilePic:' ', role:'', bio:''}, id:'', create:true}) %>
 		</div>
