@@ -34,7 +34,7 @@ router.get('/', async function (req, res) {
 	// query google calendar to get events starting happing during or after the current time, sort by creation date
 	await axios
 		.get(
-			`https://www.googleapis.com/calendar/v3/calendars/${process.env.GCAL_ID}/events?key=${process.env.GCAL_API_KEY}&singleEvents=true&orderBy=startTime&timeMin=${dateString}`
+			`https://www.googleapis.com/calendar/v3/calendars/${process.env.GCAL_ID}/events?key=${process.env.GCAL_API_KEY}&singleEvents=true&orderBy=startTime&timeMin=${dateString}&timeZone=UTC`
 		)
 		.then(function (response) {
 			const googleCalendarEvents = response.data.items.slice(0, 3); // only use the top 3 events
