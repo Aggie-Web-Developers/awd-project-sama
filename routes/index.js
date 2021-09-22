@@ -186,9 +186,12 @@ router.get('/portal/contact', function (req, res) {
 });
 
 router.get('/portal/contact/view-form/:id', function (req, res) {
-	var sqlQuery = `SELECT name, email, company, message FROM tbl_contact_form WHERE id = ${req.params.id}`;
+	var sqlReq = new sql.Request();
+	sqlReq.input('id', sql.Int, id);
 
-	var sqlReq = new sql.Request()
+	var sqlQuery = `SELECT name, email, company, message FROM tbl_contact_form WHERE id = @id`;
+
+	sqlReq
 		.query(sqlQuery)
 		.then((result) => {
 			res.status(200).json({
