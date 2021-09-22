@@ -86,6 +86,15 @@
                                     });
                                 </script>
                             <% }); %>
+                            <div class="m-2 mt-5 p-4 trip newTrip">
+                                <h2>Create</h2>
+                                <div class="btn btn-success createBtn" id="createEvent">+</div>
+                            </div>
+                            <script>
+                                document.getElementById("createEvent").addEventListener('click', function() {
+                                    window.location = "/portal/eventType/create"
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>

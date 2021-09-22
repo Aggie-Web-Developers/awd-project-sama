@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/styles/meeting-portal.css" />
+<%- include('partials/header') %>
+
+	<body>
+		<%- include('partials/portal-nav') %>
+        <div class="form-container">
+            <h1>Update Event Type</h1>
+
+            <form action="/portal/eventType/create" method="POST" class="col-auto p-3 m-3 form-card">
+
+            <div class="form-row mb-3">
+                <div class="form-group col-12 p-1">
+                    <label class="mx-2 font-weight-bold" for="eventTypeName">Name</label>
+                    <input type="text" class="form-control m-1 w-100" id="eventTypeName" name="eventTypeName" value="" required>
+                </div>
+            </div>
+            <div id="eventsParent" class="form-row mb-3">
+                <div class="container py-3">
+                    <h2 class="d-inline-block">Events</h2>
+                    <div class="btn btn-success float-right" id="addEvent">Add Event</div>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Update</button>
+            </form>
+        </div>
+        <script>
+            var counter = 0;
+            var id = 0;
+            
+            document.getElementById("addEvent").addEventListener('click', function() {
+                var parent = document.getElementById("eventsParent");
+
+                var div = document.createElement('div');
+                id = counter;
+                div.className = "form-group d-flex align-items-center col-12";
+                div.id = `form${counter}`
+                div.innerHTML = `
+                    <div id="delEventBtn${counter}" class="btn btn-danger w-15 h-50 d-flex align-items-center mr-2"><b style="font-size: 1.5rem;">-</b></div>
+                    <input type="text" class="form-control m-1 col-8" id="events[${id}][name]" name="events[${id}][name]"" value="New Event" required>
+                    <input type="hidden" id="events[${id}][id]" name="events[${id}][id]"" value="${id}" required>`;
+                parent.appendChild(div);
+
+                document.getElementById(`delEventBtn${counter}`).addEventListener('click', function() {
+                    if(confirm('Delete Event?')) {
+                        div.remove();
+                    }
+                });
+
+                counter++;
+            })
+        </script>
+
+		<%- include('partials/footer') %>
+	</body>
+
+</html>
