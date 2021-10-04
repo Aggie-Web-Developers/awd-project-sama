@@ -31,7 +31,7 @@
             </div>
 
             <div class="row">
-                <% officers.forEach(function (officer){ %>
+                <% officers.filter(function(officer) {return officer.officerRole !== 'president'}).forEach(function (officer){ %>
                     <div class="col-lg-6">
                         <!-- Photo -->
                         <div class="circle other-photo">
