@@ -49,7 +49,7 @@ router.post(
 		sqlReq.input('id', sql.Int, req.params.id);
 
 		var sqlQuery = `INSERT INTO tbl_officer (name, officerRole, bio, profilePic)
-					VALUES (@name, @role, @bio, @picture`;
+					VALUES (@name, @role, @bio, @picture)`;
 
 		sqlReq
 			.query(sqlQuery)
