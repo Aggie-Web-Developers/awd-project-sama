@@ -3,7 +3,7 @@ const router = express.Router();
 const sql = require('mssql');
 const middleware = require('../../middleware');
 const multer = require('multer');
-const nanoid = require('nanoid');
+const { nanoid } = require('nanoid');
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
 		cb(null, 'public/images/profiles');
