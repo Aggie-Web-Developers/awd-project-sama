@@ -187,7 +187,7 @@ router.get('/portal/contact', function (req, res) {
 
 router.get('/portal/contact/view-form/:id', function (req, res) {
 	var sqlReq = new sql.Request();
-	sqlReq.input('id', sql.Int, id);
+	sqlReq.input('id', sql.Int, req.params.id);
 
 	var sqlQuery = `SELECT name, email, company, message FROM tbl_contact_form WHERE id = @id`;
 

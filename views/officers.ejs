@@ -14,22 +14,20 @@
         <div class="container-fluid px-5">
             <!-- for president -->
             <div class="row">
-                <div class="col-lg-4">
-                    <!-- Photo -->
-                    <div class="circle presi-photo">
-                        <img class="shape" src="https://pbs.twimg.com/media/C_H05o7UIAADguQ.jpg">
+                <% officers.filter(function(officer) {return officer.officerRole === 'president'}).forEach(function (officer){ %>
+                    <div class="col-lg-4">
+                        <div class="circle presi-photo">
+                            <img class="shape" src="/<%= officer.profilePic.replace('public/', '') || 'https://via.placeholder.com/150' %>">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-8">
-                    <!-- Introduction -->
-                    <div class="officer-title">President</div>
-                    <div class="officer-name">Timothy Nguyen</div>
-                    <div class="officer-intro">
-                        <p>Howdy!</p>
-                        <p>My name is Tim and I'm a Computer Science Major. I've spent wayyy too much money on merch and I regret (almost) nothing.</p>
-                        <p>Hope to see you all at one of the meetings or socials.</p>
-                    </div>                        
-                </div>
+                    <div class="col-lg-8">
+                        <div class="officer-title">President</div>
+                        <div class="officer-name"><%= officer.name %></div>
+                        <div class="officer-intro">
+                            <p><%= officer.bio %></p>
+                        </div>
+                    </div>
+                <% }); %>
             </div>
 
             <div class="row">
@@ -37,18 +35,18 @@
                     <div class="col-lg-6">
                         <!-- Photo -->
                         <div class="circle other-photo">
-                            <img class="shape" src="/<%= officer.profilePic.replace('public/', '') %>">
+                            <img class="shape" src="/<%= officer.profilePic.replace('public/', '') || 'https://via.placeholder.com/150' %>">
                         </div>
                         <!-- Introduction -->
                         <div class="officer-title"><%= officer.officerRole %></div>
                         <div class="officer-name"><%= officer.name %></div>
                         <div class="officer-intro">
                             <p><%= officer.bio %></p>
-                        </div>  
+                        </div>
                     </div>
                 <% }); %>
             </div>
-            
+
         </div>
 
 		<script src="/scripts/template.js"></script>

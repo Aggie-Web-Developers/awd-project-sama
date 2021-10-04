@@ -20,7 +20,7 @@
                     </p>
                 </div>
                 <div class="row justify-content-center">
-                    <% meetings.forEach((meeting) => { %> 
+                    <% meetings.forEach((meeting) => { %>
                         <div class="col meeting-item">
                             <div class="chatbox text-center">
                                 <h4 class="py-4"><%- meeting.name %></h4>
@@ -28,10 +28,10 @@
                             </div>
                             <div class="text-center mb-5">
                                 <h5 class="font-weight-bold"><%- meeting.day %>, <%- meeting.time %> </h5>
-                                <h6>On our <a href="https://www.<%- meeting.link %> " class="purple-text"><u>Discord</u></a></h6>
+                                <h6>Access <a href="https://www.<%- meeting.link %> " class="purple-text"><u>here</u></a></h6>
                             </div>
                         </div>
-                    <% }); %> 
+                    <% }); %>
                 </div>
             </div>
 
@@ -56,18 +56,18 @@
                     <div class="col-lg-3 col-auto">
                         <div class="event-list">
                             <% event_map.forEach(function(obj) { %>
-                                <% type = obj.type; events = obj.events; %> 
+                                <% type = obj.type; events = obj.events; %>
                                 <div class="row trip">
                                     <div class="circle mx-3">
-                                        <% if(type.img !== '') { %> 
+                                        <% if(type.img !== '') { %>
                                         <img src="<%- type.img %> "></img>
                                         <% } %>
                                     </div>
                                     <div class="col allTrips">
                                         <h5><%- type.name %></h5>
-                                        <% events.forEach((event) => { %> 
+                                        <% events.forEach((event) => { %>
                                             <p><%- event.name %> </p>
-                                        <% }); %> 
+                                        <% }); %>
                                     </div>
                                 </div>
                             <% }); %>

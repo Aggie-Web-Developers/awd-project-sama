@@ -27,7 +27,7 @@ router.get('/new', middleware.checkAuthenticated, function (req, res) {
 
 router.post('/new', middleware.checkAuthenticated, async function (req, res) {
 	try {
-		const hashedPassword = await bcrypt.hash(req.body.txtPassword, 10);
+		const hashedPassword = await bcrypt.hash(req.body.txtPassword, process.env.SALT);
 
 		var sqlReq = new sql.Request();
 

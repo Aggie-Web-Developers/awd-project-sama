@@ -10,7 +10,7 @@
                     <h1 class="mt-5 pt-5 pb-4 purple-text font-weight-bold">Weekly Meetings</h1>
                 </div>
                 <div class="row justify-content-center">
-                    <% meetings.forEach((meeting, index) => { %> 
+                    <% meetings.forEach((meeting, index) => { %>
                         <div class="col meeting-item">
                             <div class="chatbox text-center">
                                 <h4 class="py-4"><%- meeting.name %></h4>
@@ -22,7 +22,7 @@
                             </div>
                             <div class="text-center mb-5">
                                 <h5 class="font-weight-bold"><%- meeting.day %>, <%- meeting.time %> </h5>
-                                <h6>On our <a href="https://www.<%- meeting.link %>" class="purple-text"><u>Discord</u></a></h6>
+                                <h6>Access <a href="https://www.<%- meeting.link %>" class="purple-text"><u>here</u></a></h6>
                             </div>
                         </div>
                         <script>
@@ -35,7 +35,7 @@
                             });
                         });
                         </script>
-                    <% }); %> 
+                    <% }); %>
                     <div class="col meeting-item">
                         <div class="chatbox text-center">
                             <h4 class="py-4">New Meeting</h4>
@@ -55,19 +55,19 @@
                     <div class="container-fluid">
                         <div class="d-flex flex-wrap w-auto px-5 event-list justify-content-around">
                             <% event_map.forEach(function(obj) { %>
-                                <% type = obj.type; events = obj.events; %> 
+                                <% type = obj.type; events = obj.events; %>
                                 <div class="m-2 p-4 trip">
                                     <div class="d-flex flex-row">
                                         <div class="circle mx-3">
-                                            <% if(type.img !== '') { %> 
+                                            <% if(type.img !== '') { %>
                                             <img src="<%- type.img %> "></img>
-                                            <% } %> 
+                                            <% } %>
                                         </div>
                                         <div class="allTrips">
                                             <h5><%- type.name %></h5>
-                                            <% events.forEach((event) => { %> 
+                                            <% events.forEach((event) => { %>
                                                 <p><%- event.name %> </p>
-                                            <% }); %> 
+                                            <% }); %>
                                         </div>
                                     </div>
                                     <div class="flex pl-4 pr-2">

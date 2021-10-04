@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const calendar = new FullCalendar.Calendar(calendarEl, {
 		googleCalendarApiKey: 'AIzaSyDhH653b21qFywRN53Yf_byvXrNreumn5Q', // API key to enable FullCalendar to Access GCal
 		events: {
-			googleCalendarId: 'cdconn00@tamu.edu', // determines which google calendar will be used
+			googleCalendarId: 'aggiesamatamu@gmail.com', // determines which google calendar will be used
 		},
 		headerToolbar: {
 			left: 'prev,next',
@@ -42,13 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
 						'en-US',
 						{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 					)}</p>` +
-					`<p class="my-1"><i class="fas fa-clock mr-2"></i> 
+					`<p class="my-1"><i class="fas fa-clock mr-2"></i>
 					${info.event.start.toLocaleString('en-US', {
 						hour: 'numeric',
 						minute: 'numeric',
 						hour12: true,
-					})} 
-					 - 
+					})}
+					 -
 					${info.event.end.toLocaleString('en-US', {
 						hour: 'numeric',
 						minute: 'numeric',
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				}
 
 				// Append link that will create a google calendar event for the user when clicked
-				fancyContent += `<a 
+				fancyContent += `<a
 					href="http://www.google.com/calendar/render?
 						action=TEMPLATE
 						&text=${info.event.title}
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						}
 						&location=${location == null ? '' : location}
 						&trp=false"
-					target='_blank' 
+					target='_blank'
 					class='btn btn-primary portal-button mt-4 text-center'>
 					Add to Your Calendar
 				</a>`;

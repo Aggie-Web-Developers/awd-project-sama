@@ -3,12 +3,13 @@ const router = express.Router();
 const sql = require('mssql');
 const middleware = require('../../middleware');
 const multer = require('multer');
+const nanoid = require('nanoid');
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
 		cb(null, 'public/images/profiles');
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.originalname.replace(/ /g, '_'));
+		cb(null, file.originalname.replace(/ /g, '_') + nanoid(4));
 	},
 });
 
@@ -47,8 +48,8 @@ router.post(
 		sqlReq.input('picture', sql.NVarChar, profPic);
 		sqlReq.input('id', sql.Int, req.params.id);
 
-		var sqlQuery = `INSERT INTO tbl_officer (name, officerRole, bio, profilePic, id) 
-					VALUES (@name, @role, @bio, @picture, (SELECT MAX(id) FROM tbl_officer) + 1)`;
+		var sqlQuery = `INSERT INTO tbl_officer (name, officerRole, bio, profilePic)
+					VALUES (@name, @role, @bio, @picture`;
 
 		sqlReq
 			.query(sqlQuery)

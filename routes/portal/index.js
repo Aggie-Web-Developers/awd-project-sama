@@ -35,7 +35,7 @@ router.post('/register', middleware.checkAuthenticated, async function (
 	res
 ) {
 	try {
-		const hashedPassword = await bcrypt.hash(req.body.txtPassword, 10);
+		const hashedPassword = await bcrypt.hash(req.body.txtPassword, process.env.SALT);
 
 		var sqlReq = new sql.Request();
 
