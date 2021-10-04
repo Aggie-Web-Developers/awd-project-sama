@@ -134,7 +134,7 @@
 							<th style="width: 20%">Link</th>
 						</tr></thead>
 						<tbody>
-							<% newsletters.reverse.forEach(function(newsletter) { %>
+							<% newsletters.reverse().forEach(function(newsletter) { %>
 								<tr>
 									<td><%= newsletter.name %></td>
 									<td>
