@@ -22,7 +22,7 @@
                             </div>
                             <div class="text-center mb-5">
                                 <h5 class="font-weight-bold"><%- meeting.day %>, <%- meeting.time %> </h5>
-                                <%= if (meeting.link) { %>
+                                <% if (meeting.link) { %>
                                     <h6>Access <a href="https://www.<%- meeting.link %>" class="purple-text"><u>here</u></a></h6>
                                 <% } %>
                             </div>
