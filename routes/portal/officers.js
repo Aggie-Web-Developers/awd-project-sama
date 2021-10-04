@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
 		cb(null, 'public/images/profiles');
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.originalname.replace(/ /g, '_') + nanoid(4));
+		cb(null, nanoid(4) + file.originalname.replace(/ /g, '_'));
 	},
 });
 
