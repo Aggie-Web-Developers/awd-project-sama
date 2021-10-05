@@ -7,6 +7,8 @@ const bcrypt = require('bcrypt');
 const middleware = require('../../middleware');
 
 router.get('/', middleware.checkAuthenticated, function (req, res) {
+	console.log(req)
+
 	new sql.Request()
 		.query('SELECT id, email FROM tbl_user')
 		.then((result) => {
